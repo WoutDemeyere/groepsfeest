@@ -1,0 +1,53 @@
+﻿{
+  "selectedPlay": "kapoentjes-meisjes",
+  "characters": [
+    { "id": "char-1", "name": "Nora", "person": "Emma" },
+    { "id": "char-2", "name": "Elias", "person": "Jonas" },
+    { "id": "char-3", "name": "Mila", "person": "Lina" },
+    { "id": "char-4", "name": "Samir", "person": "Yassin" }
+  ],
+  "lines": [
+    { "id": "line-1", "characterId": "", "text": "Scène 1 — De bakkerij", "type": "sectie" },
+    { "id": "line-2", "characterId": "char-1", "text": "De deurbel rinkelt precies op tijd.", "type": "tekst" },
+    { "id": "line-3", "characterId": "char-2", "text": "Ik hoorde het al in de gang, dit wordt geen stille avond.", "type": "tekst" },
+    { "id": "line-4", "characterId": "", "text": "Het licht dimt, alleen de toonbank blijft warm belicht.", "type": "actie" },
+    { "id": "line-5", "characterId": "char-3", "text": "Als we dit samen doen, voelt de zaal minder leeg.", "type": "tekst" },
+    { "id": "line-6", "characterId": "char-4", "text": "De oven zoemt alsof hij mee ademt.", "type": "tekst" },
+    { "id": "line-7", "characterId": "", "text": "Scène 2 — Aan de vitrine", "type": "sectie" },
+    { "id": "line-8", "characterId": "char-1", "text": "We hebben nog tien minuten. Wat is de eerste cue?", "type": "tekst" },
+    { "id": "line-9", "characterId": "char-2", "text": "Een zachte bas en dan een helder licht op de deur.", "type": "tekst" },
+    { "id": "line-10", "characterId": "", "text": "De dansers komen op en vormen een halve cirkel.", "type": "actie" }
+  ],
+  "cues": [
+    {
+      "id": "cue-1",
+      "type": "licht",
+      "description": "Warme spot op de toonbank.",
+      "target": { "lineId": "line-2", "lineIndex": 1, "wordIndex": 4 }
+    },
+    {
+      "id": "cue-2",
+      "type": "audio",
+      "description": "Zachte bas die langzaam opbouwt.",
+      "target": { "lineId": "line-9", "lineIndex": 8, "wordIndex": 3 }
+    },
+    {
+      "id": "cue-3",
+      "type": "video",
+      "description": "Projectie van voorbijrijdende trams op de ruit.",
+      "target": { "lineId": "line-3", "lineIndex": 2, "wordIndex": 7 }
+    },
+    {
+      "id": "cue-4",
+      "type": "decor",
+      "description": "Neonbord achteraan gaat aan.",
+      "target": { "lineId": "line-4", "lineIndex": 3, "wordIndex": null }
+    },
+    {
+      "id": "cue-5",
+      "type": "licht",
+      "description": "Koele spot op de deur bij binnenkomst dansers.",
+      "target": { "lineId": "line-10", "lineIndex": 9, "wordIndex": 2 }
+    }
+  ]
+}
