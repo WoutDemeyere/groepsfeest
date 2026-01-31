@@ -11,7 +11,7 @@ type CharacterEditorProps = {
 }
 
 export const CharacterEditor = ({ characters, onAdd, onUpdate, onRemove }: CharacterEditorProps) => (
-  <Stack spacing={1}>
+  <Stack spacing={2}>
     <Typography variant="h2">Personages</Typography>
     <Typography color="text.secondary">
       Geef elk personage een naam en koppel eventueel de speler. Dit verschijnt mee in de PDF.
@@ -20,8 +20,14 @@ export const CharacterEditor = ({ characters, onAdd, onUpdate, onRemove }: Chara
       <Stack
         key={character.id}
         direction={{ xs: 'column', sm: 'row' }}
-        spacing={1}
-        sx={{ alignItems: { sm: 'center' } }}
+        spacing={2}
+        sx={{
+          alignItems: { sm: 'center' },
+          padding: { xs: '10px 12px', sm: '12px 16px' },
+          borderRadius: 1.5,
+          border: '1px solid rgba(255,255,255,0.08)',
+          background: 'rgba(10, 12, 28, 0.5)'
+        }}
       >
         <TextField
           label="Personage"

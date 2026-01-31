@@ -17,6 +17,19 @@ import { PLAYS } from '../config/plays.config'
 
 const createId = () => crypto.randomUUID()
 
+const createDefaultSection = (): ScriptLine => ({
+  id: createId(),
+  characterId: '',
+  text: 'Scene 1',
+  type: 'sectie'
+})
+
+const ensureFirstSection = (lines: ScriptLine[]) => {
+  if (!lines.length) return [createDefaultSection()]
+  if (lines[0].type !== 'sectie') return [createDefaultSection(), ...lines]
+  return lines
+}
+
 export type AppState = {
   selectedPlay: string
   characters: Character[]
@@ -75,7 +88,7 @@ export type AppState = {
 export const useAppStore = create<AppState>((set, get) => ({
   selectedPlay: PLAYS[0]?.id ?? 'aspi-1',
   characters: [{ id: createId(), name: 'Personage 1', person: '' }],
-  lines: [{ id: createId(), characterId: '', text: '', type: 'tekst' }],
+  lines: [createDefaultSection()],
   cues: [],
   stagePlots: {},
   leaderContact: { firstName: '', lastName: '', phone: '' },
@@ -117,38 +130,46 @@ export const useAppStore = create<AppState>((set, get) => ({
     })),
   addLine: () =>
     set((state) => ({
-      lines: [
+      lines: ensureFirstSection([
         ...state.lines,
         { id: createId(), characterId: '', text: '', type: 'tekst' }
-      ]
+      ])
     })),
   updateLine: (id, field, value) =>
     set((state) => ({
       lines: state.lines.map((line) => {
         if (line.id !== id) return line
+        if (state.lines[0]?.id === id && field === 'type' && value !== 'sectie') {
+          return line
+        }
         if (field === 'type' && (value === 'sectie' || value === 'actie')) {
           return { ...line, type: value as LineType, characterId: '' }
         }
         return { ...line, [field]: value }
       })
     })),
-  removeLine: (id) => set((state) => ({ lines: state.lines.filter((line) => line.id !== id) })),
+  removeLine: (id) =>
+    set((state) => ({
+      lines: ensureFirstSection(state.lines.filter((line) => line.id !== id))
+    })),
   moveLine: (fromId, toId) => {
     if (!fromId || !toId || fromId === toId) return
     set((state) => {
+      const firstLineId = state.lines[0]?.id
+      if (fromId === firstLineId || toId === firstLineId) return state
       const fromIndex = state.lines.findIndex((line) => line.id === fromId)
       const toIndex = state.lines.findIndex((line) => line.id === toId)
       if (fromIndex === -1 || toIndex === -1) return state
       const next = [...state.lines]
       const [moved] = next.splice(fromIndex, 1)
       next.splice(toIndex, 0, moved)
-      return { lines: next }
+      return { lines: ensureFirstSection(next) }
     })
   },
   setDraggedLineId: (id) => set({ draggedLineId: id }),
   setDropTargetId: (id) => set({ dropTargetId: id }),
   setCues: (cues) => set({ cues }),
-  setLines: (lines) => set({ lines }),
+  setLines: (lines) => set({ lines: ensureFirstSection(lines) }),
   setCharacters: (characters) => set({ characters }),
   setStagePlots: (plots) => set({ stagePlots: plots }),
   updateStagePlots: (updater) => set((state) => ({ stagePlots: updater(state.stagePlots) })),

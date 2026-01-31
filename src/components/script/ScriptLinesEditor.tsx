@@ -42,7 +42,7 @@ export const ScriptLinesEditor = ({
   onDragEnd,
   onDropTarget
 }: ScriptLinesEditorProps) => (
-  <Stack spacing={1}>
+  <Stack spacing={2}>
     <Typography variant="h2">Tekstlijnen</Typography>
     <Typography color="text.secondary">
       Gebruik type "sectie" om scenes te markeren. Die komen later terug in de stageplots.
@@ -51,14 +51,16 @@ export const ScriptLinesEditor = ({
       <Stack
         key={line.id}
         direction={{ xs: 'column', sm: 'row' }}
-        spacing={1}
+        spacing={2}
         sx={{
           alignItems: { sm: 'center' },
           position: 'relative',
           borderRadius: 1.5,
           transition: 'background-color 0.2s ease',
+          padding: { xs: '12px 12px', sm: '14px 16px' },
+          border: '1px solid rgba(255,255,255,0.08)',
           backgroundColor:
-            dropTargetId === line.id ? 'rgba(124, 139, 255, 0.12)' : 'transparent',
+            dropTargetId === line.id ? 'rgba(124, 139, 255, 0.12)' : 'rgba(10, 12, 28, 0.5)',
           '&::before': {
             content: '""',
             position: 'absolute',
@@ -85,7 +87,7 @@ export const ScriptLinesEditor = ({
         }}
       >
         <IconButton
-          draggable
+          draggable={index !== 0}
           onDragStart={(event) => {
             event.dataTransfer.effectAllowed = 'move'
             onDragStart(line.id)
@@ -95,11 +97,13 @@ export const ScriptLinesEditor = ({
             onDropTarget(null)
           }}
           sx={{
-            cursor: 'grab',
+            cursor: index === 0 ? 'default' : 'grab',
             color: 'rgba(255,255,255,0.55)',
-            '&:hover': { color: '#ffffff' }
+            '&:hover': { color: '#ffffff' },
+            opacity: index === 0 ? 0.35 : 1
           }}
           aria-label="Versleep regel"
+          disabled={index === 0}
         >
           <DragIndicatorIcon />
         </IconButton>
@@ -185,15 +189,22 @@ export const ScriptLinesEditor = ({
           onClick={() => onRemove(line.id)}
           sx={{
             color: 'rgba(255,255,255,0.7)',
-            '&:hover': { color: '#ff5c70' }
+            '&:hover': { color: '#ff5c70' },
+            opacity: index === 0 ? 0.35 : 1
           }}
           aria-label="Verwijder regel"
+          disabled={index === 0}
         >
           <DeleteOutlineIcon />
         </IconButton>
       </Stack>
     ))}
-    <Button variant="outlined" startIcon={<AddIcon />} onClick={onAdd} sx={{ alignSelf: 'flex-start' }}>
+    <Button
+      variant="outlined"
+      startIcon={<AddIcon />}
+      onClick={onAdd}
+      sx={{ alignSelf: 'flex-start' }}
+    >
       Regel toevoegen
     </Button>
   </Stack>

@@ -23,7 +23,7 @@ export const ScriptEditorPage = () => {
 
   return (
     <Box className={styles.editor}>
-      <Stack spacing={2}>
+      <Stack spacing={3}>
         <Stack direction="row" justifyContent="space-between" alignItems="center">
           <Typography variant="h2">Main editor</Typography>
         </Stack>
@@ -53,7 +53,7 @@ export const ScriptEditorPage = () => {
           onDropTarget={setDropTargetId}
         />
 
-        <Stack direction="row" spacing={2} sx={{ mt: 1 }}>
+        <Stack direction="row" spacing={2.5} sx={{ mt: 2 }}>
           <Button variant="text" onClick={() => navigate({ to: '/' })}>
             Terug naar keuze groep
           </Button>
