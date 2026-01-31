@@ -56,7 +56,7 @@ export const ScriptLinesEditor = ({
   >
     <Typography variant="h2">Tekstlijnen</Typography>
     <Typography color="text.secondary">
-      Gebruik type "sectie" om scenes te markeren. Die komen later terug in de stageplots.
+      Gebruik type "sectie" om scenes te markeren. Die komen later terug in de podiumplots.
     </Typography>
     {lines.map((line, index) => (
       <Stack

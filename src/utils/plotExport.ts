@@ -1,11 +1,11 @@
 import { PLOT_CANVAS_BASE_WIDTH, STAGE_DEPTH_METERS, STAGE_WIDTH_METERS } from '../config/stage.config'
-import type { StagePlot } from '../types/app'
+import type { PodiumPlot } from '../types/app'
 
 const PLOT_CANVAS_BASE_HEIGHT = Math.round(
   (PLOT_CANVAS_BASE_WIDTH * STAGE_DEPTH_METERS) / STAGE_WIDTH_METERS
 )
 
-export const buildPlotPng = (plot?: StagePlot) => {
+export const buildPlotPng = (plot?: PodiumPlot) => {
   const canvasWidth = Number(plot?.canvas?.width) || PLOT_CANVAS_BASE_WIDTH
   const canvasHeight = Number(plot?.canvas?.height) || PLOT_CANVAS_BASE_HEIGHT
   const scaleX = PLOT_CANVAS_BASE_WIDTH / canvasWidth

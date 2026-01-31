@@ -3,7 +3,7 @@ import { AppLayout } from './components/layout/AppLayout'
 import { PlaySelectPage } from './pages/PlaySelectPage'
 import { ScriptEditorPage } from './pages/ScriptEditorPage'
 import { CueEditorPage } from './pages/CueEditorPage'
-import { StagePlotPage } from './pages/StagePlotPage'
+import { PodiumPlotPage } from './pages/PodiumPlotPage'
 import { ExportPage } from './pages/ExportPage'
 
 const rootRoute = createRootRoute({
@@ -28,10 +28,10 @@ const cuesRoute = createRoute({
   component: CueEditorPage
 })
 
-const stagePlotRoute = createRoute({
+const podiumPlotRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/stageplot',
-  component: StagePlotPage
+  path: '/podiumplot',
+  component: PodiumPlotPage
 })
 
 const exportRoute = createRoute({
@@ -44,7 +44,7 @@ const routeTree = rootRoute.addChildren([
   playRoute,
   scriptRoute,
   cuesRoute,
-  stagePlotRoute,
+  podiumPlotRoute,
   exportRoute
 ])
 

@@ -2,7 +2,7 @@ export const STEP_ROUTES = [
   { id: 'play', label: 'Keuze groep', to: '/' },
   { id: 'script', label: 'Schrijven tekst', to: '/script' },
   { id: 'cues', label: "Plaatsen cue's op tekst", to: '/cues' },
-  { id: 'stage', label: 'Stageplot', to: '/stageplot' },
+  { id: 'stage', label: 'Podiumplot', to: '/podiumplot' },
   { id: 'export', label: 'Export', to: '/export' }
 ] as const
 

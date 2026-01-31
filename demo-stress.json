@@ -1,0 +1,1372 @@
+{
+  "schemaVersion": 2,
+  "selectedPlay": "rakkers",
+  "characters": [
+    {
+      "id": "char-1",
+      "name": "AURORA NOVA",
+      "person": ""
+    },
+    {
+      "id": "char-2",
+      "name": "CAPTAIN GIRAFFE",
+      "person": ""
+    },
+    {
+      "id": "char-3",
+      "name": "DE STEM VAN DE ZEE",
+      "person": ""
+    },
+    {
+      "id": "char-4",
+      "name": "TECHNICUS X",
+      "person": ""
+    },
+    {
+      "id": "char-5",
+      "name": "KOOR VAN 100",
+      "person": ""
+    },
+    {
+      "id": "char-6",
+      "name": "HET PUBLIEK",
+      "person": ""
+    }
+  ],
+  "lines": [
+    {
+      "id": "scene-1",
+      "characterId": "",
+      "text": "Scène 1 – De Omslag",
+      "type": "sectie"
+    },
+    {
+      "id": "line-1-1",
+      "characterId": "char-1",
+      "text": "Dit is een extreem lange repliek die expres te veel woorden bevat, zodat de layout moet breken en opnieuw moet vloeien zonder dat er iets overlap of wegvalt in de export.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-1-2",
+      "characterId": "char-2",
+      "text": "Ik zeg: start, start, start — en toch begint er niets, alsof het podium weigert mee te werken met mijn stem.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-1-3",
+      "characterId": "char-4",
+      "text": "Licht gaat aan, rookmachine sputtert, en iemand struikelt over een kabel.",
+      "type": "actie"
+    },
+    {
+      "id": "line-1-4",
+      "characterId": "char-3",
+      "text": "Onderbreking: een zachte fluistering met extra, extra, extra veel herhaling voor testing.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-1-5",
+      "characterId": "char-5",
+      "text": "Wij zijn het koor, wij vullen de ruimte met klankklankklank en woorden die geen einde kennen.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-1-6",
+      "characterId": "char-1",
+      "text": "Een tweede lange zin met vreemde_spaties_en_onderstreping die moeilijk breekt en extra lang doorloopt.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-1-7",
+      "characterId": "char-4",
+      "text": "Decor schuift traag, een stoel valt, iemand markeert een plek met tape.",
+      "type": "actie"
+    },
+    {
+      "id": "line-1-8",
+      "characterId": "char-2",
+      "text": "Herhaling herhaling herhaling herhaling herhaling om overlap te testen.",
+      "type": "tekst"
+    },
+    {
+      "id": "scene-2",
+      "characterId": "",
+      "text": "Scène 2 – De Overload",
+      "type": "sectie"
+    },
+    {
+      "id": "line-2-1",
+      "characterId": "char-2",
+      "text": "Dit is de overload: 1234567890, symbolen !?@# en woorden-met-streepjes die lang zijn en hard moeten wrappen.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-2-2",
+      "characterId": "char-1",
+      "text": "Ik loop, ik loop, ik loop, ik loop, ik loop, ik loop — totdat ik geen adem meer heb en toch blijf praten.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-2-3",
+      "characterId": "char-4",
+      "text": "Projectie start, video knippert, audio valt stil, dan plots heel luid.",
+      "type": "actie"
+    },
+    {
+      "id": "line-2-4",
+      "characterId": "char-6",
+      "text": "Publiek reageert: ooooh, aaah, fluit, klap, en een verdwaalde lach op het verkeerde moment.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-2-5",
+      "characterId": "char-3",
+      "text": "Onder water klinkt alles traag; woorden rekken uit, consonanten blijven hangen.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-2-6",
+      "characterId": "char-4",
+      "text": "Laser beweegt te snel, operator corrigeert handmatig.",
+      "type": "actie"
+    },
+    {
+      "id": "line-2-7",
+      "characterId": "char-5",
+      "text": "KOOR KOOR KOOR KOOR KOOR — ritme knettert, timing schuift.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-2-8",
+      "characterId": "char-1",
+      "text": "Een superlangezinzonderenigeonderbrekingdiehetwrappenmoetforcerenookalishijonnatuurlijk.",
+      "type": "tekst"
+    },
+    {
+      "id": "scene-3",
+      "characterId": "",
+      "text": "Scène 3 – De Stilte",
+      "type": "sectie"
+    },
+    {
+      "id": "line-3-1",
+      "characterId": "char-4",
+      "text": "Alle lichten uit. Iedereen bevriest. Stilte.",
+      "type": "actie"
+    },
+    {
+      "id": "line-3-2",
+      "characterId": "char-3",
+      "text": "In de stilte hoor je elke voetstap. Elke ademhaling. Elke trilling.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-3-3",
+      "characterId": "char-1",
+      "text": "Ik fluister woorden die bijna verdwijnen, maar toch te lang zijn om op één regel te blijven.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-3-4",
+      "characterId": "char-2",
+      "text": "Kijk naar mij, kijk naar mij, kijk naar mij, zei hij terwijl niemand keek.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-3-5",
+      "characterId": "char-4",
+      "text": "Projector gaat uit, noodlicht springt aan.",
+      "type": "actie"
+    },
+    {
+      "id": "line-3-6",
+      "characterId": "char-5",
+      "text": "Koor zingt heel zacht, bijna onhoorbaar, tot het ineens omslaat.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-3-7",
+      "characterId": "char-6",
+      "text": "Publiek wordt onrustig, iemand hoest, een ander fluistert te luid.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-3-8",
+      "characterId": "char-1",
+      "text": "Ik herhaal een woord: stilte, stilte, stilte, totdat het een echo wordt.",
+      "type": "tekst"
+    },
+    {
+      "id": "scene-4",
+      "characterId": "",
+      "text": "Scène 4 – De Storm",
+      "type": "sectie"
+    },
+    {
+      "id": "line-4-1",
+      "characterId": "char-5",
+      "text": "Het koor explodeert met volume, ritme, adem, en chaos die zich opstapelt tot een muur van geluid.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-4-2",
+      "characterId": "char-4",
+      "text": "Stroboscoop aan, windmachine blaast papieren over het podium.",
+      "type": "actie"
+    },
+    {
+      "id": "line-4-3",
+      "characterId": "char-1",
+      "text": "Waarom is alles nu zo fel en zo snel en zo veel tegelijk — ik verlies de controle.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-4-4",
+      "characterId": "char-2",
+      "text": "Ik herhaal herhaal herhaal herhaal herhaal om de cues te testen.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-4-5",
+      "characterId": "char-4",
+      "text": "Rookscherm op, haze blijft hangen, operator veegt lens.",
+      "type": "actie"
+    },
+    {
+      "id": "line-4-6",
+      "characterId": "char-3",
+      "text": "De zee brult; woorden spoelen weg en komen als schuim terug.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-4-7",
+      "characterId": "char-6",
+      "text": "Publiek klapt te vroeg, te laat, dan tegelijk, dan niet meer.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-4-8",
+      "characterId": "char-1",
+      "text": "Ik hou het net vol, maar mijn zinnen botsen tegen de rand.",
+      "type": "tekst"
+    },
+    {
+      "id": "scene-5",
+      "characterId": "",
+      "text": "Scène 5 – Finale",
+      "type": "sectie"
+    },
+    {
+      "id": "line-5-1",
+      "characterId": "char-4",
+      "text": "Eindbeeld: iedereen naar voren, licht warm, muziek zacht.",
+      "type": "actie"
+    },
+    {
+      "id": "line-5-2",
+      "characterId": "char-1",
+      "text": "Dit is het einde, maar ook het begin van een nieuwe test met extreem lange zinnen die nergens anders passen.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-5-3",
+      "characterId": "char-2",
+      "text": "FINALE: woorden botsen, cues stapelen, en de tijd wordt opgerekt.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-5-4",
+      "characterId": "char-3",
+      "text": "Dankjewel, dankjewel, dankjewel — tot de volgende keer.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-5-5",
+      "characterId": "char-4",
+      "text": "Gordijn dicht, spot uit, zaallicht aan.",
+      "type": "actie"
+    },
+    {
+      "id": "line-5-6",
+      "characterId": "char-5",
+      "text": "Koor houdt een lange noot aan tot hij breekt.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-5-7",
+      "characterId": "char-6",
+      "text": "Publiek staat, zit, staat weer op, en roept iets onverstaanbaars.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-5-8",
+      "characterId": "char-2",
+      "text": "Laatste test: herhaal herhaal herhaal voor overlappende cues.",
+      "type": "tekst"
+    }
+  ],
+  "cues": [
+    {
+      "id": "cue-1",
+      "type": "licht",
+      "description": "Warm frontlicht op AURORA",
+      "target": {
+        "lineId": "line-1-1",
+        "wordIndex": 3,
+        "wordText": "extreem"
+      }
+    },
+    {
+      "id": "cue-2",
+      "type": "audio",
+      "description": "Ambience start: zachte ruis",
+      "fileName": "ambience_soft.wav",
+      "target": {
+        "lineId": "line-1-1",
+        "wordIndex": 3,
+        "wordText": "extreem"
+      }
+    },
+    {
+      "id": "cue-3",
+      "type": "video",
+      "description": "Projectie: typo-glitch",
+      "fileName": "glitch_loop.mov",
+      "target": {
+        "lineId": "line-1-1",
+        "wordIndex": 14,
+        "wordText": "layout"
+      }
+    },
+    {
+      "id": "cue-4",
+      "type": "licht",
+      "description": "Volgspot op Captain",
+      "target": {
+        "lineId": "line-1-2",
+        "wordIndex": 4,
+        "wordText": "start"
+      }
+    },
+    {
+      "id": "cue-5",
+      "type": "licht",
+      "description": "Backlight pulse",
+      "target": {
+        "lineId": "line-1-2",
+        "wordIndex": 4,
+        "wordText": "start"
+      }
+    },
+    {
+      "id": "cue-6",
+      "type": "audio",
+      "description": "Click track op",
+      "fileName": "click_track.mp3",
+      "target": {
+        "lineId": "line-1-2",
+        "wordIndex": 4,
+        "wordText": "start"
+      }
+    },
+    {
+      "id": "cue-7",
+      "type": "decor",
+      "description": "Kabel zichtbaar op scène",
+      "target": {
+        "lineId": "line-1-3",
+        "wordIndex": null,
+        "wordText": null
+      }
+    },
+    {
+      "id": "cue-8",
+      "type": "audio",
+      "description": "Fluisterlaag versterken",
+      "fileName": "whispers.wav",
+      "target": {
+        "lineId": "line-1-4",
+        "wordIndex": 7,
+        "wordText": "extra"
+      }
+    },
+    {
+      "id": "cue-9",
+      "type": "licht",
+      "description": "Zachte side light",
+      "target": {
+        "lineId": "line-1-4",
+        "wordIndex": 7,
+        "wordText": "extra"
+      }
+    },
+    {
+      "id": "cue-10",
+      "type": "licht",
+      "description": "Koorbreed licht",
+      "target": {
+        "lineId": "line-1-5",
+        "wordIndex": 9,
+        "wordText": "klankklankklank"
+      }
+    },
+    {
+      "id": "cue-11",
+      "type": "video",
+      "description": "Error tape",
+      "fileName": "glitch_text.mp4",
+      "target": {
+        "lineId": "line-1-6",
+        "wordIndex": 5,
+        "wordText": "vreemde_spaties_en_onderstreping"
+      }
+    },
+    {
+      "id": "cue-12",
+      "type": "decor",
+      "description": "Tape marker",
+      "target": {
+        "lineId": "line-1-7",
+        "wordIndex": null,
+        "wordText": null
+      }
+    },
+    {
+      "id": "cue-13",
+      "type": "licht",
+      "description": "Flash on repeat",
+      "target": {
+        "lineId": "line-1-8",
+        "wordIndex": 1,
+        "wordText": "herhaling"
+      }
+    },
+    {
+      "id": "cue-14",
+      "type": "video",
+      "description": "Projectie cijfers",
+      "fileName": "digits.mp4",
+      "target": {
+        "lineId": "line-2-1",
+        "wordIndex": 0,
+        "wordText": "1234567890"
+      }
+    },
+    {
+      "id": "cue-15",
+      "type": "licht",
+      "description": "Neon flicker",
+      "target": {
+        "lineId": "line-2-1",
+        "wordIndex": 5,
+        "wordText": "symbolen"
+      }
+    },
+    {
+      "id": "cue-16",
+      "type": "audio",
+      "description": "Loopende voetstappen",
+      "fileName": "steps_loop.wav",
+      "target": {
+        "lineId": "line-2-2",
+        "wordIndex": 11,
+        "wordText": "loop"
+      }
+    },
+    {
+      "id": "cue-17",
+      "type": "licht",
+      "description": "Moving head sweep",
+      "target": {
+        "lineId": "line-2-2",
+        "wordIndex": 11,
+        "wordText": "loop"
+      }
+    },
+    {
+      "id": "cue-18",
+      "type": "audio",
+      "description": "Audio drop-out",
+      "fileName": "dropout.wav",
+      "target": {
+        "lineId": "line-2-3",
+        "wordIndex": null,
+        "wordText": null
+      }
+    },
+    {
+      "id": "cue-19",
+      "type": "licht",
+      "description": "Publiek strobo",
+      "target": {
+        "lineId": "line-2-4",
+        "wordIndex": 0,
+        "wordText": "Publiek"
+      }
+    },
+    {
+      "id": "cue-20",
+      "type": "decor",
+      "description": "Confetti start",
+      "target": {
+        "lineId": "line-2-4",
+        "wordIndex": 0,
+        "wordText": "klap"
+      }
+    },
+    {
+      "id": "cue-21",
+      "type": "audio",
+      "description": "Underwater filter",
+      "fileName": "underwater.wav",
+      "target": {
+        "lineId": "line-2-5",
+        "wordIndex": 1,
+        "wordText": "water"
+      }
+    },
+    {
+      "id": "cue-22",
+      "type": "licht",
+      "description": "Laser correction",
+      "target": {
+        "lineId": "line-2-6",
+        "wordIndex": null,
+        "wordText": null
+      }
+    },
+    {
+      "id": "cue-23",
+      "type": "audio",
+      "description": "Koor roll",
+      "fileName": "choir_roll.wav",
+      "target": {
+        "lineId": "line-2-7",
+        "wordIndex": 0,
+        "wordText": "KOOR"
+      }
+    },
+    {
+      "id": "cue-24",
+      "type": "video",
+      "description": "Long word stress",
+      "fileName": "longword.mov",
+      "target": {
+        "lineId": "line-2-8",
+        "wordIndex": 0,
+        "wordText": "superlangezinzonderenigeonderbrekingdiehetwrappenmoetforcerenookalishijonnatuurlijk"
+      }
+    },
+    {
+      "id": "cue-25",
+      "type": "licht",
+      "description": "Blackout",
+      "target": {
+        "lineId": "line-3-1",
+        "wordIndex": null,
+        "wordText": null
+      }
+    },
+    {
+      "id": "cue-26",
+      "type": "audio",
+      "description": "Stilte (mute) cue",
+      "target": {
+        "lineId": "line-3-1",
+        "wordIndex": null,
+        "wordText": null
+      }
+    },
+    {
+      "id": "cue-27",
+      "type": "audio",
+      "description": "Footstep foley",
+      "fileName": "steps_foley.wav",
+      "target": {
+        "lineId": "line-3-2",
+        "wordIndex": 0,
+        "wordText": "voetstap"
+      }
+    },
+    {
+      "id": "cue-28",
+      "type": "licht",
+      "description": "Pinspot op adem",
+      "target": {
+        "lineId": "line-3-2",
+        "wordIndex": 0,
+        "wordText": "ademhaling"
+      }
+    },
+    {
+      "id": "cue-29",
+      "type": "audio",
+      "description": "Whisper amp",
+      "fileName": "whisper_amp.wav",
+      "target": {
+        "lineId": "line-3-3",
+        "wordIndex": 1,
+        "wordText": "fluister"
+      }
+    },
+    {
+      "id": "cue-30",
+      "type": "licht",
+      "description": "Low key",
+      "target": {
+        "lineId": "line-3-3",
+        "wordIndex": 1,
+        "wordText": "fluister"
+      }
+    },
+    {
+      "id": "cue-31",
+      "type": "video",
+      "description": "Close-up camera",
+      "fileName": "closeup.mov",
+      "target": {
+        "lineId": "line-3-4",
+        "wordIndex": 0,
+        "wordText": "Kijk"
+      }
+    },
+    {
+      "id": "cue-32",
+      "type": "licht",
+      "description": "Audience fade",
+      "target": {
+        "lineId": "line-3-4",
+        "wordIndex": 0,
+        "wordText": "Kijk"
+      }
+    },
+    {
+      "id": "cue-33",
+      "type": "decor",
+      "description": "Emergency light",
+      "target": {
+        "lineId": "line-3-5",
+        "wordIndex": null,
+        "wordText": null
+      }
+    },
+    {
+      "id": "cue-34",
+      "type": "audio",
+      "description": "Crescendo",
+      "fileName": "crescendo.wav",
+      "target": {
+        "lineId": "line-3-6",
+        "wordIndex": 0,
+        "wordText": "omslag"
+      }
+    },
+    {
+      "id": "cue-35",
+      "type": "licht",
+      "description": "House lights",
+      "target": {
+        "lineId": "line-3-7",
+        "wordIndex": 0,
+        "wordText": "Publiek"
+      }
+    },
+    {
+      "id": "cue-36",
+      "type": "audio",
+      "description": "Echo on",
+      "fileName": "echo.wav",
+      "target": {
+        "lineId": "line-3-8",
+        "wordIndex": 0,
+        "wordText": "stilte"
+      }
+    },
+    {
+      "id": "cue-37",
+      "type": "audio",
+      "description": "Koor swell",
+      "fileName": "choir_swell.wav",
+      "target": {
+        "lineId": "line-4-1",
+        "wordIndex": 0,
+        "wordText": "volume"
+      }
+    },
+    {
+      "id": "cue-38",
+      "type": "licht",
+      "description": "Warm wash",
+      "target": {
+        "lineId": "line-4-1",
+        "wordIndex": 0,
+        "wordText": "volume"
+      }
+    },
+    {
+      "id": "cue-39",
+      "type": "licht",
+      "description": "Strobe burst",
+      "target": {
+        "lineId": "line-4-2",
+        "wordIndex": null,
+        "wordText": null
+      }
+    },
+    {
+      "id": "cue-40",
+      "type": "audio",
+      "description": "Rumble",
+      "fileName": "rumble.wav",
+      "target": {
+        "lineId": "line-4-3",
+        "wordIndex": 5,
+        "wordText": "fel"
+      }
+    },
+    {
+      "id": "cue-41",
+      "type": "decor",
+      "description": "Falling papers",
+      "target": {
+        "lineId": "line-4-4",
+        "wordIndex": 1,
+        "wordText": "herhaal"
+      }
+    },
+    {
+      "id": "cue-42",
+      "type": "licht",
+      "description": "Repeat flash",
+      "target": {
+        "lineId": "line-4-4",
+        "wordIndex": 1,
+        "wordText": "herhaal"
+      }
+    },
+    {
+      "id": "cue-43",
+      "type": "video",
+      "description": "Smoke wall",
+      "fileName": "smoke.mp4",
+      "target": {
+        "lineId": "line-4-5",
+        "wordIndex": null,
+        "wordText": null
+      }
+    },
+    {
+      "id": "cue-44",
+      "type": "audio",
+      "description": "Wave roar",
+      "fileName": "sea_roar.wav",
+      "target": {
+        "lineId": "line-4-6",
+        "wordIndex": 1,
+        "wordText": "zee"
+      }
+    },
+    {
+      "id": "cue-45",
+      "type": "licht",
+      "description": "Audience pulse",
+      "target": {
+        "lineId": "line-4-7",
+        "wordIndex": 0,
+        "wordText": "Publiek"
+      }
+    },
+    {
+      "id": "cue-46",
+      "type": "audio",
+      "description": "Endurance breath",
+      "fileName": "breath.wav",
+      "target": {
+        "lineId": "line-4-8",
+        "wordIndex": 3,
+        "wordText": "net"
+      }
+    },
+    {
+      "id": "cue-47",
+      "type": "licht",
+      "description": "Final warm scene",
+      "target": {
+        "lineId": "line-5-1",
+        "wordIndex": null,
+        "wordText": null
+      }
+    },
+    {
+      "id": "cue-48",
+      "type": "audio",
+      "description": "Final chord",
+      "fileName": "finale.mp3",
+      "target": {
+        "lineId": "line-5-1",
+        "wordIndex": null,
+        "wordText": null
+      }
+    },
+    {
+      "id": "cue-49",
+      "type": "video",
+      "description": "Credits roll",
+      "fileName": "credits.mov",
+      "target": {
+        "lineId": "line-5-2",
+        "wordIndex": 0,
+        "wordText": "einde"
+      }
+    },
+    {
+      "id": "cue-50",
+      "type": "licht",
+      "description": "Final hit",
+      "target": {
+        "lineId": "line-5-3",
+        "wordIndex": 0,
+        "wordText": "FINALE"
+      }
+    },
+    {
+      "id": "cue-51",
+      "type": "audio",
+      "description": "Thanks sting",
+      "fileName": "thanks.wav",
+      "target": {
+        "lineId": "line-5-4",
+        "wordIndex": 0,
+        "wordText": "Dankjewel"
+      }
+    },
+    {
+      "id": "cue-52",
+      "type": "decor",
+      "description": "Curtain cue",
+      "target": {
+        "lineId": "line-5-5",
+        "wordIndex": null,
+        "wordText": null
+      }
+    },
+    {
+      "id": "cue-53",
+      "type": "audio",
+      "description": "Long note",
+      "fileName": "long_note.wav",
+      "target": {
+        "lineId": "line-5-6",
+        "wordIndex": 4,
+        "wordText": "noot"
+      }
+    },
+    {
+      "id": "cue-54",
+      "type": "licht",
+      "description": "House up",
+      "target": {
+        "lineId": "line-5-7",
+        "wordIndex": 0,
+        "wordText": "Publiek"
+      }
+    },
+    {
+      "id": "cue-55",
+      "type": "licht",
+      "description": "Final overlap",
+      "target": {
+        "lineId": "line-5-8",
+        "wordIndex": 2,
+        "wordText": "herhaal"
+      }
+    }
+  ],
+  "podiumPlots": {
+    "scene-1": {
+      "enabled": true,
+      "canvas": {
+        "width": 1200,
+        "height": 950
+      },
+      "shapes": [
+        {
+          "id": "scene-1-light-0",
+          "x": 100,
+          "y": 200,
+          "size": 120,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Spot 1",
+          "description": "Edge-case spotlight"
+        },
+        {
+          "id": "scene-1-light-1",
+          "x": 260,
+          "y": 320,
+          "size": 130,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Spot 2",
+          "description": "Edge-case spotlight"
+        },
+        {
+          "id": "scene-1-light-2",
+          "x": 420,
+          "y": 200,
+          "size": 140,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Spot 3",
+          "description": "Edge-case spotlight"
+        },
+        {
+          "id": "scene-1-light-3",
+          "x": 580,
+          "y": 320,
+          "size": 150,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Spot 4",
+          "description": "Edge-case spotlight"
+        },
+        {
+          "id": "scene-1-light-4",
+          "x": 740,
+          "y": 200,
+          "size": 160,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Spot 5",
+          "description": "Edge-case spotlight"
+        },
+        {
+          "id": "scene-1-decor-0",
+          "x": 150,
+          "y": 500,
+          "size": 90,
+          "kind": "square",
+          "label": "decor",
+          "name": "Decor 1",
+          "description": "Weird prop placement"
+        },
+        {
+          "id": "scene-1-decor-1",
+          "x": 370,
+          "y": 580,
+          "size": 105,
+          "kind": "square",
+          "label": "decor",
+          "name": "Decor 2",
+          "description": "Weird prop placement"
+        },
+        {
+          "id": "scene-1-decor-2",
+          "x": 590,
+          "y": 500,
+          "size": 120,
+          "kind": "square",
+          "label": "decor",
+          "name": "Decor 3",
+          "description": "Weird prop placement"
+        }
+      ]
+    },
+    "scene-2": {
+      "enabled": true,
+      "canvas": {
+        "width": 1200,
+        "height": 950
+      },
+      "shapes": [
+        {
+          "id": "scene-2-light-0",
+          "x": 100,
+          "y": 200,
+          "size": 120,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Spot 1",
+          "description": "Edge-case spotlight"
+        },
+        {
+          "id": "scene-2-light-1",
+          "x": 260,
+          "y": 320,
+          "size": 130,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Spot 2",
+          "description": "Edge-case spotlight"
+        },
+        {
+          "id": "scene-2-light-2",
+          "x": 420,
+          "y": 200,
+          "size": 140,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Spot 3",
+          "description": "Edge-case spotlight"
+        },
+        {
+          "id": "scene-2-light-3",
+          "x": 580,
+          "y": 320,
+          "size": 150,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Spot 4",
+          "description": "Edge-case spotlight"
+        },
+        {
+          "id": "scene-2-light-4",
+          "x": 740,
+          "y": 200,
+          "size": 160,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Spot 5",
+          "description": "Edge-case spotlight"
+        },
+        {
+          "id": "scene-2-decor-0",
+          "x": 150,
+          "y": 500,
+          "size": 90,
+          "kind": "square",
+          "label": "decor",
+          "name": "Decor 1",
+          "description": "Weird prop placement"
+        },
+        {
+          "id": "scene-2-decor-1",
+          "x": 370,
+          "y": 580,
+          "size": 105,
+          "kind": "square",
+          "label": "decor",
+          "name": "Decor 2",
+          "description": "Weird prop placement"
+        },
+        {
+          "id": "scene-2-decor-2",
+          "x": 590,
+          "y": 500,
+          "size": 120,
+          "kind": "square",
+          "label": "decor",
+          "name": "Decor 3",
+          "description": "Weird prop placement"
+        }
+      ]
+    },
+    "scene-3": {
+      "enabled": true,
+      "canvas": {
+        "width": 1200,
+        "height": 950
+      },
+      "shapes": [
+        {
+          "id": "scene-3-light-0",
+          "x": 100,
+          "y": 200,
+          "size": 120,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Spot 1",
+          "description": "Edge-case spotlight"
+        },
+        {
+          "id": "scene-3-light-1",
+          "x": 260,
+          "y": 320,
+          "size": 130,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Spot 2",
+          "description": "Edge-case spotlight"
+        },
+        {
+          "id": "scene-3-light-2",
+          "x": 420,
+          "y": 200,
+          "size": 140,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Spot 3",
+          "description": "Edge-case spotlight"
+        },
+        {
+          "id": "scene-3-light-3",
+          "x": 580,
+          "y": 320,
+          "size": 150,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Spot 4",
+          "description": "Edge-case spotlight"
+        },
+        {
+          "id": "scene-3-light-4",
+          "x": 740,
+          "y": 200,
+          "size": 160,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Spot 5",
+          "description": "Edge-case spotlight"
+        },
+        {
+          "id": "scene-3-decor-0",
+          "x": 150,
+          "y": 500,
+          "size": 90,
+          "kind": "square",
+          "label": "decor",
+          "name": "Decor 1",
+          "description": "Weird prop placement"
+        },
+        {
+          "id": "scene-3-decor-1",
+          "x": 370,
+          "y": 580,
+          "size": 105,
+          "kind": "square",
+          "label": "decor",
+          "name": "Decor 2",
+          "description": "Weird prop placement"
+        },
+        {
+          "id": "scene-3-decor-2",
+          "x": 590,
+          "y": 500,
+          "size": 120,
+          "kind": "square",
+          "label": "decor",
+          "name": "Decor 3",
+          "description": "Weird prop placement"
+        }
+      ]
+    },
+    "scene-4": {
+      "enabled": true,
+      "canvas": {
+        "width": 1200,
+        "height": 950
+      },
+      "shapes": [
+        {
+          "id": "scene-4-light-0",
+          "x": 100,
+          "y": 200,
+          "size": 120,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Spot 1",
+          "description": "Edge-case spotlight"
+        },
+        {
+          "id": "scene-4-light-1",
+          "x": 260,
+          "y": 320,
+          "size": 130,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Spot 2",
+          "description": "Edge-case spotlight"
+        },
+        {
+          "id": "scene-4-light-2",
+          "x": 420,
+          "y": 200,
+          "size": 140,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Spot 3",
+          "description": "Edge-case spotlight"
+        },
+        {
+          "id": "scene-4-light-3",
+          "x": 580,
+          "y": 320,
+          "size": 150,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Spot 4",
+          "description": "Edge-case spotlight"
+        },
+        {
+          "id": "scene-4-light-4",
+          "x": 740,
+          "y": 200,
+          "size": 160,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Spot 5",
+          "description": "Edge-case spotlight"
+        },
+        {
+          "id": "scene-4-decor-0",
+          "x": 150,
+          "y": 500,
+          "size": 90,
+          "kind": "square",
+          "label": "decor",
+          "name": "Decor 1",
+          "description": "Weird prop placement"
+        },
+        {
+          "id": "scene-4-decor-1",
+          "x": 370,
+          "y": 580,
+          "size": 105,
+          "kind": "square",
+          "label": "decor",
+          "name": "Decor 2",
+          "description": "Weird prop placement"
+        },
+        {
+          "id": "scene-4-decor-2",
+          "x": 590,
+          "y": 500,
+          "size": 120,
+          "kind": "square",
+          "label": "decor",
+          "name": "Decor 3",
+          "description": "Weird prop placement"
+        }
+      ]
+    },
+    "scene-5": {
+      "enabled": true,
+      "canvas": {
+        "width": 1200,
+        "height": 950
+      },
+      "shapes": [
+        {
+          "id": "scene-5-light-0",
+          "x": 100,
+          "y": 200,
+          "size": 120,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Spot 1",
+          "description": "Edge-case spotlight"
+        },
+        {
+          "id": "scene-5-light-1",
+          "x": 260,
+          "y": 320,
+          "size": 130,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Spot 2",
+          "description": "Edge-case spotlight"
+        },
+        {
+          "id": "scene-5-light-2",
+          "x": 420,
+          "y": 200,
+          "size": 140,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Spot 3",
+          "description": "Edge-case spotlight"
+        },
+        {
+          "id": "scene-5-light-3",
+          "x": 580,
+          "y": 320,
+          "size": 150,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Spot 4",
+          "description": "Edge-case spotlight"
+        },
+        {
+          "id": "scene-5-light-4",
+          "x": 740,
+          "y": 200,
+          "size": 160,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Spot 5",
+          "description": "Edge-case spotlight"
+        },
+        {
+          "id": "scene-5-decor-0",
+          "x": 150,
+          "y": 500,
+          "size": 90,
+          "kind": "square",
+          "label": "decor",
+          "name": "Decor 1",
+          "description": "Weird prop placement"
+        },
+        {
+          "id": "scene-5-decor-1",
+          "x": 370,
+          "y": 580,
+          "size": 105,
+          "kind": "square",
+          "label": "decor",
+          "name": "Decor 2",
+          "description": "Weird prop placement"
+        },
+        {
+          "id": "scene-5-decor-2",
+          "x": 590,
+          "y": 500,
+          "size": 120,
+          "kind": "square",
+          "label": "decor",
+          "name": "Decor 3",
+          "description": "Weird prop placement"
+        }
+      ]
+    }
+  },
+  "podiumPlotLayouts": {
+    "scene-1": [
+      "scene-1-plot-a",
+      "scene-1-plot-b"
+    ],
+    "scene-2": [
+      "scene-2-plot-a",
+      "scene-2-plot-b"
+    ],
+    "scene-3": [
+      "scene-3-plot-a",
+      "scene-3-plot-b"
+    ],
+    "scene-4": [
+      "scene-4-plot-a",
+      "scene-4-plot-b"
+    ],
+    "scene-5": [
+      "scene-5-plot-a",
+      "scene-5-plot-b"
+    ]
+  },
+  "podiumPlotDocuments": {},
+  "podiumPlotNotes": {
+    "scene-1-plot-a": "Weird plot A for Scène 1 – De Omslag: asymmetrische diagonale opstelling, publiek dicht bij rand, props in kring, kabels kruisen.",
+    "scene-1-plot-b": "Weird plot B for Scène 1 – De Omslag: gespiegelde blocking, lichtpunten in driehoek, decor uit balans, spelers clusteren.",
+    "scene-2-plot-a": "Weird plot A for Scène 2 – De Overload: asymmetrische diagonale opstelling, publiek dicht bij rand, props in kring, kabels kruisen.",
+    "scene-2-plot-b": "Weird plot B for Scène 2 – De Overload: gespiegelde blocking, lichtpunten in driehoek, decor uit balans, spelers clusteren.",
+    "scene-3-plot-a": "Weird plot A for Scène 3 – De Stilte: asymmetrische diagonale opstelling, publiek dicht bij rand, props in kring, kabels kruisen.",
+    "scene-3-plot-b": "Weird plot B for Scène 3 – De Stilte: gespiegelde blocking, lichtpunten in driehoek, decor uit balans, spelers clusteren.",
+    "scene-4-plot-a": "Weird plot A for Scène 4 – De Storm: asymmetrische diagonale opstelling, publiek dicht bij rand, props in kring, kabels kruisen.",
+    "scene-4-plot-b": "Weird plot B for Scène 4 – De Storm: gespiegelde blocking, lichtpunten in driehoek, decor uit balans, spelers clusteren.",
+    "scene-5-plot-a": "Weird plot A for Scène 5 – Finale: asymmetrische diagonale opstelling, publiek dicht bij rand, props in kring, kabels kruisen.",
+    "scene-5-plot-b": "Weird plot B for Scène 5 – Finale: gespiegelde blocking, lichtpunten in driehoek, decor uit balans, spelers clusteren."
+  },
+  "leaderContact": {
+    "firstName": "Test",
+    "lastName": "Coordinator",
+    "phone": "0499 00 00 00"
+  }
+}

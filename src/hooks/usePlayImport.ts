@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import type { ChangeEvent } from 'react'
 import { useAppStore } from '../store/useAppStore'
 import { normalizeCueTarget } from '../utils/cue'
-import type { Cue, StagePlot, StagePlotLayout, StagePlotDocuments, StagePlotNotes } from '../types/app'
+import type { Cue, PodiumPlot, PodiumPlotLayout, PodiumPlotDocuments, PodiumPlotNotes } from '../types/app'
 
 type ImportPayload = {
   schemaVersion?: number
@@ -15,13 +15,13 @@ type ImportPayload = {
     lastName?: string
     phone?: string
   }
-  stagePlots?: unknown
-  stagePlotLayouts?: unknown
-  stagePlotDocuments?: unknown
-  stagePlotNotes?: unknown
+  podiumPlots?: unknown
+  podiumPlotLayouts?: unknown
+  podiumPlotDocuments?: unknown
+  podiumPlotNotes?: unknown
 }
 
-const normalizeStagePlots = (rawPlots: Record<string, StagePlot>) =>
+const normalizePodiumPlots = (rawPlots: Record<string, PodiumPlot>) =>
   Object.fromEntries(
     Object.entries(rawPlots).map(([sectionId, plot]) => {
       const shapes = Array.isArray(plot?.shapes) ? plot.shapes : []
@@ -54,10 +54,10 @@ export const usePlayImport = () => {
   const setLines = useAppStore((state) => state.setLines)
   const setCues = useAppStore((state) => state.setCues)
   const setLeaderContact = useAppStore((state) => state.setLeaderContact)
-  const setStagePlots = useAppStore((state) => state.setStagePlots)
-  const setStagePlotLayouts = useAppStore((state) => state.setStagePlotLayouts)
-  const setStagePlotDocuments = useAppStore((state) => state.setStagePlotDocuments)
-  const setStagePlotNotes = useAppStore((state) => state.setStagePlotNotes)
+  const setPodiumPlots = useAppStore((state) => state.setPodiumPlots)
+  const setPodiumPlotLayouts = useAppStore((state) => state.setPodiumPlotLayouts)
+  const setPodiumPlotDocuments = useAppStore((state) => state.setPodiumPlotDocuments)
+  const setPodiumPlotNotes = useAppStore((state) => state.setPodiumPlotNotes)
   const lines = useAppStore((state) => state.lines)
 
   return useCallback(
@@ -114,20 +114,20 @@ export const usePlayImport = () => {
           setCues(filtered)
         }
 
-        if (data.stagePlots && typeof data.stagePlots === 'object') {
-          setStagePlots(normalizeStagePlots(data.stagePlots as Record<string, StagePlot>))
+        if (data.podiumPlots && typeof data.podiumPlots === 'object') {
+          setPodiumPlots(normalizePodiumPlots(data.podiumPlots as Record<string, PodiumPlot>))
         }
 
-        if (data.stagePlotLayouts && typeof data.stagePlotLayouts === 'object') {
-          setStagePlotLayouts(data.stagePlotLayouts as StagePlotLayout)
+        if (data.podiumPlotLayouts && typeof data.podiumPlotLayouts === 'object') {
+          setPodiumPlotLayouts(data.podiumPlotLayouts as PodiumPlotLayout)
         }
 
-        if (data.stagePlotDocuments && typeof data.stagePlotDocuments === 'object') {
-          setStagePlotDocuments(data.stagePlotDocuments as StagePlotDocuments)
+        if (data.podiumPlotDocuments && typeof data.podiumPlotDocuments === 'object') {
+          setPodiumPlotDocuments(data.podiumPlotDocuments as PodiumPlotDocuments)
         }
 
-        if (data.stagePlotNotes && typeof data.stagePlotNotes === 'object') {
-          setStagePlotNotes(data.stagePlotNotes as StagePlotNotes)
+        if (data.podiumPlotNotes && typeof data.podiumPlotNotes === 'object') {
+          setPodiumPlotNotes(data.podiumPlotNotes as PodiumPlotNotes)
         }
       } catch {
         // ignore invalid import
@@ -140,10 +140,10 @@ export const usePlayImport = () => {
       setLeaderContact,
       setLines,
       setSelectedPlay,
-      setStagePlots,
-      setStagePlotLayouts,
-      setStagePlotDocuments,
-      setStagePlotNotes
+      setPodiumPlots,
+      setPodiumPlotLayouts,
+      setPodiumPlotDocuments,
+      setPodiumPlotNotes
     ]
   )
 }

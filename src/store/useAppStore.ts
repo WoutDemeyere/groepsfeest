@@ -10,11 +10,11 @@ import type {
   ShapeDraft,
   ShapeKind,
   ShapeLabel,
-  StagePlot,
+  PodiumPlot,
   StageShape
 } from '../types/app'
 import { PLAYS } from '../config/plays.config'
-import type { TLEditorSnapshot } from 'tldraw'
+import type { TLEditorSnapshot, TLContent } from 'tldraw'
 
 const createId = () => crypto.randomUUID()
 
@@ -36,14 +36,16 @@ export type AppState = {
   characters: Character[]
   lines: ScriptLine[]
   cues: Cue[]
-  stagePlots: Record<string, StagePlot>
-  stagePlotLayouts: Record<string, string[]>
-  stagePlotDocuments: Record<string, TLEditorSnapshot>
-  stagePlotNotes: Record<string, string>
+  podiumPlots: Record<string, PodiumPlot>
+  podiumPlotLayouts: Record<string, string[]>
+  podiumPlotDocuments: Record<string, TLEditorSnapshot>
+  podiumPlotNotes: Record<string, string>
+  podiumPlotClipboard: TLContent | null
   leaderContact: LeaderContact
   cueModalOpen: boolean
   cueType: CueType
   cueDescription: string
+  cueFileName: string
   selectedTarget: CueTarget | null
   shapeModalOpen: boolean
   shapeDraft: ShapeDraft
@@ -65,16 +67,18 @@ export type AppState = {
   setCues: (cues: Cue[]) => void
   setLines: (lines: ScriptLine[]) => void
   setCharacters: (characters: Character[]) => void
-  setStagePlots: (plots: Record<string, StagePlot>) => void
-  setStagePlotLayouts: (layouts: Record<string, string[]>) => void
-  setStagePlotDocuments: (documents: Record<string, TLEditorSnapshot>) => void
-  setStagePlotNotes: (notes: Record<string, string>) => void
-  ensureStagePlotSections: (sectionIds: string[]) => void
-  addStagePlot: (sectionId: string) => string
-  setStagePlotDocument: (plotId: string, snapshot: TLEditorSnapshot) => void
-  setStagePlotNote: (plotId: string, note: string) => void
-  updateStagePlots: (
-    updater: (prev: Record<string, StagePlot>) => Record<string, StagePlot>
+  setPodiumPlots: (plots: Record<string, PodiumPlot>) => void
+  setPodiumPlotLayouts: (layouts: Record<string, string[]>) => void
+  setPodiumPlotDocuments: (documents: Record<string, TLEditorSnapshot>) => void
+  setPodiumPlotNotes: (notes: Record<string, string>) => void
+  setPodiumPlotClipboard: (content: TLContent | null) => void
+  ensurePodiumPlotSections: (sectionIds: string[]) => void
+  addPodiumPlot: (sectionId: string) => string
+  removePodiumPlot: (sectionId: string, plotId: string) => void
+  setPodiumPlotDocument: (plotId: string, snapshot: TLEditorSnapshot) => void
+  setPodiumPlotNote: (plotId: string, note: string) => void
+  updatePodiumPlots: (
+    updater: (prev: Record<string, PodiumPlot>) => Record<string, PodiumPlot>
   ) => void
   updatePlotCanvasSize: (sectionId: string, rect: DOMRect) => void
   addCue: () => void
@@ -82,9 +86,10 @@ export type AppState = {
   setCueModalOpen: (open: boolean) => void
   setCueType: (value: CueType) => void
   setCueDescription: (value: string) => void
+  setCueFileName: (value: string) => void
   setSelectedTarget: (target: CueTarget | null) => void
-  enableStagePlot: (sectionId: string) => void
-  disableStagePlot: (sectionId: string) => void
+  enablePodiumPlot: (sectionId: string) => void
+  disablePodiumPlot: (sectionId: string) => void
   openAddShapeModal: (sectionId: string, kind: ShapeKind) => void
   openEditShapeModal: (sectionId: string, shape: StageShape) => void
   setShapeDraft: (draft: Partial<ShapeDraft>) => void
@@ -101,14 +106,16 @@ export const useAppStore = create<AppState>((set, get) => ({
   characters: [{ id: createId(), name: 'Personage 1', person: '' }],
   lines: [createDefaultSection()],
   cues: [],
-  stagePlots: {},
-  stagePlotLayouts: {},
-  stagePlotDocuments: {},
-  stagePlotNotes: {},
+  podiumPlots: {},
+  podiumPlotLayouts: {},
+  podiumPlotDocuments: {},
+  podiumPlotNotes: {},
+  podiumPlotClipboard: null,
   leaderContact: { firstName: '', lastName: '', phone: '' },
   cueModalOpen: false,
   cueType: 'licht',
   cueDescription: '',
+  cueFileName: '',
   selectedTarget: null,
   shapeModalOpen: false,
   shapeDraft: {
@@ -185,15 +192,16 @@ export const useAppStore = create<AppState>((set, get) => ({
   setCues: (cues) => set({ cues }),
   setLines: (lines) => set({ lines: ensureFirstSection(lines) }),
   setCharacters: (characters) => set({ characters }),
-  setStagePlots: (plots) => set({ stagePlots: plots }),
-  setStagePlotLayouts: (layouts) => set({ stagePlotLayouts: layouts }),
-  setStagePlotDocuments: (documents) => set({ stagePlotDocuments: documents }),
-  setStagePlotNotes: (notes) => set({ stagePlotNotes: notes }),
-  ensureStagePlotSections: (sectionIds) =>
+  setPodiumPlots: (plots) => set({ podiumPlots: plots }),
+  setPodiumPlotLayouts: (layouts) => set({ podiumPlotLayouts: layouts }),
+  setPodiumPlotDocuments: (documents) => set({ podiumPlotDocuments: documents }),
+  setPodiumPlotNotes: (notes) => set({ podiumPlotNotes: notes }),
+  setPodiumPlotClipboard: (content) => set({ podiumPlotClipboard: content }),
+  ensurePodiumPlotSections: (sectionIds) =>
     set((state) => {
       const nextLayouts: Record<string, string[]> = {}
       sectionIds.forEach((sectionId) => {
-        const existing = state.stagePlotLayouts[sectionId]
+        const existing = state.podiumPlotLayouts[sectionId]
         if (existing?.length) {
           nextLayouts[sectionId] = existing
         } else {
@@ -202,7 +210,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       })
 
       const nextDocuments: Record<string, TLEditorSnapshot> = {}
-      Object.entries(state.stagePlotDocuments).forEach(([plotId, snapshot]) => {
+      Object.entries(state.podiumPlotDocuments).forEach(([plotId, snapshot]) => {
         const stillExists = Object.values(nextLayouts).some((plots) => plots.includes(plotId))
         if (stillExists) {
           nextDocuments[plotId] = snapshot
@@ -210,7 +218,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       })
 
       const nextNotes: Record<string, string> = {}
-      Object.entries(state.stagePlotNotes).forEach(([plotId, note]) => {
+      Object.entries(state.podiumPlotNotes).forEach(([plotId, note]) => {
         const stillExists = Object.values(nextLayouts).some((plots) => plots.includes(plotId))
         if (stillExists) {
           nextNotes[plotId] = note
@@ -218,51 +226,69 @@ export const useAppStore = create<AppState>((set, get) => ({
       })
 
       return {
-        stagePlotLayouts: nextLayouts,
-        stagePlotDocuments: nextDocuments,
-        stagePlotNotes: nextNotes
+        podiumPlotLayouts: nextLayouts,
+        podiumPlotDocuments: nextDocuments,
+        podiumPlotNotes: nextNotes
       }
     }),
-  addStagePlot: (sectionId) => {
+  addPodiumPlot: (sectionId) => {
     const plotId = createId()
     set((state) => ({
-      stagePlotLayouts: {
-        ...state.stagePlotLayouts,
-        [sectionId]: [...(state.stagePlotLayouts[sectionId] ?? []), plotId]
+      podiumPlotLayouts: {
+        ...state.podiumPlotLayouts,
+        [sectionId]: [...(state.podiumPlotLayouts[sectionId] ?? []), plotId]
       },
-      stagePlotNotes: {
-        ...state.stagePlotNotes,
-        [plotId]: state.stagePlotNotes[plotId] ?? ''
+      podiumPlotNotes: {
+        ...state.podiumPlotNotes,
+        [plotId]: state.podiumPlotNotes[plotId] ?? ''
       }
     }))
     return plotId
   },
-  setStagePlotDocument: (plotId, snapshot) =>
+  removePodiumPlot: (sectionId, plotId) =>
+    set((state) => {
+      const current = state.podiumPlotLayouts[sectionId] ?? []
+      if (current.length <= 1) return state
+      const nextLayouts = {
+        ...state.podiumPlotLayouts,
+        [sectionId]: current.filter((id) => id !== plotId)
+      }
+      const nextDocuments = { ...state.podiumPlotDocuments }
+      const nextNotes = { ...state.podiumPlotNotes }
+      delete nextDocuments[plotId]
+      delete nextNotes[plotId]
+      return {
+        podiumPlotLayouts: nextLayouts,
+        podiumPlotDocuments: nextDocuments,
+        podiumPlotNotes: nextNotes
+      }
+    }),
+  setPodiumPlotDocument: (plotId, snapshot) =>
     set((state) => ({
-      stagePlotDocuments: { ...state.stagePlotDocuments, [plotId]: snapshot }
+      podiumPlotDocuments: { ...state.podiumPlotDocuments, [plotId]: snapshot }
     })),
-  setStagePlotNote: (plotId, note) =>
+  setPodiumPlotNote: (plotId, note) =>
     set((state) => ({
-      stagePlotNotes: { ...state.stagePlotNotes, [plotId]: note }
+      podiumPlotNotes: { ...state.podiumPlotNotes, [plotId]: note }
     })),
-  updateStagePlots: (updater) => set((state) => ({ stagePlots: updater(state.stagePlots) })),
+  updatePodiumPlots: (updater) => set((state) => ({ podiumPlots: updater(state.podiumPlots) })),
   updatePlotCanvasSize: (sectionId, rect) =>
     set((state) => {
       if (!sectionId || !rect) return state
       const width = Math.round(rect.width)
       const height = Math.round(rect.height)
-      const section = state.stagePlots[sectionId] || { enabled: true, shapes: [] }
+      const section = state.podiumPlots[sectionId] || { enabled: true, shapes: [] }
       const current = section.canvas || {}
       if (current.width === width && current.height === height) return state
       return {
-        stagePlots: {
-          ...state.stagePlots,
+        podiumPlots: {
+          ...state.podiumPlots,
           [sectionId]: { ...section, canvas: { width, height } }
         }
       }
     }),
   addCue: () => {
-    const { selectedTarget, cueType, cueDescription } = get()
+    const { selectedTarget, cueType, cueDescription, cueFileName } = get()
     if (!selectedTarget) return
     set((state) => ({
       cues: [
@@ -271,10 +297,12 @@ export const useAppStore = create<AppState>((set, get) => ({
           id: createId(),
           type: cueType,
           description: cueDescription.trim(),
+          fileName: cueFileName.trim() || undefined,
           target: selectedTarget
         }
       ],
       cueDescription: '',
+      cueFileName: '',
       cueModalOpen: false
     }))
   },
@@ -283,26 +311,27 @@ export const useAppStore = create<AppState>((set, get) => ({
   setCueModalOpen: (open) => set({ cueModalOpen: open }),
   setCueType: (value) => set({ cueType: value }),
   setCueDescription: (value) => set({ cueDescription: value }),
+  setCueFileName: (value) => set({ cueFileName: value }),
   setSelectedTarget: (target) => set({ selectedTarget: target }),
-  enableStagePlot: (sectionId) =>
+  enablePodiumPlot: (sectionId) =>
     set((state) => ({
-      stagePlots: {
-        ...state.stagePlots,
+      podiumPlots: {
+        ...state.podiumPlots,
         [sectionId]: {
-          ...(state.stagePlots[sectionId] || {}),
+          ...(state.podiumPlots[sectionId] || {}),
           enabled: true,
-          shapes: state.stagePlots[sectionId]?.shapes ?? []
+          shapes: state.podiumPlots[sectionId]?.shapes ?? []
         }
       }
     })),
-  disableStagePlot: (sectionId) =>
+  disablePodiumPlot: (sectionId) =>
     set((state) => ({
-      stagePlots: {
-        ...state.stagePlots,
+      podiumPlots: {
+        ...state.podiumPlots,
         [sectionId]: {
-          ...(state.stagePlots[sectionId] || {}),
+          ...(state.podiumPlots[sectionId] || {}),
           enabled: false,
-          shapes: state.stagePlots[sectionId]?.shapes ?? []
+          shapes: state.podiumPlots[sectionId]?.shapes ?? []
         }
       }
     })),
@@ -333,7 +362,7 @@ export const useAppStore = create<AppState>((set, get) => ({
     if (!activeSectionId) return
     const normalizedSize = Math.max(30, Number(shapeDraft.size) || 70)
     set((state) => {
-      const section = state.stagePlots[activeSectionId] || { enabled: true, shapes: [] }
+      const section = state.podiumPlots[activeSectionId] || { enabled: true, shapes: [] }
       const shapes = [...section.shapes]
       if (editingShapeId) {
         const index = shapes.findIndex((shape) => shape.id === editingShapeId)
@@ -360,8 +389,8 @@ export const useAppStore = create<AppState>((set, get) => ({
         })
       }
       return {
-        stagePlots: {
-          ...state.stagePlots,
+        podiumPlots: {
+          ...state.podiumPlots,
           [activeSectionId]: { ...section, enabled: true, shapes }
         },
         shapeModalOpen: false,
@@ -371,11 +400,11 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
   removeShape: (sectionId, shapeId) =>
     set((state) => {
-      const section = state.stagePlots[sectionId]
+      const section = state.podiumPlots[sectionId]
       if (!section) return state
       return {
-        stagePlots: {
-          ...state.stagePlots,
+        podiumPlots: {
+          ...state.podiumPlots,
           [sectionId]: {
             ...section,
             shapes: section.shapes.filter((shape) => shape.id !== shapeId)

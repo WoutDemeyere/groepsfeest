@@ -18,10 +18,12 @@ type CueModalProps = {
   open: boolean
   cueType: CueType
   cueDescription: string
+  cueFileName: string
   disabled: boolean
   onClose: () => void
   onTypeChange: (value: CueType) => void
   onDescriptionChange: (value: string) => void
+  onFileNameChange: (value: string) => void
   onSave: () => void
 }
 
@@ -29,10 +31,12 @@ export const CueModal = ({
   open,
   cueType,
   cueDescription,
+  cueFileName,
   disabled,
   onClose,
   onTypeChange,
   onDescriptionChange,
+  onFileNameChange,
   onSave
 }: CueModalProps) => (
   <Dialog
@@ -65,6 +69,15 @@ export const CueModal = ({
             ))}
           </Select>
         </FormControl>
+        {(cueType === 'audio' || cueType === 'video') && (
+          <TextField
+            label="Bestandsnaam"
+            value={cueFileName}
+            onChange={(event) => onFileNameChange(event.target.value)}
+            required={false}
+            helperText="Optioneel, maar aanbevolen voor audio en video."
+          />
+        )}
         <TextField
           label="Beschrijving"
           value={cueDescription}

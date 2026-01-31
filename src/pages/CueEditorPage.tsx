@@ -25,39 +25,35 @@ export const CueEditorPage = () => {
   const cueModalOpen = useAppStore((state) => state.cueModalOpen)
   const cueType = useAppStore((state) => state.cueType)
   const cueDescription = useAppStore((state) => state.cueDescription)
+  const cueFileName = useAppStore((state) => state.cueFileName)
   const selectedTarget = useAppStore((state) => state.selectedTarget)
   const setSelectedTarget = useAppStore((state) => state.setSelectedTarget)
   const setCueModalOpen = useAppStore((state) => state.setCueModalOpen)
   const setCueType = useAppStore((state) => state.setCueType)
   const setCueDescription = useAppStore((state) => state.setCueDescription)
+  const setCueFileName = useAppStore((state) => state.setCueFileName)
   const addCue = useAppStore((state) => state.addCue)
   const removeCue = useAppStore((state) => state.removeCue)
 
   const sortedCues = useMemo(() => sortCues(cues, lines), [cues, lines])
 
-  const cuePositions = useMemo(() => {
-    const lineIndex = new Map(lines.map((line, index) => [line.id, index]))
-    const lineHeight = 56
-    const minGap = 120
-    const maxShift = 200
-    let lastTop = -Infinity
-    return sortedCues.map((cue, index) => {
-      const baseIndex = cue.target.lineIndex ?? lineIndex.get(cue.target.lineId) ?? 0
-      const wordOffset = cue.target.wordIndex != null ? 0.18 : 0
-      const desiredTop = (baseIndex + wordOffset) * lineHeight - 38
-      let top = desiredTop
-      if (top < lastTop + minGap) {
-        top = Math.min(lastTop + minGap, desiredTop + maxShift)
-      }
-      lastTop = top
-      return {
-        ...cue,
-        number: index + 1,
-        top,
-        lineHeight
-      }
+  const cueNumbers = useMemo(
+    () => new Map(sortedCues.map((cue, index) => [cue.id, index + 1])),
+    [sortedCues]
+  )
+
+  const cuesByLine = useMemo(() => {
+    const map = new Map<string, typeof sortedCues>()
+    sortedCues.forEach((cue) => {
+      const list = map.get(cue.target.lineId) ?? []
+      list.push(cue)
+      map.set(cue.target.lineId, list)
     })
-  }, [sortedCues, lines])
+    map.forEach((list) => {
+      list.sort((a, b) => (a.target.wordIndex ?? -1) - (b.target.wordIndex ?? -1))
+    })
+    return map
+  }, [sortedCues])
 
   const cueMarkers = useMemo(() => {
     const markers = new Map<string, { numbers: number[]; types: Set<string> }>()
@@ -79,51 +75,58 @@ export const CueEditorPage = () => {
     setCueModalOpen(true)
   }
 
+  const isCueDisabled = !selectedTarget
+
   return (
-    <Box className={`${styles.editor} ${styles['editor--split']}`}>
-      <Box className={styles['cue-left']}>
-        <Typography variant="h2">Tekst (read-only)</Typography>
-        <Typography color="text.secondary" sx={{ mt: 1 }}>
-          Klik op een regelnummer of woord om een cue te plaatsen.
+    <Box className={styles.editor}>
+      <Typography variant="h2">Tekst & cues</Typography>
+      <Typography color="text.secondary" sx={{ mt: 1 }}>
+        Klik op een regelnummer of woord om een cue te plaatsen.
+      </Typography>
+      {sortedCues.length === 0 && (
+        <Typography color="text.secondary" sx={{ mt: 2 }}>
+          Nog geen cues toegevoegd.
         </Typography>
-        <Stack spacing={2} sx={{ mt: 2 }}>
-          {lines.map((line, index) => {
-            const character = characters.find((item) => item.id === line.characterId)
-            const words = line.text ? line.text.split(/\s+/).filter(Boolean) : []
+      )}
+      <Box className={styles['cue-grid']}>
+        {lines.map((line, index) => {
+          const character = characters.find((item) => item.id === line.characterId)
+          const words = line.text ? line.text.split(/\s+/).filter(Boolean) : []
+          const lineCues = cuesByLine.get(line.id) ?? []
 
-            const lineKey = `${line.id}:line`
-            const lineMarker = cueMarkers.get(lineKey)
-            const lineMarkerColor =
-              lineMarker && lineMarker.types.size > 1
-                ? CUE_COLORS.multi
-                : lineMarker
-                  ? CUE_COLORS[[...lineMarker.types][0] as keyof typeof CUE_COLORS]
-                  : 'transparent'
-            const isLineSelected =
-              selectedTarget?.lineId === line.id && selectedTarget?.wordIndex == null
+          const lineKey = `${line.id}:line`
+          const lineMarker = cueMarkers.get(lineKey)
+          const lineMarkerColor =
+            lineMarker && lineMarker.types.size > 1
+              ? CUE_COLORS.multi
+              : lineMarker
+                ? CUE_COLORS[[...lineMarker.types][0] as keyof typeof CUE_COLORS]
+                : 'transparent'
+          const isLineSelected =
+            selectedTarget?.lineId === line.id && selectedTarget?.wordIndex == null
 
-            if (line.type === 'sectie') {
-              return (
-                <Box key={line.id} className={`${styles['cue-line']} ${styles['cue-line--section']}`}>
+          if (line.type === 'sectie') {
+            return (
+              <Box key={line.id} className={`${styles['cue-row']} ${styles['cue-row--section']}`}>
+                <Box className={`${styles['cue-line']} ${styles['cue-line--section']}`}>
                   <span className={styles['cue-section']}>{line.text || 'Sectie'}</span>
                 </Box>
-              )
-            }
+              </Box>
+            )
+          }
 
-            return (
-              <Box
-                key={line.id}
-                className={styles['cue-line']}
-                sx={{
-                  backgroundColor: lineMarker ? lineMarkerColor : 'transparent',
-                  borderRadius: 1.5,
-                  paddingLeft: 1,
-                  paddingRight: 1
-                }}
-              >
-                {line.type === 'actie' ? (
-                  <span className={`${styles['cue-index']} ${styles['cue-index--empty']}`} />
-                ) : (
+          return (
+            <Box key={line.id} className={styles['cue-row']}>
+              <Box className={styles['cue-row__line']}>
+                <Box
+                  className={styles['cue-line']}
+                  sx={{
+                    backgroundColor: lineMarker ? lineMarkerColor : 'transparent',
+                    borderRadius: 1.5,
+                    paddingLeft: 1,
+                    paddingRight: 1
+                  }}
+                >
                   <button
                     type="button"
                     className={`${styles['cue-index']} ${isLineSelected ? styles['cue-selected'] : ''}`}
@@ -141,124 +144,119 @@ export const CueEditorPage = () => {
                       <span className={styles['cue-badge']}>{lineMarker.numbers.join(',')}</span>
                     )}
                   </button>
-                )}
-                {line.type === 'actie' ? (
-                  <span className={`${styles['cue-character']} ${styles['cue-character--empty']}`} />
-                ) : (
-                  <span className={styles['cue-character']}>
-                    {character?.name?.toUpperCase() || 'ONBEKEND'}
+                  {line.type === 'actie' ? (
+                    <span className={`${styles['cue-character']} ${styles['cue-character--empty']}`} />
+                  ) : (
+                    <span className={styles['cue-character']}>
+                      {character?.name?.toUpperCase() || 'ONBEKEND'}
+                    </span>
+                  )}
+                  <span className={styles['cue-text']}>
+                    {words.length === 0
+                      ? '—'
+                      : words.map((word, wordIndex) => {
+                          const wordKey = `${line.id}:${wordIndex}`
+                          const marker = cueMarkers.get(wordKey)
+                          const color =
+                            marker && marker.types.size > 1
+                              ? CUE_COLORS.multi
+                              : marker
+                                ? CUE_COLORS[[...marker.types][0] as keyof typeof CUE_COLORS]
+                                : 'transparent'
+                          const isWordSelected =
+                            selectedTarget?.lineId === line.id &&
+                            selectedTarget?.wordIndex === wordIndex
+                          return (
+                            <button
+                              key={`${line.id}-${wordIndex}`}
+                              type="button"
+                              className={`${styles['cue-word']} ${
+                                isWordSelected ? styles['cue-selected'] : ''
+                              }`}
+                              onClick={() =>
+                                handleSelectTarget({
+                                  lineId: line.id,
+                                  lineIndex: index,
+                                  wordIndex,
+                                  wordText: word
+                                })
+                              }
+                              style={{ backgroundColor: marker ? color : 'transparent' }}
+                            >
+                              {word}
+                              {marker && (
+                                <span className={styles['cue-badge']}>
+                                  {marker.numbers.join(',')}
+                                </span>
+                              )}
+                            </button>
+                          )
+                        })}
                   </span>
-                )}
-                <span className={styles['cue-text']}>
-                  {words.length === 0
-                    ? '—'
-                    : words.map((word, wordIndex) => {
-                        const wordKey = `${line.id}:${wordIndex}`
-                        const marker = cueMarkers.get(wordKey)
-                        const color =
-                          marker && marker.types.size > 1
-                            ? CUE_COLORS.multi
-                            : marker
-                              ? CUE_COLORS[[...marker.types][0] as keyof typeof CUE_COLORS]
-                              : 'transparent'
-                        const isWordSelected =
-                          selectedTarget?.lineId === line.id &&
-                          selectedTarget?.wordIndex === wordIndex
-                        return (
-                          <button
-                            key={`${line.id}-${wordIndex}`}
-                            type="button"
-                            className={`${styles['cue-word']} ${
-                              isWordSelected ? styles['cue-selected'] : ''
-                            }`}
-                            onClick={() =>
-                              handleSelectTarget({
-                                lineId: line.id,
-                                lineIndex: index,
-                                wordIndex,
-                                wordText: word
-                              })
-                            }
-                            style={{ backgroundColor: marker ? color : 'transparent' }}
-                          >
-                            {word}
-                            {marker && (
-                              <span className={styles['cue-badge']}>{marker.numbers.join(',')}</span>
-                            )}
-                          </button>
-                        )
-                      })}
-                </span>
+                </Box>
               </Box>
-            )
-          })}
-        </Stack>
-      </Box>
-
-      <Box className={styles['cue-right']}>
-        <Typography variant="h2">Cues</Typography>
-        <Box
-          className={styles['cue-map']}
-          sx={{
-            minHeight: Math.max(
-              lines.length * 56 + 220,
-              360,
-              (cuePositions.at(-1)?.top ?? 0) + 160
-            )
-          }}
-        >
-          {cuePositions.length === 0 && (
-            <Typography color="text.secondary">Nog geen cues toegevoegd.</Typography>
-          )}
-          {cuePositions.map((cue) => (
-            <Card
-              key={cue.id}
-              variant="outlined"
-              className={`${styles.summary} ${styles['cue-card']} ${styles['cue-card--floating']}`}
-              sx={{
-                top: cue.top + 28,
-                backgroundColor: CUE_COLORS[cue.type] || 'rgba(17, 20, 40, 0.8)',
-                borderColor: 'rgba(255, 255, 255, 0.18)'
-              }}
-            >
-              <CardContent>
-                <Stack direction="row" justifyContent="space-between" alignItems="flex-start" spacing={2}>
-                  <Stack spacing={0.5}>
-                    <Typography variant="overline" color="text.secondary">
-                      Cue {cue.number} · {cue.type.toUpperCase()}
-                    </Typography>
-                    <Typography>{cue.description || 'Geen beschrijving.'}</Typography>
-                  </Stack>
-                  <IconButton
-                    onClick={() => removeCue(cue.id)}
-                    className={styles['cue-delete']}
-                    aria-label="Verwijder cue"
+              <Box className={styles['cue-row__cues']}>
+                {lineCues.map((cue) => (
+                  <Card
+                    key={cue.id}
+                    variant="outlined"
+                    className={`${styles.summary} ${styles['cue-card']} ${styles['cue-card--inline']}`}
+                    sx={{
+                      backgroundColor: CUE_COLORS[cue.type] || 'rgba(17, 20, 40, 0.8)',
+                      borderColor: 'rgba(255, 255, 255, 0.18)'
+                    }}
                   >
-                    <DeleteOutlineIcon />
-                  </IconButton>
-                </Stack>
-              </CardContent>
-            </Card>
-          ))}
-        </Box>
-        <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
-          <Button variant="text" onClick={() => navigate({ to: '/script' })}>
-            Terug naar schrijven
-          </Button>
-          <Button variant="contained" onClick={() => navigate({ to: '/stageplot' })}>
-            Naar stageplot
-          </Button>
-        </Stack>
+                    <CardContent>
+                      <Stack
+                        direction="row"
+                        justifyContent="space-between"
+                        alignItems="flex-start"
+                        spacing={2}
+                      >
+                        <Stack spacing={0.5}>
+                          <Typography variant="overline" color="text.secondary">
+                            Cue {cueNumbers.get(cue.id)} · {cue.type.toUpperCase()}
+                          </Typography>
+                          <Typography>{cue.description || 'Geen beschrijving.'}</Typography>
+                          {cue.fileName && (
+                            <Typography color="text.secondary">Bestand: {cue.fileName}</Typography>
+                          )}
+                        </Stack>
+                        <IconButton
+                          onClick={() => removeCue(cue.id)}
+                          className={styles['cue-delete']}
+                          aria-label="Verwijder cue"
+                        >
+                          <DeleteOutlineIcon />
+                        </IconButton>
+                      </Stack>
+                    </CardContent>
+                  </Card>
+                ))}
+              </Box>
+            </Box>
+          )
+        })}
       </Box>
+      <Stack direction="row" spacing={2} sx={{ mt: 3 }}>
+        <Button variant="text" onClick={() => navigate({ to: '/script' })}>
+          Terug naar schrijven
+        </Button>
+        <Button variant="contained" onClick={() => navigate({ to: '/podiumplot' })}>
+          Naar podiumplot
+        </Button>
+      </Stack>
 
       <CueModal
         open={cueModalOpen}
         cueType={cueType}
         cueDescription={cueDescription}
-        disabled={!selectedTarget}
+        cueFileName={cueFileName}
+        disabled={isCueDisabled}
         onClose={() => setCueModalOpen(false)}
         onTypeChange={setCueType}
         onDescriptionChange={setCueDescription}
+        onFileNameChange={setCueFileName}
         onSave={addCue}
       />
     </Box>

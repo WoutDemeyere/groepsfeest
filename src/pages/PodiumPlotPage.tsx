@@ -1,8 +1,11 @@
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import type { ComponentProps } from 'react'
-import { Box, Button, Card, CardContent, Stack, TextField, Typography } from '@mui/material'
+import { Box, Button, Card, CardContent, IconButton, Stack, TextField, Typography } from '@mui/material'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
+import ContentCopyIcon from '@mui/icons-material/ContentCopy'
+import ContentPasteIcon from '@mui/icons-material/ContentPaste'
 import { useNavigate } from '@tanstack/react-router'
-import type { TLCameraOptions, TLEditorSnapshot } from 'tldraw'
+import type { Editor, TLCameraOptions, TLEditorSnapshot } from 'tldraw'
 import { Tldraw, createShapeId, toRichText } from 'tldraw'
 import { useAppStore } from '../store/useAppStore'
 import styles from '../styles/app.module.css'
@@ -18,17 +21,21 @@ const NOTES_WIDTH = 350
 const CANVAS_WIDTH = STAGE_WIDTH + CANVAS_PADDING * 2
 const CANVAS_HEIGHT = STAGE_HEIGHT + STAGE_LABEL_OFFSET + 64
 
-export const StagePlotPage = () => {
+export const PodiumPlotPage = () => {
   const navigate = useNavigate()
   const lines = useAppStore((state) => state.lines)
-  const stagePlotLayouts = useAppStore((state) => state.stagePlotLayouts)
-  const stagePlotDocuments = useAppStore((state) => state.stagePlotDocuments)
-  const stagePlotNotes = useAppStore((state) => state.stagePlotNotes)
-  const ensureStagePlotSections = useAppStore((state) => state.ensureStagePlotSections)
-  const addStagePlot = useAppStore((state) => state.addStagePlot)
-  const setStagePlotDocument = useAppStore((state) => state.setStagePlotDocument)
-  const setStagePlotNote = useAppStore((state) => state.setStagePlotNote)
+  const podiumPlotLayouts = useAppStore((state) => state.podiumPlotLayouts)
+  const podiumPlotDocuments = useAppStore((state) => state.podiumPlotDocuments)
+  const podiumPlotNotes = useAppStore((state) => state.podiumPlotNotes)
+  const podiumPlotClipboard = useAppStore((state) => state.podiumPlotClipboard)
+  const ensurePodiumPlotSections = useAppStore((state) => state.ensurePodiumPlotSections)
+  const addPodiumPlot = useAppStore((state) => state.addPodiumPlot)
+  const removePodiumPlot = useAppStore((state) => state.removePodiumPlot)
+  const setPodiumPlotDocument = useAppStore((state) => state.setPodiumPlotDocument)
+  const setPodiumPlotNote = useAppStore((state) => state.setPodiumPlotNote)
+  const setPodiumPlotClipboard = useAppStore((state) => state.setPodiumPlotClipboard)
   const initialSnapshotsRef = useRef<Record<string, TLEditorSnapshot | undefined>>({})
+  const editorsRef = useRef<Map<string, Editor>>(new Map())
 
   const sections = useMemo(() => {
     let sectionCount = 0
@@ -44,16 +51,16 @@ export const StagePlotPage = () => {
   }, [lines])
 
   useEffect(() => {
-    ensureStagePlotSections(sections.map((section) => section.id))
-  }, [ensureStagePlotSections, sections])
+    ensurePodiumPlotSections(sections.map((section) => section.id))
+  }, [ensurePodiumPlotSections, sections])
 
   const cameraOptions = useMemo<TLCameraOptions>(
     () => ({
       isLocked: false,
       panSpeed: 1,
       zoomSpeed: 1,
-      zoomSteps: [0.5, 0.75, 1, 1.25, 1.5, 2],
-      wheelBehavior: 'zoom',
+      zoomSteps: [0.72],
+      wheelBehavior: 'none',
       constraints: {
         bounds: {
           x: STAGE_X,
@@ -141,27 +148,47 @@ export const StagePlotPage = () => {
           },
           { immediate: true, targetZoom: 0.72, inset: 0 }
         )
-        setStagePlotDocument(plotId, editor.getSnapshot() as TLEditorSnapshot)
+        setPodiumPlotDocument(plotId, editor.getSnapshot() as TLEditorSnapshot)
 
+        editorsRef.current.set(plotId, editor)
         const handleChange = () => {
           const snapshot = editor.getSnapshot()
-          setStagePlotDocument(plotId, snapshot as TLEditorSnapshot)
+          setPodiumPlotDocument(plotId, snapshot as TLEditorSnapshot)
         }
 
         editor.on('change', handleChange)
         return () => {
           editor.off('change', handleChange)
+          editorsRef.current.delete(plotId)
         }
       },
-    [cameraOptions, ensureStageShapes, setStagePlotDocument]
+    [cameraOptions, ensureStageShapes, setPodiumPlotDocument]
   )
+
+  const handleCopyPlot = (plotId: string) => {
+    const editor = editorsRef.current.get(plotId)
+    if (!editor) return
+    const selection = Array.from(editor.getSelectedShapeIds())
+    if (!selection.length) return
+    const content = editor.getContentFromCurrentPage(selection)
+    if (!content) return
+    setPodiumPlotClipboard(content)
+  }
+
+  const handlePastePlot = async (plotId: string) => {
+    const editor = editorsRef.current.get(plotId)
+    if (!editor || !podiumPlotClipboard) return
+    const resolved = await editor.resolveAssetsInContent(podiumPlotClipboard)
+    if (!resolved) return
+    editor.putContentOntoCurrentPage(resolved, { preservePosition: true, select: true })
+  }
 
   return (
     <Box className={styles.editor}>
       <Stack spacing={3}>
-        <Typography variant="h2">Stageplot per sectie</Typography>
+        <Typography variant="h2">Podiumplot per sectie</Typography>
         <Typography color="text.secondary">
-          Gebruik het canvas om vrij je stageplot te schetsen. Opslaan per sectie volgt hierna.
+          Gebruik het canvas om vrij je podiumplot te schetsen. Opslaan per sectie volgt hierna.
         </Typography>
 
         {sections.length === 0 ? (
@@ -177,10 +204,10 @@ export const StagePlotPage = () => {
             {sections.map((section) => (
               <Card
                 key={section.id}
-                className={styles['stageplot-section']}
+                className={styles['podiumplot-section']}
                 sx={{ alignSelf: 'flex-start' }}
               >
-                <CardContent className={styles['stageplot-section__content']}>
+                <CardContent className={styles['podiumplot-section__content']}>
                   <Stack spacing={3}>
                     <Stack
                       direction={{ xs: 'column', md: 'row' }}
@@ -192,15 +219,15 @@ export const StagePlotPage = () => {
                         <Typography variant="h2">{section.title}</Typography>
                         <Typography color="text.secondary">Maak meerdere plots voor deze sectie.</Typography>
                       </Stack>
-                      <Button variant="outlined" onClick={() => addStagePlot(section.id)}>
+                      <Button variant="outlined" onClick={() => addPodiumPlot(section.id)}>
                         Plot toevoegen
                       </Button>
                     </Stack>
 
                     <Stack spacing={3}>
-                      {(stagePlotLayouts[section.id] ?? []).map((plotId, index) => {
+                      {(podiumPlotLayouts[section.id] ?? []).map((plotId, index) => {
                         if (!initialSnapshotsRef.current[plotId]) {
-                          initialSnapshotsRef.current[plotId] = stagePlotDocuments[plotId]
+                          initialSnapshotsRef.current[plotId] = podiumPlotDocuments[plotId]
                         }
                         const initialSnapshot = initialSnapshotsRef.current[plotId]
 
@@ -212,9 +239,36 @@ export const StagePlotPage = () => {
                         >
                           <CardContent className={styles['tldraw-card__content']} sx={{ p: 0 }}>
                             <div className={styles['tldraw-header']}>
-                              <Typography variant="subtitle2" color="text.secondary">
-                                Plot {index + 1}
-                              </Typography>
+                              <Stack direction="row" justifyContent="space-between" alignItems="center">
+                                <Typography variant="subtitle2" color="text.secondary">
+                                  Plot {index + 1}
+                                </Typography>
+                                <Stack direction="row" spacing={1}>
+                                  <IconButton
+                                    size="small"
+                                    onClick={() => handleCopyPlot(plotId)}
+                                    aria-label="Kopieer selectie"
+                                  >
+                                    <ContentCopyIcon fontSize="small" />
+                                  </IconButton>
+                                  <IconButton
+                                    size="small"
+                                    onClick={() => handlePastePlot(plotId)}
+                                    disabled={!podiumPlotClipboard}
+                                    aria-label="Plak selectie"
+                                  >
+                                    <ContentPasteIcon fontSize="small" />
+                                  </IconButton>
+                                  <IconButton
+                                    size="small"
+                                    onClick={() => removePodiumPlot(section.id, plotId)}
+                                    disabled={(podiumPlotLayouts[section.id] ?? []).length <= 1}
+                                    aria-label="Verwijder plot"
+                                  >
+                                    <DeleteOutlineIcon fontSize="small" />
+                                  </IconButton>
+                                </Stack>
+                              </Stack>
                             </div>
                             <div className={styles['tldraw-layout']}>
                               <div className={styles['tldraw-notes']}>
@@ -222,8 +276,8 @@ export const StagePlotPage = () => {
                                   Notities
                                 </Typography>
                                 <TextField
-                                  value={stagePlotNotes[plotId] ?? ''}
-                                  onChange={(event) => setStagePlotNote(plotId, event.target.value)}
+                                  value={podiumPlotNotes[plotId] ?? ''}
+                                  onChange={(event) => setPodiumPlotNote(plotId, event.target.value)}
                                   multiline
                                   minRows={10}
                                   placeholder="Schrijf je notities voor deze plot..."

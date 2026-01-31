@@ -30,6 +30,7 @@ export type Cue = {
   id: string
   type: CueType
   description: string
+  fileName?: string
   target: CueTarget
 }
 
@@ -44,7 +45,7 @@ export type StageShape = {
   description: string
 }
 
-export type StagePlot = {
+export type PodiumPlot = {
   enabled: boolean
   shapes: StageShape[]
   canvas?: {
@@ -67,11 +68,11 @@ export type ShapeDraft = {
   size: number
 }
 
-export type StagePlotLayout = Record<string, string[]>
+export type PodiumPlotLayout = Record<string, string[]>
 
-export type StagePlotNotes = Record<string, string>
+export type PodiumPlotNotes = Record<string, string>
 
-export type StagePlotDocuments = Record<string, import('tldraw').TLEditorSnapshot>
+export type PodiumPlotDocuments = Record<string, import('tldraw').TLEditorSnapshot>
 
 export type ExportSchemaVersion = 2
 
@@ -81,9 +82,9 @@ export type ExportPayload = {
   characters: Character[]
   lines: ScriptLine[]
   cues: Cue[]
-  stagePlots: Record<string, StagePlot>
-  stagePlotLayouts: StagePlotLayout
-  stagePlotDocuments: StagePlotDocuments
-  stagePlotNotes: StagePlotNotes
+  podiumPlots: Record<string, PodiumPlot>
+  podiumPlotLayouts: PodiumPlotLayout
+  podiumPlotDocuments: PodiumPlotDocuments
+  podiumPlotNotes: PodiumPlotNotes
   leaderContact: LeaderContact
 }

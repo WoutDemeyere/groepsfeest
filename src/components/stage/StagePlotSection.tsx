@@ -1,14 +1,14 @@
 import type { PointerEvent } from 'react'
 import { Box, Button, Card, CardContent, Stack, Typography } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
-import type { StagePlot, StageShape } from '../../types/app'
+import type { PodiumPlot, StageShape } from '../../types/app'
 import { STAGE_DEPTH_METERS, STAGE_WIDTH_METERS } from '../../config/stage.config'
 import styles from '../../styles/app.module.css'
 
-type StagePlotSectionProps = {
+type PodiumPlotSectionProps = {
   section: { id: string; title: string }
   index: number
-  plot?: StagePlot
+  plot?: PodiumPlot
   stageWidthTicks: number[]
   stageDepthTicks: number[]
   onEnable: (sectionId: string) => void
@@ -20,7 +20,7 @@ type StagePlotSectionProps = {
   onStartResize: (event: PointerEvent<HTMLButtonElement>, sectionId: string, shape: StageShape) => void
 }
 
-export const StagePlotSection = ({
+export const PodiumPlotSection = ({
   section,
   index,
   plot,
@@ -33,7 +33,7 @@ export const StagePlotSection = ({
   onRemoveShape,
   onStartMove,
   onStartResize
-}: StagePlotSectionProps) => {
+}: PodiumPlotSectionProps) => {
   const enabled = plot?.enabled
   const shapes = plot?.shapes ?? []
 
@@ -56,10 +56,10 @@ export const StagePlotSection = ({
                   <Typography variant="h2">{section.title}</Typography>
                 </Box>
                 <Button size="small" variant="contained" onClick={() => onEnable(section.id)}>
-                  Maak stageplot
+                  Maak podiumplot
                 </Button>
               </Stack>
-              <Typography color="text.secondary">Nog geen stageplot voor deze sectie.</Typography>
+              <Typography color="text.secondary">Nog geen podiumplot voor deze sectie.</Typography>
             </Box>
           ) : (
             <Box className={styles['plot-layout']}>

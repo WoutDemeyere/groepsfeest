@@ -369,6 +369,41 @@
   flex-direction: column;
 }
 
+.cue-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.cue-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.85fr);
+  gap: 18px;
+  align-items: flex-start;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cue-row:last-child {
+  border-bottom: none;
+}
+
+.cue-row--section {
+  grid-template-columns: 1fr;
+}
+
+.cue-row__line {
+  width: 100%;
+}
+
+.cue-row__cues {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 4px;
+}
+
 .cue-line {
   display: grid;
   grid-template-columns: 56px 170px 1fr;
@@ -377,6 +412,10 @@
   min-height: 52px;
   align-items: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cue-row .cue-line {
+  border-bottom: none;
 }
 
 .cue-line:last-child {
@@ -433,12 +472,21 @@
   border-radius: 6px;
   position: relative;
   font-size: 1.05rem;
+  transition:
+    background-color 0.18s ease,
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
 }
 
 .cue-word:hover,
 .cue-index:hover {
   background: rgba(124, 139, 255, 0.2);
   color: #ffffff;
+}
+
+.cue-word:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 6px 16px rgba(15, 20, 45, 0.35);
 }
 
 .cue-selected {
@@ -481,6 +529,10 @@
   width: 16px;
   height: 1px;
   background: rgba(255, 255, 255, 0.25);
+}
+
+.cue-card--inline {
+  position: relative;
 }
 
 .plot-canvas__audience {
@@ -530,14 +582,14 @@
   height: 100%;
 }
 
-.stageplot-section {
+.podiumplot-section {
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(10, 12, 28, 0.6);
   width: fit-content;
   max-width: 100%;
 }
 
-.stageplot-section__content {
+.podiumplot-section__content {
   padding: 32px 15%;
 }
 
@@ -552,6 +604,10 @@
 
   .tldraw-canvas {
     width: 100% !important;
+  }
+
+  .cue-row {
+    grid-template-columns: 1fr;
   }
 }
 

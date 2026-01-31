@@ -199,7 +199,7 @@
       }
     }
   ],
-  "stagePlots": {
+  "podiumPlots": {
     "scene-1": {
       "enabled": true,
       "canvas": { "width": 1200, "height": 950 },
@@ -227,11 +227,11 @@
       ]
     }
   },
-  "stagePlotLayouts": {
+  "podiumPlotLayouts": {
     "scene-1": ["scene-1"]
   },
-  "stagePlotDocuments": {},
-  "stagePlotNotes": {
+  "podiumPlotDocuments": {},
+  "podiumPlotNotes": {
     "scene-1": "Publiek onderaan, groep komt op en af zoals aangeduid in fiche."
   },
   "leaderContact": {
