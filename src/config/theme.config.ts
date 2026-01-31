@@ -16,7 +16,12 @@ export const appTheme = createTheme({
   shape: { borderRadius: 16 },
   typography: {
     fontFamily: "'Manrope', system-ui, sans-serif",
-    h1: { fontSize: '2rem', fontWeight: 700 },
-    h2: { fontSize: '1.1rem', fontWeight: 600 }
+    fontSize: 17,
+    h1: { fontSize: '2.5rem', fontWeight: 700 },
+    h2: { fontSize: '1.35rem', fontWeight: 600 },
+    h5: { fontSize: '1.35rem', fontWeight: 600 },
+    h6: { fontSize: '1.15rem', fontWeight: 600 },
+    body1: { fontSize: '1rem' },
+    body2: { fontSize: '0.95rem' }
   }
 })

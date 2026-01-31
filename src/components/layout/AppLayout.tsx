@@ -13,31 +13,31 @@ const useActiveStep = () => {
 
 export const AppLayout = () => {
   const navigate = useNavigate()
-  const pathname = useRouterState({ select: (state) => state.location.pathname })
   const activeStep = useActiveStep()
-  const isPlayRoute = pathname === '/'
 
   return (
     <Box className={styles.page}>
       <Box className={styles.page__bg} />
-
-      {isPlayRoute ? (
-        <Box className={styles.page__content}>
-          <Outlet />
-        </Box>
-      ) : (
-        <Box className={styles.workspace}>
-          <AppBar
-            position="sticky"
-            elevation={0}
+      <Box className={styles.workspace}>
+        <AppBar
+          position="sticky"
+          elevation={0}
+          sx={{
+            background: 'rgba(12, 14, 32, 0.92)',
+            borderBottom: '1px solid rgba(255,255,255,0.12)',
+            backdropFilter: 'blur(10px)'
+          }}
+        >
+          <Toolbar
             sx={{
-              background: 'rgba(12, 14, 32, 0.92)',
-              borderBottom: '1px solid rgba(255,255,255,0.12)',
-              backdropFilter: 'blur(10px)'
+              flexDirection: { xs: 'column', md: 'row' },
+              alignItems: { xs: 'stretch', md: 'center' },
+              gap: { xs: 1.5, md: 3 },
+              py: 2
             }}
           >
-            <Toolbar sx={{ flexDirection: 'column', alignItems: 'stretch', gap: 1.5 }}>
-              <Typography variant="h6">Toneelmaker</Typography>
+            <Typography variant="h5">Toneelmaker</Typography>
+            <Box sx={{ flex: 1 }}>
               <Stepper activeStep={activeStep} alternativeLabel nonLinear>
                 {STEP_ROUTES.map((step) => (
                   <Step key={step.id}>
@@ -45,14 +45,14 @@ export const AppLayout = () => {
                   </Step>
                 ))}
               </Stepper>
-            </Toolbar>
-          </AppBar>
+            </Box>
+          </Toolbar>
+        </AppBar>
 
-          <Box className={styles.workspace__content}>
-            <Outlet />
-          </Box>
+        <Box className={styles.workspace__content}>
+          <Outlet />
         </Box>
-      )}
+      </Box>
     </Box>
   )
 }
