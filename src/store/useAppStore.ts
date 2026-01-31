@@ -14,6 +14,7 @@ import type {
   StageShape
 } from '../types/app'
 import { PLAYS } from '../config/plays.config'
+import type { TLEditorSnapshot } from 'tldraw'
 
 const createId = () => crypto.randomUUID()
 
@@ -36,6 +37,9 @@ export type AppState = {
   lines: ScriptLine[]
   cues: Cue[]
   stagePlots: Record<string, StagePlot>
+  stagePlotLayouts: Record<string, string[]>
+  stagePlotDocuments: Record<string, TLEditorSnapshot>
+  stagePlotNotes: Record<string, string>
   leaderContact: LeaderContact
   cueModalOpen: boolean
   cueType: CueType
@@ -62,6 +66,10 @@ export type AppState = {
   setLines: (lines: ScriptLine[]) => void
   setCharacters: (characters: Character[]) => void
   setStagePlots: (plots: Record<string, StagePlot>) => void
+  ensureStagePlotSections: (sectionIds: string[]) => void
+  addStagePlot: (sectionId: string) => string
+  setStagePlotDocument: (plotId: string, snapshot: TLEditorSnapshot) => void
+  setStagePlotNote: (plotId: string, note: string) => void
   updateStagePlots: (
     updater: (prev: Record<string, StagePlot>) => Record<string, StagePlot>
   ) => void
@@ -91,6 +99,9 @@ export const useAppStore = create<AppState>((set, get) => ({
   lines: [createDefaultSection()],
   cues: [],
   stagePlots: {},
+  stagePlotLayouts: {},
+  stagePlotDocuments: {},
+  stagePlotNotes: {},
   leaderContact: { firstName: '', lastName: '', phone: '' },
   cueModalOpen: false,
   cueType: 'licht',
@@ -172,6 +183,62 @@ export const useAppStore = create<AppState>((set, get) => ({
   setLines: (lines) => set({ lines: ensureFirstSection(lines) }),
   setCharacters: (characters) => set({ characters }),
   setStagePlots: (plots) => set({ stagePlots: plots }),
+  ensureStagePlotSections: (sectionIds) =>
+    set((state) => {
+      const nextLayouts: Record<string, string[]> = {}
+      sectionIds.forEach((sectionId) => {
+        const existing = state.stagePlotLayouts[sectionId]
+        if (existing?.length) {
+          nextLayouts[sectionId] = existing
+        } else {
+          nextLayouts[sectionId] = [createId()]
+        }
+      })
+
+      const nextDocuments: Record<string, TLEditorSnapshot> = {}
+      Object.entries(state.stagePlotDocuments).forEach(([plotId, snapshot]) => {
+        const stillExists = Object.values(nextLayouts).some((plots) => plots.includes(plotId))
+        if (stillExists) {
+          nextDocuments[plotId] = snapshot
+        }
+      })
+
+      const nextNotes: Record<string, string> = {}
+      Object.entries(state.stagePlotNotes).forEach(([plotId, note]) => {
+        const stillExists = Object.values(nextLayouts).some((plots) => plots.includes(plotId))
+        if (stillExists) {
+          nextNotes[plotId] = note
+        }
+      })
+
+      return {
+        stagePlotLayouts: nextLayouts,
+        stagePlotDocuments: nextDocuments,
+        stagePlotNotes: nextNotes
+      }
+    }),
+  addStagePlot: (sectionId) => {
+    const plotId = createId()
+    set((state) => ({
+      stagePlotLayouts: {
+        ...state.stagePlotLayouts,
+        [sectionId]: [...(state.stagePlotLayouts[sectionId] ?? []), plotId]
+      },
+      stagePlotNotes: {
+        ...state.stagePlotNotes,
+        [plotId]: state.stagePlotNotes[plotId] ?? ''
+      }
+    }))
+    return plotId
+  },
+  setStagePlotDocument: (plotId, snapshot) =>
+    set((state) => ({
+      stagePlotDocuments: { ...state.stagePlotDocuments, [plotId]: snapshot }
+    })),
+  setStagePlotNote: (plotId, note) =>
+    set((state) => ({
+      stagePlotNotes: { ...state.stagePlotNotes, [plotId]: note }
+    })),
   updateStagePlots: (updater) => set((state) => ({ stagePlots: updater(state.stagePlots) })),
   updatePlotCanvasSize: (sectionId, rect) =>
     set((state) => {
