@@ -91,6 +91,21 @@
   gap: 28px;
 }
 
+.export {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 48px clamp(18px, 4vw, 64px) 72px;
+}
+
+.export-card {
+  width: min(860px, 100%);
+  background: rgba(11, 12, 28, 0.74);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+}
+
 .editor {
   flex: 1;
   min-height: 100%;

@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { Box, Button, Card, CardContent, Stack, TextField, Typography } from '@mui/material'
 import { useNavigate } from '@tanstack/react-router'
 import { useAppStore } from '../store/useAppStore'
+import type { ExportPayload, ExportSchemaVersion } from '../types/app'
 import { buildPlotPng, getPlotCanvasBaseHeight } from '../utils/plotExport'
 import { normalizeWord, sortCues, tokenizeText } from '../utils/cue'
 import { CUE_MARKER_COLORS } from '../config/cues.config'
@@ -15,8 +16,19 @@ export const ExportPage = () => {
   const lines = useAppStore((state) => state.lines)
   const cues = useAppStore((state) => state.cues)
   const stagePlots = useAppStore((state) => state.stagePlots)
+  const stagePlotLayouts = useAppStore((state) => state.stagePlotLayouts)
+  const stagePlotDocuments = useAppStore((state) => state.stagePlotDocuments)
+  const stagePlotNotes = useAppStore((state) => state.stagePlotNotes)
   const leaderContact = useAppStore((state) => state.leaderContact)
   const setLeaderContact = useAppStore((state) => state.setLeaderContact)
+
+  const isReadyToPublish = useMemo(() => {
+    return (
+      leaderContact.firstName.trim().length > 0 &&
+      leaderContact.lastName.trim().length > 0 &&
+      leaderContact.phone.trim().length > 0
+    )
+  }, [leaderContact.firstName, leaderContact.lastName, leaderContact.phone])
 
   const sections = useMemo(() => {
     let sectionCount = 0
@@ -63,12 +75,16 @@ export const ExportPage = () => {
   }, [sortedCues, lines])
 
   const exportJson = () => {
-    const payload = {
+    const payload: ExportPayload = {
+      schemaVersion: 2 as ExportSchemaVersion,
       selectedPlay,
       characters,
       lines,
       cues,
       stagePlots,
+      stagePlotLayouts,
+      stagePlotDocuments,
+      stagePlotNotes,
       leaderContact
     }
     const blob = new Blob([JSON.stringify(payload, null, 2)], {
@@ -372,56 +388,82 @@ export const ExportPage = () => {
     }
   }
 
+  const hasMissingFields = !isReadyToPublish
+
   return (
-    <Box className={styles.editor}>
-      <Stack spacing={2}>
-        <Typography variant="h2">Export</Typography>
-        <Typography color="text.secondary">Exporteer het volledige stuk als PDF of JSON.</Typography>
-        <Card variant="outlined" className={styles.summary}>
-          <CardContent>
-            <Stack spacing={2}>
-              <Typography variant="h2">Leiding van de afdeling</Typography>
-              <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-                <TextField
-                  label="Voornaam"
-                  value={leaderContact.firstName}
-                  onChange={(event) => setLeaderContact({ firstName: event.target.value })}
-                  fullWidth
-                />
-                <TextField
-                  label="Achternaam"
-                  value={leaderContact.lastName}
-                  onChange={(event) => setLeaderContact({ lastName: event.target.value })}
-                  fullWidth
-                />
-              </Stack>
-              <TextField
-                label="Telefoonnummer"
-                value={leaderContact.phone}
-                onChange={(event) => setLeaderContact({ phone: event.target.value })}
-                fullWidth
-              />
-              <Typography color="text.secondary">Deze gegevens komen mee in de PDF-export.</Typography>
+    <Box className={styles.export}>
+      <Card className={styles['export-card']}>
+        <CardContent>
+          <Stack spacing={3}>
+            <Stack spacing={0.5}>
+              <Typography variant="h2">Export</Typography>
+              <Typography color="text.secondary">Exporteer het volledige stuk als PDF of JSON.</Typography>
             </Stack>
-          </CardContent>
-        </Card>
-        <Stack direction="row" spacing={2}>
-          <Button variant="contained" onClick={exportPdf}>
-            Exporteer PDF
-          </Button>
-          <Button variant="outlined" onClick={exportPlotsPng} disabled={!hasEnabledPlots}>
-            Exporteer plots (PNG)
-          </Button>
-          <Button variant="outlined" onClick={exportJson}>
-            Exporteer JSON
-          </Button>
-        </Stack>
-        <Stack direction="row" spacing={2}>
-          <Button variant="text" onClick={() => navigate({ to: '/stageplot' })}>
-            Terug naar stageplot
-          </Button>
-        </Stack>
-      </Stack>
+
+            <Card variant="outlined" className={styles.summary}>
+              <CardContent>
+                <Stack spacing={2}>
+                  <Typography variant="h2">Leiding van de afdeling</Typography>
+                  <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
+                    <TextField
+                      label="Voornaam"
+                      value={leaderContact.firstName}
+                      onChange={(event) => setLeaderContact({ firstName: event.target.value })}
+                      fullWidth
+                      required
+                      error={hasMissingFields && leaderContact.firstName.trim().length === 0}
+                    />
+                    <TextField
+                      label="Achternaam"
+                      value={leaderContact.lastName}
+                      onChange={(event) => setLeaderContact({ lastName: event.target.value })}
+                      fullWidth
+                      required
+                      error={hasMissingFields && leaderContact.lastName.trim().length === 0}
+                    />
+                  </Stack>
+                  <TextField
+                    label="Telefoonnummer"
+                    value={leaderContact.phone}
+                    onChange={(event) => setLeaderContact({ phone: event.target.value })}
+                    fullWidth
+                    required
+                    error={hasMissingFields && leaderContact.phone.trim().length === 0}
+                    helperText={
+                      hasMissingFields ? 'Vul alle verplichte velden in om te kunnen exporteren.' : ''
+                    }
+                  />
+                  <Typography color="text.secondary">
+                    Deze gegevens komen mee in de PDF-export.
+                  </Typography>
+                </Stack>
+              </CardContent>
+            </Card>
+
+            <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
+              <Button variant="contained" onClick={exportPdf} disabled={!isReadyToPublish}>
+                Exporteer PDF
+              </Button>
+              <Button
+                variant="outlined"
+                onClick={exportPlotsPng}
+                disabled={!hasEnabledPlots || !isReadyToPublish}
+              >
+                Exporteer plots (PNG)
+              </Button>
+              <Button variant="outlined" onClick={exportJson} disabled={!isReadyToPublish}>
+                Exporteer JSON
+              </Button>
+            </Stack>
+
+            <Stack direction="row" spacing={2}>
+              <Button variant="text" onClick={() => navigate({ to: '/stageplot' })}>
+                Terug naar stageplot
+              </Button>
+            </Stack>
+          </Stack>
+        </CardContent>
+      </Card>
     </Box>
   )
 }

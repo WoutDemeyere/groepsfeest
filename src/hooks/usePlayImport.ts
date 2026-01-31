@@ -2,9 +2,10 @@ import { useCallback } from 'react'
 import type { ChangeEvent } from 'react'
 import { useAppStore } from '../store/useAppStore'
 import { normalizeCueTarget } from '../utils/cue'
-import type { Cue, StagePlot } from '../types/app'
+import type { Cue, StagePlot, StagePlotLayout, StagePlotDocuments, StagePlotNotes } from '../types/app'
 
 type ImportPayload = {
+  schemaVersion?: number
   selectedPlay?: string
   characters?: unknown
   lines?: unknown
@@ -15,6 +16,9 @@ type ImportPayload = {
     phone?: string
   }
   stagePlots?: unknown
+  stagePlotLayouts?: unknown
+  stagePlotDocuments?: unknown
+  stagePlotNotes?: unknown
 }
 
 const normalizeStagePlots = (rawPlots: Record<string, StagePlot>) =>
@@ -51,6 +55,9 @@ export const usePlayImport = () => {
   const setCues = useAppStore((state) => state.setCues)
   const setLeaderContact = useAppStore((state) => state.setLeaderContact)
   const setStagePlots = useAppStore((state) => state.setStagePlots)
+  const setStagePlotLayouts = useAppStore((state) => state.setStagePlotLayouts)
+  const setStagePlotDocuments = useAppStore((state) => state.setStagePlotDocuments)
+  const setStagePlotNotes = useAppStore((state) => state.setStagePlotNotes)
   const lines = useAppStore((state) => state.lines)
 
   return useCallback(
@@ -110,6 +117,18 @@ export const usePlayImport = () => {
         if (data.stagePlots && typeof data.stagePlots === 'object') {
           setStagePlots(normalizeStagePlots(data.stagePlots as Record<string, StagePlot>))
         }
+
+        if (data.stagePlotLayouts && typeof data.stagePlotLayouts === 'object') {
+          setStagePlotLayouts(data.stagePlotLayouts as StagePlotLayout)
+        }
+
+        if (data.stagePlotDocuments && typeof data.stagePlotDocuments === 'object') {
+          setStagePlotDocuments(data.stagePlotDocuments as StagePlotDocuments)
+        }
+
+        if (data.stagePlotNotes && typeof data.stagePlotNotes === 'object') {
+          setStagePlotNotes(data.stagePlotNotes as StagePlotNotes)
+        }
       } catch {
         // ignore invalid import
       }
@@ -121,7 +140,10 @@ export const usePlayImport = () => {
       setLeaderContact,
       setLines,
       setSelectedPlay,
-      setStagePlots
+      setStagePlots,
+      setStagePlotLayouts,
+      setStagePlotDocuments,
+      setStagePlotNotes
     ]
   )
 }

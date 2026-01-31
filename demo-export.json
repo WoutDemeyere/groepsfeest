@@ -1,53 +1,242 @@
-﻿{
-  "selectedPlay": "kapoentjes-meisjes",
+{
+  "schemaVersion": 2,
+  "selectedPlay": "kwiksf",
   "characters": [
-    { "id": "char-1", "name": "Nora", "person": "Emma" },
-    { "id": "char-2", "name": "Elias", "person": "Jonas" },
-    { "id": "char-3", "name": "Mila", "person": "Lina" },
-    { "id": "char-4", "name": "Samir", "person": "Yassin" }
+    {
+      "id": "char-maanu",
+      "name": "Maanu",
+      "person": ""
+    },
+    {
+      "id": "char-groep",
+      "name": "Groep kapoentjes",
+      "person": ""
+    },
+    {
+      "id": "char-meisje",
+      "name": "Verdrietig meisje",
+      "person": ""
+    }
   ],
   "lines": [
-    { "id": "line-1", "characterId": "", "text": "Scène 1 — De bakkerij", "type": "sectie" },
-    { "id": "line-2", "characterId": "char-1", "text": "De deurbel rinkelt precies op tijd.", "type": "tekst" },
-    { "id": "line-3", "characterId": "char-2", "text": "Ik hoorde het al in de gang, dit wordt geen stille avond.", "type": "tekst" },
-    { "id": "line-4", "characterId": "", "text": "Het licht dimt, alleen de toonbank blijft warm belicht.", "type": "actie" },
-    { "id": "line-5", "characterId": "char-3", "text": "Als we dit samen doen, voelt de zaal minder leeg.", "type": "tekst" },
-    { "id": "line-6", "characterId": "char-4", "text": "De oven zoemt alsof hij mee ademt.", "type": "tekst" },
-    { "id": "line-7", "characterId": "", "text": "Scène 2 — Aan de vitrine", "type": "sectie" },
-    { "id": "line-8", "characterId": "char-1", "text": "We hebben nog tien minuten. Wat is de eerste cue?", "type": "tekst" },
-    { "id": "line-9", "characterId": "char-2", "text": "Een zachte bas en dan een helder licht op de deur.", "type": "tekst" },
-    { "id": "line-10", "characterId": "", "text": "De dansers komen op en vormen een halve cirkel.", "type": "actie" }
+    {
+      "id": "scene-1",
+      "characterId": "",
+      "text": "Scène 1 – Toekomst op Pluto",
+      "type": "sectie"
+    },
+    {
+      "id": "line-1-1",
+      "characterId": "char-maanu",
+      "text": "Huh Pluto? Is mijn gps nu weer kapot? Ik wou naar Chiro Avelgem op de aarde.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-1-2",
+      "characterId": "char-groep",
+      "text": "Kom dat zien! Kom dat zien! Ons groot duivelsfeest!",
+      "type": "tekst"
+    },
+    {
+      "id": "line-1-3",
+      "characterId": "char-groep",
+      "text": "Een groep komt op het podium en loopt af.",
+      "type": "actie"
+    },
+
+    {
+      "id": "scene-2",
+      "characterId": "",
+      "text": "Scène 2 – Het Duivelsfeest",
+      "type": "sectie"
+    },
+    {
+      "id": "line-2-1",
+      "characterId": "char-maanu",
+      "text": "Ik ga eens gaan kijken in de discotheek om daar vriendjes te vinden.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-2-2",
+      "characterId": "char-groep",
+      "text": "DJ achter een tafel – iedereen danst.",
+      "type": "actie"
+    },
+
+    {
+      "id": "scene-3",
+      "characterId": "",
+      "text": "Scène 3 – Dichte groep tijdens de dans",
+      "type": "sectie"
+    },
+    {
+      "id": "line-3-1",
+      "characterId": "char-groep",
+      "text": "Begin dans – groep danst dicht bij elkaar.",
+      "type": "actie"
+    },
+    {
+      "id": "line-3-2",
+      "characterId": "char-groep",
+      "text": "Einde dans.",
+      "type": "actie"
+    },
+
+    {
+      "id": "scene-4",
+      "characterId": "",
+      "text": "Scène 4 – Verdrietig meisje",
+      "type": "sectie"
+    },
+    {
+      "id": "line-4-1",
+      "characterId": "char-meisje",
+      "text": "Je hoort hier niet! Je bent anders dan de rest!",
+      "type": "tekst"
+    },
+    {
+      "id": "line-4-2",
+      "characterId": "char-meisje",
+      "text": "Ik voel me zo verdomd alleen!",
+      "type": "tekst"
+    },
+    {
+      "id": "line-4-3",
+      "characterId": "char-groep",
+      "text": "2 kapoentjes lopen van het podium.",
+      "type": "actie"
+    }
   ],
   "cues": [
     {
       "id": "cue-1",
       "type": "licht",
-      "description": "Warme spot op de toonbank.",
-      "target": { "lineId": "line-2", "lineIndex": 1, "wordIndex": 4 }
+      "description": "Infaden warm licht, volglicht 1 op Maanu",
+      "target": {
+        "lineId": "line-1-1",
+        "wordIndex": 0,
+        "wordText": "Huh"
+      }
     },
     {
       "id": "cue-2",
-      "type": "audio",
-      "description": "Zachte bas die langzaam opbouwt.",
-      "target": { "lineId": "line-9", "lineIndex": 8, "wordIndex": 3 }
+      "type": "licht",
+      "description": "Volglicht 2 op groep",
+      "target": {
+        "lineId": "line-1-2",
+        "wordIndex": 0,
+        "wordText": "Kom"
+      }
     },
     {
       "id": "cue-3",
-      "type": "video",
-      "description": "Projectie van voorbijrijdende trams op de ruit.",
-      "target": { "lineId": "line-3", "lineIndex": 2, "wordIndex": 7 }
+      "type": "licht",
+      "description": "Spot 1 op poort",
+      "target": {
+        "lineId": "line-2-1",
+        "wordIndex": 3,
+        "wordText": "kijken"
+      }
     },
     {
       "id": "cue-4",
-      "type": "decor",
-      "description": "Neonbord achteraan gaat aan.",
-      "target": { "lineId": "line-4", "lineIndex": 3, "wordIndex": null }
+      "type": "audio",
+      "description": "Start muziek: Discotheek – Nirvana",
+      "target": {
+        "lineId": "line-2-2",
+        "wordIndex": null,
+        "wordText": null
+      }
     },
     {
       "id": "cue-5",
       "type": "licht",
-      "description": "Koele spot op de deur bij binnenkomst dansers.",
-      "target": { "lineId": "line-10", "lineIndex": 9, "wordIndex": 2 }
+      "description": "Spot 3 op dichte groep",
+      "target": {
+        "lineId": "line-3-1",
+        "wordIndex": 0,
+        "wordText": "Begin"
+      }
+    },
+    {
+      "id": "cue-6",
+      "type": "licht",
+      "description": "Uitfaden naar blackout",
+      "target": {
+        "lineId": "line-3-2",
+        "wordIndex": 0,
+        "wordText": "Einde"
+      }
+    },
+    {
+      "id": "cue-7",
+      "type": "audio",
+      "description": "Start audio: Plassen",
+      "target": {
+        "lineId": "line-4-1",
+        "wordIndex": 0,
+        "wordText": "Je"
+      }
+    },
+    {
+      "id": "cue-8",
+      "type": "audio",
+      "description": "Start audio: Verdomd alleen",
+      "target": {
+        "lineId": "line-4-2",
+        "wordIndex": 3,
+        "wordText": "verdomd"
+      }
+    },
+    {
+      "id": "cue-9",
+      "type": "licht",
+      "description": "Uitfaden in blackout – einde",
+      "target": {
+        "lineId": "line-4-3",
+        "wordIndex": null,
+        "wordText": null
+      }
     }
-  ]
+  ],
+  "stagePlots": {
+    "scene-1": {
+      "enabled": true,
+      "canvas": { "width": 1200, "height": 950 },
+      "shapes": [
+        {
+          "id": "spot-1",
+          "x": 200,
+          "y": 500,
+          "size": 180,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Volglicht 1",
+          "description": "Volglicht op Maanu"
+        },
+        {
+          "id": "poort",
+          "x": 200,
+          "y": 350,
+          "size": 120,
+          "kind": "square",
+          "label": "decor",
+          "name": "Poort",
+          "description": "Ingang discotheek"
+        }
+      ]
+    }
+  },
+  "stagePlotLayouts": {
+    "scene-1": ["scene-1"]
+  },
+  "stagePlotDocuments": {},
+  "stagePlotNotes": {
+    "scene-1": "Publiek onderaan, groep komt op en af zoals aangeduid in fiche."
+  },
+  "leaderContact": {
+    "firstName": "Laura",
+    "lastName": "Vandeputte",
+    "phone": "0478 69 84 12"
+  }
 }

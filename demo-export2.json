@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 2,
+  "selectedPlay": "kwiks",
+  "characters": [
+    { "id": "char-maanu", "name": "Maanu", "person": "" },
+    { "id": "char-pluto", "name": "Plutomeisje", "person": "" },
+    { "id": "char-ster1", "name": "Ster 1", "person": "" },
+    { "id": "char-polster", "name": "Polster (Ster 2)", "person": "" },
+    { "id": "char-presentators", "name": "Presentatoren 1 & 2", "person": "" },
+    { "id": "char-jury", "name": "Juryleden", "person": "" },
+    { "id": "char-dansers", "name": "Dansers (Kwiks)", "person": "" },
+    { "id": "char-poolster", "name": "Nieuwe Poolster", "person": "" }
+  ],
+
+  "lines": [
+    { "id": "scene-1", "characterId": "", "text": "Scène 1 – Maanu en Plutomeisje ontmoeten Ster 1", "type": "sectie" },
+    { "id": "l1-1", "characterId": "char-ster1", "text": "Hallo, welkom tussen de sterren!", "type": "tekst" },
+    { "id": "l1-2", "characterId": "char-maanu", "text": "Dankjewel!", "type": "tekst" },
+
+    { "id": "scene-2", "characterId": "", "text": "Scène 2 – Ontmoeting met Polster", "type": "sectie" },
+    { "id": "l2-1", "characterId": "char-polster", "text": "OMG! Het is niet Poolster maar Polster!", "type": "tekst" },
+    { "id": "l2-2", "characterId": "char-polster", "text": "Doe het maar alleen!", "type": "tekst" },
+    { "id": "l2-3", "characterId": "char-polster", "text": "Polster loopt boos af.", "type": "actie" },
+
+    { "id": "scene-3", "characterId": "", "text": "Scène 3 – Jury en presentatoren", "type": "sectie" },
+    { "id": "l3-1", "characterId": "char-presentators", "text": "Welkom bij deze talentenshow!", "type": "tekst" },
+    { "id": "l3-2", "characterId": "char-jury", "text": "Wij zijn de jury!", "type": "tekst" },
+
+    { "id": "scene-4", "characterId": "", "text": "Scène 4 – Dans Starships", "type": "sectie" },
+    { "id": "l4-1", "characterId": "char-dansers", "text": "Dansers komen op en dansen.", "type": "actie" },
+
+    { "id": "scene-5", "characterId": "", "text": "Scène 5 – Nieuwe Poolster gekozen", "type": "sectie" },
+    { "id": "l5-1", "characterId": "char-jury", "text": "Jij bent de nieuwe Poolster!", "type": "tekst" },
+    { "id": "l5-2", "characterId": "char-dansers", "text": "Dansers gaan af.", "type": "actie" },
+
+    { "id": "scene-6", "characterId": "", "text": "Scène 6 – Einde", "type": "sectie" },
+    { "id": "l6-1", "characterId": "char-maanu", "text": "Proficiat!", "type": "tekst" },
+    { "id": "l6-2", "characterId": "char-poolster", "text": "Dankjewel!", "type": "tekst" }
+  ],
+
+  "cues": [
+    {
+      "id": "cue-1",
+      "type": "licht",
+      "description": "Volglicht 1 op Maanu & Plutomeisje",
+      "target": { "lineId": "scene-1", "wordIndex": null, "wordText": null }
+    },
+    {
+      "id": "cue-2",
+      "type": "licht",
+      "description": "Grote spot 1 op Ster 1",
+      "target": { "lineId": "l1-1", "wordIndex": 0, "wordText": "Hallo" }
+    },
+    {
+      "id": "cue-3",
+      "type": "licht",
+      "description": "Volgspot 4 op Polster",
+      "target": { "lineId": "l2-1", "wordIndex": 0, "wordText": "OMG" }
+    },
+    {
+      "id": "cue-4",
+      "type": "audio",
+      "description": "Start muziek ‘Starships’",
+      "target": { "lineId": "l4-1", "wordIndex": null, "wordText": null }
+    },
+    {
+      "id": "cue-5",
+      "type": "video",
+      "description": "Projectie fonkelende sterren",
+      "target": { "lineId": "scene-4", "wordIndex": null, "wordText": null }
+    }
+  ],
+
+  "stagePlots": {
+    "scene-1": {
+      "enabled": true,
+      "canvas": { "width": 1200, "height": 900 },
+      "shapes": [
+        {
+          "id": "bg-stars",
+          "x": 600,
+          "y": 120,
+          "size": 300,
+          "kind": "square",
+          "label": "decor",
+          "name": "Sterrenachtergrond",
+          "description": "Backdrop"
+        },
+        {
+          "id": "spot-left",
+          "x": 250,
+          "y": 500,
+          "size": 220,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Volgspot 1",
+          "description": "Maanu & Plutomeisje"
+        },
+        {
+          "id": "spot-right",
+          "x": 950,
+          "y": 500,
+          "size": 220,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Volgspot 2",
+          "description": "Ster 1"
+        },
+        {
+          "id": "spot-center",
+          "x": 600,
+          "y": 520,
+          "size": 320,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Grote spot 1",
+          "description": "Groep sterren"
+        }
+      ]
+    },
+
+    "scene-4": {
+      "enabled": true,
+      "canvas": { "width": 1200, "height": 900 },
+      "shapes": [
+        {
+          "id": "dance-spot",
+          "x": 600,
+          "y": 600,
+          "size": 500,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Grote spot midden",
+          "description": "Dansers Kwiks"
+        },
+        {
+          "id": "jury-spot",
+          "x": 900,
+          "y": 350,
+          "size": 300,
+          "kind": "circle",
+          "label": "licht",
+          "name": "Jury spot",
+          "description": "Jurytafel"
+        }
+      ]
+    }
+  },
+
+  "stagePlotLayouts": {
+    "scene-1": ["scene-1"],
+    "scene-4": ["scene-4"]
+  },
+
+  "stagePlotDocuments": {},
+
+  "stagePlotNotes": {
+    "scene-1": "Maanu en Plutomeisje links, Ster 1 rechts, sterrenachtergrond actief.",
+    "scene-4": "Dansers centraal, jury rechts, fonkelende sterren projectie."
+  },
+
+  "leaderContact": {
+    "firstName": "Elle",
+    "lastName": "Vermeulen",
+    "phone": "0484 72 51 78"
+  }
+}

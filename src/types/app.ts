@@ -66,3 +66,24 @@ export type ShapeDraft = {
   kind: ShapeKind
   size: number
 }
+
+export type StagePlotLayout = Record<string, string[]>
+
+export type StagePlotNotes = Record<string, string>
+
+export type StagePlotDocuments = Record<string, import('tldraw').TLEditorSnapshot>
+
+export type ExportSchemaVersion = 2
+
+export type ExportPayload = {
+  schemaVersion: ExportSchemaVersion
+  selectedPlay: string
+  characters: Character[]
+  lines: ScriptLine[]
+  cues: Cue[]
+  stagePlots: Record<string, StagePlot>
+  stagePlotLayouts: StagePlotLayout
+  stagePlotDocuments: StagePlotDocuments
+  stagePlotNotes: StagePlotNotes
+  leaderContact: LeaderContact
+}
