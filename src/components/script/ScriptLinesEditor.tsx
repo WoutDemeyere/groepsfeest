@@ -42,7 +42,18 @@ export const ScriptLinesEditor = ({
   onDragEnd,
   onDropTarget
 }: ScriptLinesEditorProps) => (
-  <Stack spacing={2}>
+  <Stack
+    spacing={2}
+    sx={{
+      '& .MuiInputBase-input': { fontSize: '1.2rem' },
+      '& .MuiInputLabel-root': { fontSize: '1.1rem' },
+      '& .MuiSelect-select': { fontSize: '1.2rem' },
+      '& .MuiFormHelperText-root': { fontSize: '1rem' },
+      '& .MuiTypography-root': { fontSize: '1.2rem' },
+      '& .MuiButton-root': { fontSize: '1.05rem' },
+      '& .MuiIconButton-root': { fontSize: '1.1rem' }
+    }}
+  >
     <Typography variant="h2">Tekstlijnen</Typography>
     <Typography color="text.secondary">
       Gebruik type "sectie" om scenes te markeren. Die komen later terug in de stageplots.

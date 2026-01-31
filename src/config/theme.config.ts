@@ -16,12 +16,48 @@ export const appTheme = createTheme({
   shape: { borderRadius: 16 },
   typography: {
     fontFamily: "'Manrope', system-ui, sans-serif",
-    fontSize: 17,
-    h1: { fontSize: '2.5rem', fontWeight: 700 },
-    h2: { fontSize: '1.35rem', fontWeight: 600 },
-    h5: { fontSize: '1.35rem', fontWeight: 600 },
-    h6: { fontSize: '1.15rem', fontWeight: 600 },
-    body1: { fontSize: '1rem' },
-    body2: { fontSize: '0.95rem' }
+    fontSize: 19,
+    h1: { fontSize: '2.9rem', fontWeight: 700 },
+    h2: { fontSize: '1.6rem', fontWeight: 600 },
+    h5: { fontSize: '1.5rem', fontWeight: 600 },
+    h6: { fontSize: '1.3rem', fontWeight: 600 },
+    subtitle1: { fontSize: '1.1rem' },
+    subtitle2: { fontSize: '1rem' },
+    body1: { fontSize: '1.05rem' },
+    body2: { fontSize: '1rem' },
+    button: { fontSize: '1rem', textTransform: 'none' }
+  },
+  components: {
+    MuiInputBase: {
+      styleOverrides: {
+        root: { fontSize: '1.05rem' },
+        input: { fontSize: '1.05rem' }
+      }
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: { fontSize: '1rem' }
+      }
+    },
+    MuiSelect: {
+      styleOverrides: {
+        select: { fontSize: '1.05rem' }
+      }
+    },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: { fontSize: '1rem' }
+      }
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: { fontSize: '1rem' }
+      }
+    },
+    MuiStepLabel: {
+      styleOverrides: {
+        label: { fontSize: '0.95rem' }
+      }
+    }
   }
 })

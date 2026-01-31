@@ -11,7 +11,17 @@ type CharacterEditorProps = {
 }
 
 export const CharacterEditor = ({ characters, onAdd, onUpdate, onRemove }: CharacterEditorProps) => (
-  <Stack spacing={2}>
+  <Stack
+    spacing={2}
+    sx={{
+      '& .MuiInputBase-input': { fontSize: '1.2rem' },
+      '& .MuiInputLabel-root': { fontSize: '1.1rem' },
+      '& .MuiFormHelperText-root': { fontSize: '1rem' },
+      '& .MuiTypography-root': { fontSize: '1.2rem' },
+      '& .MuiButton-root': { fontSize: '1.05rem' },
+      '& .MuiIconButton-root': { fontSize: '1.1rem' }
+    }}
+  >
     <Typography variant="h2">Personages</Typography>
     <Typography color="text.secondary">
       Geef elk personage een naam en koppel eventueel de speler. Dit verschijnt mee in de PDF.
