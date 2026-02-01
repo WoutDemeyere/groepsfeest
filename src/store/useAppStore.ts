@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { createJSONStorage, persist } from 'zustand/middleware'
 import type {
   Character,
   Cue,
@@ -15,6 +16,7 @@ import type {
 } from '../types/app'
 import { PLAYS } from '../config/plays.config'
 import type { TLEditorSnapshot, TLContent } from 'tldraw'
+import { idbStorage } from './idbStorage'
 
 const createId = () => crypto.randomUUID()
 
@@ -101,8 +103,10 @@ export type AppState = {
   resetUi: () => void
 }
 
-export const useAppStore = create<AppState>((set, get) => ({
-  selectedPlay: PLAYS[0]?.id ?? 'aspi-1',
+export const useAppStore = create<AppState>()(
+  persist(
+    (set, get) => ({
+      selectedPlay: PLAYS[0]?.id ?? 'aspi-1',
   characters: [{ id: createId(), name: 'Personage 1', person: '' }],
   lines: [createDefaultSection()],
   cues: [],
@@ -414,15 +418,40 @@ export const useAppStore = create<AppState>((set, get) => ({
     }),
   setActiveSectionId: (sectionId) => set({ activeSectionId: sectionId }),
   setEditingShapeId: (shapeId) => set({ editingShapeId: shapeId }),
-  resetUi: () =>
-    set({
-      cueModalOpen: false,
-      cueDescription: '',
-      selectedTarget: null,
-      shapeModalOpen: false,
-      activeSectionId: null,
-      editingShapeId: null,
-      draggedLineId: null,
-      dropTargetId: null
-    })
-}))
+      resetUi: () =>
+        set({
+          cueModalOpen: false,
+          cueDescription: '',
+          selectedTarget: null,
+          shapeModalOpen: false,
+          activeSectionId: null,
+          editingShapeId: null,
+          draggedLineId: null,
+          dropTargetId: null
+        })
+    }),
+    {
+      name: 'groepsfeestapp-store',
+      storage: createJSONStorage(() => idbStorage),
+      partialize: (state) => ({
+        selectedPlay: state.selectedPlay,
+        characters: state.characters,
+        lines: state.lines,
+        cues: state.cues,
+        podiumPlots: state.podiumPlots,
+        podiumPlotLayouts: state.podiumPlotLayouts,
+        podiumPlotDocuments: state.podiumPlotDocuments,
+        podiumPlotNotes: state.podiumPlotNotes,
+        leaderContact: state.leaderContact,
+        cueType: state.cueType,
+        cueDescription: state.cueDescription,
+        cueFileName: state.cueFileName
+      }),
+      onRehydrateStorage: () => (state) => {
+        if (state?.lines) {
+          state.lines = ensureFirstSection(state.lines)
+        }
+      }
+    }
+  )
+)

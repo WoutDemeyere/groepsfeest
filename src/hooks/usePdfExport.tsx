@@ -45,20 +45,20 @@ type UsePdfExportArgs = {
 
 const styles = StyleSheet.create({
   page: {
-    paddingTop: 26,
-    paddingBottom: 30,
-    paddingHorizontal: 26,
+    paddingTop: 20,
+    paddingBottom: 22,
+    paddingHorizontal: 20,
     fontSize: 10,
     fontFamily: 'Helvetica',
     color: '#1f2a3a'
   },
   header: {
-    marginBottom: 12
+    marginBottom: 8
   },
   title: {
     fontSize: 16,
     fontWeight: 700,
-    marginBottom: 6
+    marginBottom: 4
   },
   metaRow: {
     flexDirection: 'row',
@@ -66,27 +66,27 @@ const styles = StyleSheet.create({
   },
   metaPill: {
     backgroundColor: '#f3f5f8',
-    paddingVertical: 4,
-    paddingHorizontal: 8,
+    paddingVertical: 2,
+    paddingHorizontal: 6,
     borderRadius: 999,
-    marginRight: 8,
-    marginBottom: 6
+    marginRight: 6,
+    marginBottom: 4
   },
   section: {
-    marginTop: 10
+    marginTop: 6
   },
   sectionTitle: {
     fontSize: 10,
     letterSpacing: 0.8,
     textTransform: 'uppercase',
     color: '#6a7280',
-    marginBottom: 6
+    marginBottom: 4
   },
   panel: {
     borderWidth: 1,
     borderColor: '#e2e6ee',
     borderRadius: 10,
-    padding: 8,
+    padding: 6,
     backgroundColor: '#fbfcfd'
   },
   grid: {
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderBottomColor: '#e6e9f0',
-    paddingVertical: 5
+    paddingVertical: 3
   },
   tableHeader: {
     fontSize: 9,
@@ -114,34 +114,64 @@ const styles = StyleSheet.create({
   scriptLine: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    paddingVertical: 4,
-    paddingHorizontal: 5,
+    paddingVertical: 1,
+    paddingHorizontal: 2,
     borderRadius: 6
   },
   scriptIndex: {
-    width: 24,
+    width: 18,
     fontSize: 9,
     color: '#6a7280',
-    marginRight: 6
+    marginRight: 4
   },
   scriptSpeaker: {
-    width: 76,
+    width: 70,
     fontSize: 9,
     color: '#000000',
     fontWeight: 700,
-    marginRight: 6
+    marginRight: 4
   },
   scriptText: {
     width: 214,
-    lineHeight: 1.45
+    lineHeight: 1.05
   },
-  scriptWord: {
-    paddingHorizontal: 4,
-    paddingVertical: 1,
+  scriptTextWrap: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start'
+  },
+  wordPlain: {
+    marginRight: 2,
+    marginBottom: 1,
+    lineHeight: 1.0
+  },
+  wordChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 2,
+    paddingVertical: 0,
     borderRadius: 999,
+    marginRight: 2,
+    marginBottom: 1
+  },
+  wordChipText: {
     color: '#1f2a3a',
-    borderWidth: 0.5,
-    borderColor: 'rgba(31, 42, 58, 0.16)'
+    lineHeight: 1.0
+  },
+  wordChipNumber: {
+    marginLeft: 2,
+    paddingHorizontal: 3,
+    paddingVertical: 0,
+    borderRadius: 999
+  },
+  wordChipNumberText: {
+    fontSize: 8,
+    fontWeight: 700,
+    color: '#0f172a'
+  },
+  actionWordText: {
+    fontStyle: 'italic',
+    fontWeight: 600
   },
   actionText: {
     fontStyle: 'italic',
@@ -171,19 +201,26 @@ const styles = StyleSheet.create({
     fontWeight: 700,
     color: '#2b3446'
   },
+  sceneCard: {
+    borderWidth: 1,
+    borderColor: '#e2e6ee',
+    borderRadius: 10,
+    padding: 6,
+    marginBottom: 8
+  },
   cueCard: {
     borderWidth: 1,
     borderColor: '#e2e6ee',
     borderRadius: 10,
-    padding: 8,
-    marginBottom: 6,
+    padding: 6,
+    marginBottom: 4,
     backgroundColor: '#f7f9fb'
   },
   cueRow: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    gap: 8,
-    paddingVertical: 6,
+    gap: 6,
+    paddingVertical: 2,
     borderBottomWidth: 0
   },
   cueRowLine: {
@@ -192,22 +229,22 @@ const styles = StyleSheet.create({
   cueRowCues: {
     width: 180,
     flexShrink: 0,
-    marginTop: 4
+    marginTop: 2
   },
   cueLabel: {
     fontSize: 8,
     letterSpacing: 0.6,
     textTransform: 'uppercase',
     color: '#6a7280',
-    marginBottom: 4
+    marginBottom: 2
   },
   plotSection: {
-    marginTop: 14
+    marginTop: 10
   },
   plotTitle: {
     fontSize: 12,
     fontWeight: 700,
-    marginBottom: 6,
+    marginBottom: 4,
     color: '#2b3446'
   },
   plotImage: {
@@ -218,7 +255,7 @@ const styles = StyleSheet.create({
     objectFit: 'contain'
   },
   plotNote: {
-    marginTop: 4,
+    marginTop: 2,
     fontSize: 9,
     color: '#6a7280'
   }
@@ -383,6 +420,25 @@ const PdfDocument = ({
     return (CUE_MARKER_COLORS as Record<string, string>)[type] ?? '#d7deea'
   }
 
+  const lineIndexMap = new Map(lines.map((line, index) => [line.id, index]))
+  const scenes: Array<{ title: string; lines: ScriptLine[] }> = []
+  let currentScene: { title: string; lines: ScriptLine[] } | null = null
+  lines.forEach((line) => {
+    if (line.type === 'sectie') {
+      currentScene = {
+        title: line.text?.trim() || `Sectie ${scenes.length + 1}`,
+        lines: []
+      }
+      scenes.push(currentScene)
+      return
+    }
+    if (!currentScene) {
+      currentScene = { title: `Sectie ${scenes.length + 1}`, lines: [] }
+      scenes.push(currentScene)
+    }
+    currentScene.lines.push(line)
+  })
+
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -425,88 +481,111 @@ const PdfDocument = ({
       <Page size="A4" style={styles.page}>
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Script & cues</Text>
-          <View style={styles.panel}>
-            {lines.map((line, index) => {
-              if (line.type === 'sectie') {
-                return (
-                  <Text key={line.id} style={styles.sectionLine}>
-                    {line.text || `Sectie ${index + 1}`}
-                  </Text>
-                )
-              }
-
-              const character = characters.find((item) => item.id === line.characterId)
-              const words = tokenizeText(line.text)
-              const lineKey = `${line.id}:line`
-              const lineMarker = pdfLineMarkers.get(lineKey)
-              const lineMarkerNumbers = lineMarker?.numbers || []
-              const lineMarkerColor = markerColor(lineMarker?.types)
-              const lineCues = cuesByLine.get(line.id) ?? []
-
+          <View>
+            {scenes.map((scene, sceneIndex) => {
+              const allowSplit = scene.lines.length > 12
               return (
-                <View key={line.id} style={styles.cueRow}>
-                  <View style={styles.cueRowLine}>
-                    <View
-                      style={[
-                        styles.scriptLine,
-                        lineMarkerNumbers.length ? { backgroundColor: lineMarkerColor } : null
-                      ]}
-                    >
-                      <Text style={styles.scriptIndex}>
-                        {line.type === 'actie' ? '' : index + 1}
-                        {lineMarkerNumbers.length ? (
-                          <Text style={styles.cueBadge}>{cueBadge(lineMarkerNumbers)}</Text>
-                        ) : null}
-                      </Text>
-                      <Text style={styles.scriptSpeaker}>
-                        {line.type === 'actie' ? '' : character?.name?.toUpperCase() || 'ONBEKEND'}
-                      </Text>
-                      <Text
-                        style={[
-                          styles.scriptText,
-                          line.type === 'actie' ? styles.actionText : null
-                        ]}
-                      >
-                        {words.length
-                          ? words.map((word, wordIndex) => {
-                              const marker = pdfWordMarkers.get(line.id)?.[wordIndex]
-                              const markerNumbers = marker?.numbers || []
-                              const hasMarkers = markerNumbers && markerNumbers.length
-                              const wordColor = markerColor(marker?.types)
-                              return (
-                                <Text
-                                  key={`${line.id}-${wordIndex}`}
-                                  style={
-                                    hasMarkers
-                                      ? [styles.scriptWord, { backgroundColor: wordColor }]
-                                      : null
-                                  }
-                                >
-                                  {word}
-                                  {hasMarkers ? cueBadge(markerNumbers) : ''}
-                                  {' '}
-                                </Text>
-                              )
-                            })
-                          : '—'}
-                      </Text>
-                    </View>
-                  </View>
-                  <View style={styles.cueRowCues}>
-                    {lineCues.map((cue) => {
-                      const cueColor =
-                        (CUE_MARKER_COLORS as Record<string, string>)[cue.type] ?? '#f7f9fb'
-                      return (
-                        <View key={cue.id} style={[styles.cueCard, { backgroundColor: cueColor }]}>
-                          <Text style={styles.cueLabel}>
-                            Cue {cueNumbers.get(cue.id)} · {cue.type.toUpperCase()}
-                          </Text>
-                          <Text>{cue.description || 'Geen beschrijving.'}</Text>
-                          {cue.fileName ? <Text>Bestand: {cue.fileName}</Text> : null}
+                <View
+                  key={`scene-${sceneIndex}`}
+                  style={styles.sceneCard}
+                  wrap={allowSplit}
+                >
+                  <Text style={styles.sectionLine}>{scene.title}</Text>
+                  {scene.lines.map((line) => {
+                    const index = lineIndexMap.get(line.id) ?? 0
+                    const character = characters.find((item) => item.id === line.characterId)
+                    const words = tokenizeText(line.text)
+                    const lineKey = `${line.id}:line`
+                    const lineMarker = pdfLineMarkers.get(lineKey)
+                    const lineMarkerNumbers = lineMarker?.numbers || []
+                    const lineMarkerColor = markerColor(lineMarker?.types)
+                    const lineCues = cuesByLine.get(line.id) ?? []
+
+                    return (
+                      <View key={line.id} style={styles.cueRow}>
+                        <View style={styles.cueRowLine}>
+                          <View
+                            style={[
+                              styles.scriptLine,
+                              lineMarkerNumbers.length ? { backgroundColor: lineMarkerColor } : null
+                            ]}
+                          >
+                            <Text style={styles.scriptIndex}>
+                              {line.type === 'actie' ? '' : index + 1}
+                              {lineMarkerNumbers.length ? (
+                                <Text style={styles.cueBadge}>{cueBadge(lineMarkerNumbers)}</Text>
+                              ) : null}
+                            </Text>
+                            <Text style={styles.scriptSpeaker}>
+                              {line.type === 'actie' ? '' : character?.name?.toUpperCase() || 'ONBEKEND'}
+                            </Text>
+                            <View style={styles.scriptText}>
+                              <View style={styles.scriptTextWrap}>
+                                {words.length
+                                  ? words.map((word, wordIndex) => {
+                                      const marker = pdfWordMarkers.get(line.id)?.[wordIndex]
+                                      const markerNumbers = marker?.numbers || []
+                                      const hasMarkers = markerNumbers && markerNumbers.length
+                                      const wordColor = markerColor(marker?.types)
+                                      const wordTextStyle = [
+                                        styles.wordChipText,
+                                        line.type === 'actie' ? styles.actionWordText : null
+                                      ]
+                                      const plainTextStyle = [
+                                        styles.wordPlain,
+                                        line.type === 'actie' ? styles.actionWordText : null
+                                      ]
+                                      if (!hasMarkers) {
+                                        return (
+                                          <Text key={`${line.id}-${wordIndex}`} style={plainTextStyle}>
+                                            {word}
+                                          </Text>
+                                        )
+                                      }
+                                      return (
+                                        <View
+                                          key={`${line.id}-${wordIndex}`}
+                                          style={[styles.wordChip, { backgroundColor: wordColor }]}
+                                        >
+                                          <Text style={wordTextStyle}>{word}</Text>
+                                          <View
+                                            style={[
+                                              styles.wordChipNumber,
+                                              { backgroundColor: wordColor }
+                                            ]}
+                                          >
+                                            <Text style={styles.wordChipNumberText}>
+                                              {markerNumbers.join(',')}
+                                            </Text>
+                                          </View>
+                                        </View>
+                                      )
+                                    })
+                                  : (
+                                    <Text style={styles.wordPlain}>—</Text>
+                                  )}
+                              </View>
+                            </View>
+                          </View>
                         </View>
-                      )
-                    })}
-                  </View>
+                        <View style={styles.cueRowCues}>
+                          {lineCues.map((cue) => {
+                            const cueColor =
+                              (CUE_MARKER_COLORS as Record<string, string>)[cue.type] ?? '#f7f9fb'
+                            return (
+                              <View key={cue.id} style={[styles.cueCard, { backgroundColor: cueColor }]}>
+                                <Text style={styles.cueLabel}>
+                                  Cue {cueNumbers.get(cue.id)} · {cue.type.toUpperCase()}
+                                </Text>
+                                <Text>{cue.description || 'Geen beschrijving.'}</Text>
+                                {cue.fileName ? <Text>Bestand: {cue.fileName}</Text> : null}
+                              </View>
+                            )
+                          })}
+                        </View>
+                      </View>
+                    )
+                  })}
                 </View>
               )
             })}
