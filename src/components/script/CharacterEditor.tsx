@@ -14,12 +14,12 @@ export const CharacterEditor = ({ characters, onAdd, onUpdate, onRemove }: Chara
   <Stack
     spacing={2}
     sx={{
-      '& .MuiInputBase-input': { fontSize: '1.05rem' },
-      '& .MuiInputLabel-root': { fontSize: '1rem' },
-      '& .MuiFormHelperText-root': { fontSize: '0.9rem' },
-      '& .MuiTypography-root': { fontSize: '1.05rem' },
-      '& .MuiButton-root': { fontSize: '0.95rem' },
-      '& .MuiIconButton-root': { fontSize: '1rem' }
+      '& .MuiInputBase-input': { fontSize: '0.71rem' },
+      '& .MuiInputLabel-root': { fontSize: '0.68rem' },
+      '& .MuiFormHelperText-root': { fontSize: '0.62rem' },
+      '& .MuiTypography-root': { fontSize: '0.71rem' },
+      '& .MuiButton-root': { fontSize: '0.64rem' },
+      '& .MuiIconButton-root': { fontSize: '0.68rem' }
     }}
   >
     <Typography variant="h2">Personages</Typography>

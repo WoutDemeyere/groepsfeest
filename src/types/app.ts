@@ -1,6 +1,6 @@
 export type LineType = 'tekst' | 'actie' | 'sectie'
 
-export type CueType = 'licht' | 'video' | 'audio' | 'decor'
+export type CueType = 'licht' | 'video' | 'audio' | 'decor' | 'afbeelding'
 
 export type ShapeKind = 'circle' | 'square'
 

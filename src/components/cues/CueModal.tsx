@@ -69,13 +69,13 @@ export const CueModal = ({
             ))}
           </Select>
         </FormControl>
-        {(cueType === 'audio' || cueType === 'video') && (
+        {(cueType === 'audio' || cueType === 'video' || cueType === 'afbeelding') && (
           <TextField
             label="Bestandsnaam"
             value={cueFileName}
             onChange={(event) => onFileNameChange(event.target.value)}
             required={false}
-            helperText="Optioneel, maar aanbevolen voor audio en video."
+            helperText="Optioneel, maar aanbevolen voor audio, video en afbeelding."
           />
         )}
         <TextField

@@ -129,7 +129,7 @@
 }
 
 .plot-help {
-  font-size: 0.68rem;
+  font-size: 0.435rem;
   align-self: center;
   margin-left: 4px;
 }
@@ -185,7 +185,7 @@
   position: absolute;
   display: grid;
   gap: 0;
-  font-size: 0.59rem;
+  font-size: 0.375rem;
   letter-spacing: 0.08em;
   color: rgba(255, 255, 255, 0.55);
   z-index: 2;
@@ -232,7 +232,7 @@
   top: 40px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 0.63rem;
+  font-size: 0.405rem;
   letter-spacing: 0.4em;
   color: rgba(255, 255, 255, 0.5);
 }
@@ -285,12 +285,12 @@
 
 .plot-shape__title {
   font-weight: 700;
-  font-size: 0.68rem;
+  font-size: 0.435rem;
   text-align: center;
 }
 
 .plot-shape__label {
-  font-size: 0.54rem;
+  font-size: 0.345rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
   opacity: 0.75;
@@ -335,7 +335,7 @@
 
 .plot-list-title {
   font-weight: 700;
-  font-size: 0.81rem;
+  font-size: 0.517rem;
 }
 
 .plot-list-actions {
@@ -345,13 +345,13 @@
 }
 
 .plot-list-meta {
-  font-size: 0.63rem;
+  font-size: 0.405rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .plot-list-desc {
-  font-size: 0.72rem;
+  font-size: 0.458rem;
   line-height: 1.4;
   opacity: 0.75;
 }
@@ -431,7 +431,7 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   opacity: 0.8;
-  font-size: 0.85rem;
+  font-size: 0.54rem;
 }
 
 .cue-index {
@@ -440,7 +440,7 @@
   color: rgba(255, 255, 255, 0.7);
   font-weight: 600;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.578rem;
 }
 
 .cue-index--empty {
@@ -450,7 +450,7 @@
 .cue-character {
   font-weight: 700;
   letter-spacing: 0.06em;
-  font-size: 0.9rem;
+  font-size: 0.578rem;
 }
 
 .cue-character--empty {
@@ -459,7 +459,7 @@
 
 .cue-text {
   line-height: 1.6;
-  font-size: 0.95rem;
+  font-size: 0.608rem;
 }
 
 .cue-word {
@@ -471,7 +471,7 @@
   margin-right: 6px;
   border-radius: 6px;
   position: relative;
-  font-size: 0.95rem;
+  font-size: 0.608rem;
   transition:
     background-color 0.18s ease,
     transform 0.18s ease,
@@ -505,7 +505,7 @@
   border-radius: 999px;
   background: rgba(15, 18, 38, 0.85);
   color: #ffffff;
-  font-size: 0.72rem;
+  font-size: 0.458rem;
   font-weight: 600;
 }
 
@@ -538,7 +538,7 @@
 .plot-canvas__audience {
   margin-top: 10px;
   text-align: center;
-  font-size: 0.68rem;
+  font-size: 0.435rem;
   letter-spacing: 0.3em;
   color: rgba(255, 255, 255, 0.65);
 }

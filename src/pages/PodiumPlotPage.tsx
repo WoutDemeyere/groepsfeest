@@ -55,6 +55,77 @@ export const PodiumPlotPage = () => {
     ensurePodiumPlotSections(sections.map((section) => section.id))
   }, [ensurePodiumPlotSections, sections])
 
+  useEffect(() => {
+    const handleClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement | null
+      if (!target) return
+      const anchor = target.closest('a') as HTMLAnchorElement | null
+      if (!anchor) return
+      if (!anchor.getAttribute('href')?.startsWith('#')) return
+      if (!anchor.closest(`.${styles['tldraw-canvas']}`)) return
+      event.preventDefault()
+      event.stopPropagation()
+    }
+
+    let lastScrollY = 0
+    let shouldRestoreScroll = false
+    let restoreTimeout: number | null = null
+    const handlePointerDown = (event: PointerEvent) => {
+      const target = event.target as HTMLElement | null
+      if (!target) return
+      if (!target.closest(`.${styles['tldraw-canvas']}`)) return
+      lastScrollY = window.scrollY
+      shouldRestoreScroll = true
+      if (restoreTimeout) {
+        window.clearTimeout(restoreTimeout)
+      }
+      restoreTimeout = window.setTimeout(() => {
+        shouldRestoreScroll = false
+      }, 250)
+    }
+
+    const handleHashChange = () => {
+      if (!window.location.hash) return
+      const url = window.location.href.replace(window.location.hash, '')
+      window.history.replaceState(null, '', url)
+      window.scrollTo({ top: lastScrollY })
+    }
+
+    const handleScroll = () => {
+      if (!shouldRestoreScroll) return
+      if (Math.abs(window.scrollY - lastScrollY) < 2) return
+      window.scrollTo({ top: lastScrollY })
+    }
+
+    const originalScrollIntoView = Element.prototype.scrollIntoView
+    Element.prototype.scrollIntoView = function (...args) {
+      const el = this as HTMLElement
+      if (
+        el.closest(`.${styles['tldraw-canvas']}`) ||
+        el.closest('.tlui') ||
+        el.closest('.tldraw')
+      ) {
+        return
+      }
+      return originalScrollIntoView.apply(this, args as unknown as Parameters<Element['scrollIntoView']>)
+    }
+
+    document.addEventListener('click', handleClick, true)
+    document.addEventListener('pointerdown', handlePointerDown, true)
+    window.addEventListener('hashchange', handleHashChange)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      document.removeEventListener('click', handleClick, true)
+      document.removeEventListener('pointerdown', handlePointerDown, true)
+      window.removeEventListener('hashchange', handleHashChange)
+      window.removeEventListener('scroll', handleScroll)
+      if (restoreTimeout) {
+        window.clearTimeout(restoreTimeout)
+      }
+      Element.prototype.scrollIntoView = originalScrollIntoView
+    }
+  }, [])
+
   const cameraOptions = useMemo<TLCameraOptions>(
     () => ({
       isLocked: false,
