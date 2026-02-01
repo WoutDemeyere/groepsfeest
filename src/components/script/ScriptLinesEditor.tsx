@@ -45,13 +45,13 @@ export const ScriptLinesEditor = ({
   <Stack
     spacing={2}
     sx={{
-      '& .MuiInputBase-input': { fontSize: '1.2rem' },
-      '& .MuiInputLabel-root': { fontSize: '1.1rem' },
-      '& .MuiSelect-select': { fontSize: '1.2rem' },
-      '& .MuiFormHelperText-root': { fontSize: '1rem' },
-      '& .MuiTypography-root': { fontSize: '1.2rem' },
-      '& .MuiButton-root': { fontSize: '1.05rem' },
-      '& .MuiIconButton-root': { fontSize: '1.1rem' }
+      '& .MuiInputBase-input': { fontSize: '1.05rem' },
+      '& .MuiInputLabel-root': { fontSize: '1rem' },
+      '& .MuiSelect-select': { fontSize: '1.05rem' },
+      '& .MuiFormHelperText-root': { fontSize: '0.9rem' },
+      '& .MuiTypography-root': { fontSize: '1.05rem' },
+      '& .MuiButton-root': { fontSize: '0.95rem' },
+      '& .MuiIconButton-root': { fontSize: '1rem' }
     }}
   >
     <Typography variant="h2">Tekstlijnen</Typography>
