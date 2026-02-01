@@ -23,6 +23,7 @@ const CANVAS_HEIGHT = STAGE_HEIGHT + STAGE_LABEL_OFFSET + 64
 
 export const PodiumPlotPage = () => {
   const navigate = useNavigate()
+  const tldrawLicenseKey = import.meta.env.VITE_TLDRAW_LICENSE_KEY
   const lines = useAppStore((state) => state.lines)
   const podiumPlotLayouts = useAppStore((state) => state.podiumPlotLayouts)
   const podiumPlotDocuments = useAppStore((state) => state.podiumPlotDocuments)
@@ -292,6 +293,7 @@ export const PodiumPlotPage = () => {
                                   onMount={handleMount(plotId)}
                                   snapshot={initialSnapshot}
                                   cameraOptions={cameraOptions}
+                                  licenseKey={tldrawLicenseKey}
                                 />
                               </div>
                             </div>

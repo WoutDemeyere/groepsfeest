@@ -28,6 +28,8 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm run build
+        env:
+          VITE_TLDRAW_LICENSE_KEY: ${{ secrets.TLDRAW_LICENSE_KEY }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
