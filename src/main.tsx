@@ -12,7 +12,11 @@ if (redirectParam) {
   const base = import.meta.env.BASE_URL.replace(/\/$/, '')
   const nextPath = decodeURIComponent(redirectParam)
   const next = `${base}${nextPath.startsWith('/') ? '' : '/'}${nextPath}`
-  window.history.replaceState(null, '', next)
+  const url = new URL(window.location.href)
+  url.searchParams.delete('redirect')
+  if (window.location.pathname + window.location.search + window.location.hash !== next) {
+    window.history.replaceState(null, '', next)
+  }
 }
 
 createRoot(document.getElementById('root') as HTMLElement).render(
