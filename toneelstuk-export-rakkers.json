@@ -1,0 +1,1660 @@
+{
+  "schemaVersion": 2,
+  "selectedPlay": "rakkers",
+  "characters": [
+    {
+      "id": "char-maanu",
+      "name": "Maanu",
+      "person": ""
+    },
+    {
+      "id": "char-emmanuella",
+      "name": "Emmanuella",
+      "person": ""
+    },
+    {
+      "id": "char-snickerkoning",
+      "name": "Snickerkoning",
+      "person": ""
+    },
+    {
+      "id": "char-snickerromeo",
+      "name": "Snickerromeo",
+      "person": ""
+    },
+    {
+      "id": "char-snicker",
+      "name": "Snicker",
+      "person": ""
+    },
+    {
+      "id": "char-marskoning",
+      "name": "Marskoning",
+      "person": ""
+    },
+    {
+      "id": "char-marsjulia",
+      "name": "Marsjulia",
+      "person": ""
+    },
+    {
+      "id": "char-otis",
+      "name": "Otis",
+      "person": ""
+    },
+    {
+      "id": "char-dokteroj",
+      "name": "Dokter Oj",
+      "person": ""
+    },
+    {
+      "id": "char-bounty",
+      "name": "Bounty",
+      "person": ""
+    },
+    {
+      "id": "char-verteller",
+      "name": "(Regie/actie)",
+      "person": ""
+    }
+  ],
+  "lines": [
+    {
+      "id": "scene-1",
+      "characterId": "",
+      "text": "Scene 1",
+      "type": "sectie"
+    },
+    {
+      "id": "line-1-1",
+      "characterId": "char-maanu",
+      "text": "wat valt er te beleven op mars?",
+      "type": "tekst"
+    },
+    {
+      "id": "line-1-2",
+      "characterId": "char-emmanuella",
+      "text": "blijkbaar is er oorlog. Ik stel voor dat we opsplitsen en kijken of we iemand vinden.",
+      "type": "tekst"
+    },
+    {
+      "id": "line-1-3",
+      "characterId": "char-verteller",
+      "text": "Ze wandelen elk een kant uit.",
+      "type": "actie"
+    },
+    {
+      "id": "scene-2",
+      "characterId": "",
+      "text": "Scene 2",
+      "type": "sectie"
+    },
+    {
+      "id": "line-2-1",
+      "characterId": "char-verteller",
+      "text": "Maanu/man schuilt achter rots.",
+      "type": "actie"
+    },
+    {
+      "id": "line-2-2",
+      "characterId": "char-snickerkoning",
+      "text": "al jarenlang leven we in de schaduw van de marzen. Het is niet omdat we noten hebben dat we slechter zijn",
+      "type": "tekst"
+    },
+    {
+      "id": "line-2-3",
+      "characterId": "char-verteller",
+      "text": "De snickers juigen.",
+      "type": "actie"
+    },
+    {
+      "id": "line-2-4",
+      "characterId": "char-snickerkoning",
+      "text": "ons tijd is gekomen. We nemen de planeet over!",
+      "type": "tekst"
+    },
+    {
+      "id": "line-2-5",
+      "characterId": "char-snicker",
+      "text": "op naar de wapenkamer",
+      "type": "tekst"
+    },
+    {
+      "id": "line-2-6",
+      "characterId": "char-verteller",
+      "text": "Alle snickers gaan weg behalve snickerromeo blijft.",
+      "type": "actie"
+    },
+    {
+      "id": "line-2-7",
+      "characterId": "char-snickerromeo",
+      "text": "Oh mars-julia, ons liefde is gedoemd. Oorlog is het laatste wat we nodig hebben. Ik heb noten, jij niet. Zijn we daarom zo anders?",
+      "type": "tekst"
+    },
+    {
+      "id": "line-2-8",
+      "characterId": "char-verteller",
+      "text": "Triestig gaat hij af.",
+      "type": "actie"
+    },
+    {
+      "id": "line-2-9",
+      "characterId": "char-maanu",
+      "text": "oeii, de oorlog gaat starten, ik moet emmanuella gaan verwittigen",
+      "type": "tekst"
+    },
+    {
+      "id": "line-2-10",
+      "characterId": "char-verteller",
+      "text": "Maanu/man gaat weg.",
+      "type": "actie"
+    },
+    {
+      "id": "scene-3",
+      "characterId": "",
+      "text": "Scene 3",
+      "type": "sectie"
+    },
+    {
+      "id": "line-3-1",
+      "characterId": "char-verteller",
+      "text": "De marzen komen op aan de rechter kant en marsjulia zit in haar toren, emmanuella luistert wat mee.",
+      "type": "actie"
+    },
+    {
+      "id": "line-3-2",
+      "characterId": "char-marskoning",
+      "text": "wij waren hier eerst. De planeet is van ons! We willen in vrede leven, maar ze geven ons geen keus!",
+      "type": "tekst"
+    },
+    {
+      "id": "line-3-3",
+      "characterId": "char-marskoning",
+      "text": "marsjulia, blijf in je toren zo kan jou niets overkomen, de rest van ons gaan ons klaarmaken voor de strijd",
+      "type": "tekst"
+    },
+    {
+      "id": "line-3-4",
+      "characterId": "char-maanu",
+      "text": "mars: die snickers hebben teveel noten op hun zang!",
+      "type": "tekst"
+    },
+    {
+      "id": "line-3-5",
+      "characterId": "char-verteller",
+      "text": "Alle marzen gaan weg, marsjulia blijft in haar toren.",
+      "type": "actie"
+    },
+    {
+      "id": "line-3-6",
+      "characterId": "char-marsjulia",
+      "text": "ooh snickerromeo, ik wil geen oorlog. Ik wil in vrede bij jou zijn.",
+      "type": "tekst"
+    },
+    {
+      "id": "scene-4",
+      "characterId": "",
+      "text": "Scene 4",
+      "type": "sectie"
+    },
+    {
+      "id": "line-4-1",
+      "characterId": "char-verteller",
+      "text": "Snickerromeo komt stilletjes op en gaat naar marsjulia.",
+      "type": "actie"
+    },
+    {
+      "id": "line-4-2",
+      "characterId": "char-marsjulia",
+      "text": "snickerromeo? Wat da jij hier? Als mijn vader jou vindt, vermoordt hij jou!",
+      "type": "tekst"
+    },
+    {
+      "id": "line-4-3",
+      "characterId": "char-snickerromeo",
+      "text": "marsjulia, er komt oorlog, maar eerst wil je jou iets vragen",
+      "type": "tekst"
+    },
+    {
+      "id": "line-4-4",
+      "characterId": "char-verteller",
+      "text": "Hij gooit zijn bloemen naar marsjulia.",
+      "type": "actie"
+    },
+    {
+      "id": "line-4-5",
+      "characterId": "char-snickerromeo",
+      "text": "wil je met mij trouwen",
+      "type": "tekst"
+    },
+    {
+      "id": "line-4-6",
+      "characterId": "char-verteller",
+      "text": "Marsjulia houdt de handen voor het gezicht van verbasing, maar voor ze kan antwoorden breekt de oorlog uit.",
+      "type": "actie"
+    },
+    {
+      "id": "scene-5",
+      "characterId": "",
+      "text": "Scene 5",
+      "type": "sectie"
+    },
+    {
+      "id": "line-5-1",
+      "characterId": "char-verteller",
+      "text": "Van links komen de snickers en van rechts de marzen.",
+      "type": "actie"
+    },
+    {
+      "id": "line-5-2",
+      "characterId": "char-verteller",
+      "text": "Ze schieten op elkaar, wanneer de muziek stopt valt snickerromeo traag op de grond met zijn handen op zijn schotwonde.",
+      "type": "actie"
+    },
+    {
+      "id": "line-5-3",
+      "characterId": "char-otis",
+      "text": "Otis doet een toertje en schiet snickerromeo dood",
+      "type": "tekst"
+    },
+    {
+      "id": "line-5-4",
+      "characterId": "char-marsjulia",
+      "text": "NEEEE snickerromeo",
+      "type": "tekst"
+    },
+    {
+      "id": "line-5-5",
+      "characterId": "char-verteller",
+      "text": "Marsjulia stormt naar beneden.",
+      "type": "actie"
+    },
+    {
+      "id": "line-5-6",
+      "characterId": "char-verteller",
+      "text": "De marzen en snickers gaan wat naar achter, de koningen blijven in het midden.",
+      "type": "actie"
+    },
+    {
+      "id": "line-5-7",
+      "characterId": "char-verteller",
+      "text": "De koningen hun mond vallen open van verbazing.",
+      "type": "actie"
+    },
+    {
+      "id": "line-5-8",
+      "characterId": "char-marskoning",
+      "text": "een snicker?",
+      "type": "tekst"
+    },
+    {
+      "id": "line-5-9",
+      "characterId": "char-snickerkoning",
+      "text": "en een mars? Da mag helemaal niet",
+      "type": "tekst"
+    },
+    {
+      "id": "line-5-10",
+      "characterId": "char-marsjulia",
+      "text": "is er een dokter in de zaal?",
+      "type": "tekst"
+    },
+    {
+      "id": "line-5-11",
+      "characterId": "char-verteller",
+      "text": "De dokter komt op.",
+      "type": "actie"
+    },
+    {
+      "id": "line-5-12",
+      "characterId": "char-dokteroj",
+      "text": "Ja, ik ben dokter Oj, laat mij eens luisteren",
+      "type": "tekst"
+    },
+    {
+      "id": "line-5-13",
+      "characterId": "char-verteller",
+      "text": "Dokter Oj doet koptelefoon aan.",
+      "type": "actie"
+    },
+    {
+      "id": "line-5-14",
+      "characterId": "char-verteller",
+      "text": "Hij luistert met zijn stethoscoop en doet een teken dat snickerromeo dood is.",
+      "type": "actie"
+    },
+    {
+      "id": "line-5-15",
+      "characterId": "char-verteller",
+      "text": "Wanneer marsjulia een wit doek over snickerromeo legt schiet hij toch wakker",
+      "type": "actie"
+    },
+    {
+      "id": "line-5-16",
+      "characterId": "char-marsjulia",
+      "text": "Snickerromeo! Je leeft!",
+      "type": "tekst"
+    },
+    {
+      "id": "line-5-17",
+      "characterId": "char-snickerromeo",
+      "text": "ja tuurlijk, dokter Oj is helemaal geen dokter, das nen DJ",
+      "type": "tekst"
+    },
+    {
+      "id": "line-5-18",
+      "characterId": "char-marsjulia",
+      "text": "snickerromeo, je vroeg of ik wou trouwen. Dat wil ik zeker!",
+      "type": "tekst"
+    },
+    {
+      "id": "line-5-19",
+      "characterId": "char-verteller",
+      "text": "Iedereen juigt.",
+      "type": "actie"
+    },
+    {
+      "id": "line-5-20",
+      "characterId": "char-verteller",
+      "text": "Discobol komt op.",
+      "type": "actie"
+    },
+    {
+      "id": "line-5-21",
+      "characterId": "char-verteller",
+      "text": "Ze dansen en gaan allemaal weg.",
+      "type": "actie"
+    },
+    {
+      "id": "scene-6",
+      "characterId": "",
+      "text": "Scene 6",
+      "type": "sectie"
+    },
+    {
+      "id": "line-6-1",
+      "characterId": "char-bounty",
+      "text": "Bounty komt alleen op.",
+      "type": "actie"
+    },
+    {
+      "id": "line-6-2",
+      "characterId": "char-verteller",
+      "text": "Maanu en emmanuella volgen.",
+      "type": "actie"
+    },
+    {
+      "id": "line-6-3",
+      "characterId": "char-emmanuella",
+      "text": "waarom zit je hier zo alleen?",
+      "type": "tekst"
+    },
+    {
+      "id": "line-6-4",
+      "characterId": "char-bounty",
+      "text": "ik ben geen echte noot",
+      "type": "tekst"
+    },
+    {
+      "id": "line-6-5",
+      "characterId": "char-maanu",
+      "text": "op planeet aarde hebben kokosnoten",
+      "type": "tekst"
+    },
+    {
+      "id": "line-6-6",
+      "characterId": "char-emmanuella",
+      "text": "jup en wij zijn op weg naar daar, wil je mee?",
+      "type": "tekst"
+    },
+    {
+      "id": "line-6-7",
+      "characterId": "char-bounty",
+      "text": "ja heel graag!",
+      "type": "tekst"
+    },
+    {
+      "id": "line-6-8",
+      "characterId": "char-verteller",
+      "text": "Ze gaan samen naar het ruimteschip.",
+      "type": "actie"
+    }
+  ],
+  "cues": [
+    {
+      "id": "cue-1",
+      "type": "licht",
+      "description": "Rood licht (start)",
+      "target": {
+        "lineId": "line-1-1",
+        "wordIndex": 0,
+        "wordText": "wat"
+      }
+    },
+    {
+      "id": "cue-2",
+      "type": "licht",
+      "description": "Lichten boven snickers",
+      "target": {
+        "lineId": "line-2-2",
+        "wordIndex": 0,
+        "wordText": "al"
+      }
+    },
+    {
+      "id": "cue-3",
+      "type": "licht",
+      "description": "Verliefde sfeer",
+      "target": {
+        "lineId": "line-2-7",
+        "wordIndex": 0,
+        "wordText": "Oh"
+      }
+    },
+    {
+      "id": "cue-4",
+      "type": "licht",
+      "description": "Verliefde sfeer stopt",
+      "target": {
+        "lineId": "line-2-9",
+        "wordIndex": 0,
+        "wordText": "oeii,"
+      }
+    },
+    {
+      "id": "cue-5",
+      "type": "licht",
+      "description": "Lichten op marzen",
+      "target": {
+        "lineId": "line-3-1",
+        "wordIndex": 0,
+        "wordText": "De"
+      }
+    },
+    {
+      "id": "cue-6",
+      "type": "licht",
+      "description": "Spot op Marsjulia",
+      "target": {
+        "lineId": "line-4-2",
+        "wordIndex": 0,
+        "wordText": "snickerromeo?"
+      }
+    },
+    {
+      "id": "cue-7",
+      "type": "licht",
+      "description": "Oorlog rood",
+      "target": {
+        "lineId": "line-4-6",
+        "wordIndex": 0,
+        "wordText": "Marsjulia"
+      }
+    },
+    {
+      "id": "cue-8",
+      "type": "licht",
+      "description": "Disco licht",
+      "target": {
+        "lineId": "line-5-20",
+        "wordIndex": 0,
+        "wordText": "Discobol"
+      }
+    },
+    {
+      "id": "cue-9",
+      "type": "audio",
+      "description": "Liefdeslied",
+      "target": {
+        "lineId": "line-2-7",
+        "wordIndex": 0,
+        "wordText": "Oh"
+      },
+      "fileName": "liefdeslied.mp3"
+    },
+    {
+      "id": "cue-10",
+      "type": "audio",
+      "description": "Oorlogsmuziek",
+      "target": {
+        "lineId": "line-5-1",
+        "wordIndex": 0,
+        "wordText": "Van"
+      },
+      "fileName": "oorlogsmuziek.mp3"
+    },
+    {
+      "id": "cue-11",
+      "type": "audio",
+      "description": "Geweer + Roblox fall",
+      "target": {
+        "lineId": "line-5-2",
+        "wordIndex": 0,
+        "wordText": "Ze"
+      },
+      "fileName": "shot_fall.mp3"
+    },
+    {
+      "id": "cue-12",
+      "type": "audio",
+      "description": "Disco",
+      "target": {
+        "lineId": "line-5-20",
+        "wordIndex": 0,
+        "wordText": "Discobol"
+      },
+      "fileName": "disco.mp3"
+    }
+  ],
+  "podiumPlots": {
+    "scene-1": {
+      "enabled": true,
+      "canvas": {
+        "width": 1200,
+        "height": 950
+      },
+      "shapes": [
+        {
+          "id": "s1-rots",
+          "x": 350,
+          "y": 350,
+          "size": 120,
+          "kind": "circle",
+          "label": "decor",
+          "name": "rots",
+          "description": "Rots centraal"
+        },
+        {
+          "id": "s1-maanu-emma",
+          "x": 600,
+          "y": 550,
+          "size": 180,
+          "kind": "circle",
+          "label": "decor",
+          "name": "Maanu & Emmanuella",
+          "description": "Startpositie"
+        }
+      ]
+    },
+    "scene-2": {
+      "enabled": true,
+      "canvas": {
+        "width": 1200,
+        "height": 950
+      },
+      "shapes": [
+        {
+          "id": "s2-snickers",
+          "x": 200,
+          "y": 700,
+          "size": 260,
+          "kind": "square",
+          "label": "decor",
+          "name": "Snickers",
+          "description": "Groep links"
+        },
+        {
+          "id": "s2-rots",
+          "x": 600,
+          "y": 420,
+          "size": 140,
+          "kind": "circle",
+          "label": "decor",
+          "name": "Rots",
+          "description": "Dekpunt"
+        },
+        {
+          "id": "s2-maanu",
+          "x": 720,
+          "y": 420,
+          "size": 90,
+          "kind": "circle",
+          "label": "decor",
+          "name": "Maanu",
+          "description": "Achter rots"
+        }
+      ]
+    },
+    "scene-3": {
+      "enabled": true,
+      "canvas": {
+        "width": 1200,
+        "height": 950
+      },
+      "shapes": [
+        {
+          "id": "s3-toren",
+          "x": 880,
+          "y": 250,
+          "size": 260,
+          "kind": "square",
+          "label": "decor",
+          "name": "Toren",
+          "description": "Marsjulia"
+        },
+        {
+          "id": "s3-marzen",
+          "x": 900,
+          "y": 700,
+          "size": 300,
+          "kind": "square",
+          "label": "decor",
+          "name": "Marzen",
+          "description": "Groep rechts"
+        }
+      ]
+    },
+    "scene-4": {
+      "enabled": true,
+      "canvas": {
+        "width": 1200,
+        "height": 950
+      },
+      "shapes": [
+        {
+          "id": "s4-boom",
+          "x": 150,
+          "y": 520,
+          "size": 180,
+          "kind": "square",
+          "label": "decor",
+          "name": "Boom",
+          "description": "Links"
+        },
+        {
+          "id": "s4-hekken",
+          "x": 420,
+          "y": 520,
+          "size": 360,
+          "kind": "square",
+          "label": "decor",
+          "name": "Hekken",
+          "description": "Scheiding"
+        },
+        {
+          "id": "s4-toren",
+          "x": 860,
+          "y": 520,
+          "size": 260,
+          "kind": "square",
+          "label": "decor",
+          "name": "Toren",
+          "description": "Rechts"
+        }
+      ]
+    },
+    "scene-5": {
+      "enabled": true,
+      "canvas": {
+        "width": 1200,
+        "height": 950
+      },
+      "shapes": [
+        {
+          "id": "s5-snickers",
+          "x": 150,
+          "y": 520,
+          "size": 200,
+          "kind": "square",
+          "label": "decor",
+          "name": "Snickers",
+          "description": "Links"
+        },
+        {
+          "id": "s5-marzen",
+          "x": 1050,
+          "y": 520,
+          "size": 200,
+          "kind": "square",
+          "label": "decor",
+          "name": "Marzen",
+          "description": "Rechts"
+        },
+        {
+          "id": "s5-dood",
+          "x": 600,
+          "y": 520,
+          "size": 180,
+          "kind": "circle",
+          "label": "decor",
+          "name": "Snickerromeo",
+          "description": "Valmoment"
+        }
+      ]
+    }
+  },
+  "podiumPlotLayouts": {
+    "scene-1": [
+      "scene-1"
+    ],
+    "scene-2": [
+      "scene-2"
+    ],
+    "scene-3": [
+      "scene-3"
+    ],
+    "scene-4": [
+      "scene-4"
+    ],
+    "scene-5": [
+      "scene-5"
+    ],
+    "scene-6": [
+      "930c32a1-1bd0-4f00-970e-aa3cfd89d68b"
+    ]
+  },
+  "podiumPlotDocuments": {
+    "scene-1": {
+      "document": {
+        "store": {
+          "document:document": {
+            "gridSize": 10,
+            "name": "",
+            "meta": {},
+            "id": "document:document",
+            "typeName": "document"
+          },
+          "page:page": {
+            "meta": {},
+            "id": "page:page",
+            "name": "Page 1",
+            "index": "a1",
+            "typeName": "page"
+          },
+          "shape:stage": {
+            "x": 24,
+            "y": 24,
+            "rotation": 0,
+            "isLocked": true,
+            "opacity": 1,
+            "meta": {
+              "role": "stage"
+            },
+            "id": "shape:stage",
+            "type": "geo",
+            "props": {
+              "w": 1080,
+              "h": 855,
+              "geo": "rectangle",
+              "dash": "draw",
+              "growY": 0,
+              "url": "",
+              "scale": 1,
+              "color": "black",
+              "labelColor": "black",
+              "fill": "none",
+              "size": "m",
+              "font": "draw",
+              "align": "middle",
+              "verticalAlign": "middle",
+              "richText": {
+                "type": "doc",
+                "content": [
+                  {
+                    "type": "paragraph"
+                  }
+                ]
+              }
+            },
+            "parentId": "page:page",
+            "index": "a11WcSBV",
+            "typeName": "shape"
+          },
+          "shape:audience": {
+            "x": 494,
+            "y": 907,
+            "rotation": 0,
+            "isLocked": true,
+            "opacity": 1,
+            "meta": {
+              "role": "audience-label"
+            },
+            "id": "shape:audience",
+            "type": "text",
+            "props": {
+              "color": "black",
+              "size": "m",
+              "w": 8,
+              "font": "draw",
+              "textAlign": "start",
+              "autoSize": true,
+              "scale": 1,
+              "richText": {
+                "type": "doc",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "PUBLIEK"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "parentId": "page:page",
+            "index": "a2UDuvSG",
+            "typeName": "shape"
+          }
+        },
+        "schema": {
+          "schemaVersion": 2,
+          "sequences": {
+            "com.tldraw.store": 5,
+            "com.tldraw.asset": 1,
+            "com.tldraw.camera": 1,
+            "com.tldraw.document": 2,
+            "com.tldraw.instance": 25,
+            "com.tldraw.instance_page_state": 5,
+            "com.tldraw.page": 1,
+            "com.tldraw.instance_presence": 6,
+            "com.tldraw.pointer": 1,
+            "com.tldraw.shape": 4,
+            "com.tldraw.asset.bookmark": 2,
+            "com.tldraw.asset.image": 5,
+            "com.tldraw.asset.video": 5,
+            "com.tldraw.shape.group": 0,
+            "com.tldraw.shape.text": 4,
+            "com.tldraw.shape.bookmark": 2,
+            "com.tldraw.shape.draw": 4,
+            "com.tldraw.shape.geo": 11,
+            "com.tldraw.shape.note": 10,
+            "com.tldraw.shape.line": 5,
+            "com.tldraw.shape.frame": 1,
+            "com.tldraw.shape.arrow": 8,
+            "com.tldraw.shape.highlight": 3,
+            "com.tldraw.shape.embed": 4,
+            "com.tldraw.shape.image": 5,
+            "com.tldraw.shape.video": 4,
+            "com.tldraw.binding.arrow": 1
+          }
+        }
+      },
+      "session": {
+        "version": 0,
+        "currentPageId": "page:page",
+        "exportBackground": true,
+        "isFocusMode": false,
+        "isDebugMode": false,
+        "isToolLocked": false,
+        "isGridMode": false,
+        "pageStates": [
+          {
+            "pageId": "page:page",
+            "camera": {
+              "x": 243.36137667304013,
+              "y": 192.08126195028674,
+              "z": 0.6973333333333334
+            },
+            "selectedShapeIds": [],
+            "focusedGroupId": null
+          }
+        ]
+      }
+    },
+    "scene-2": {
+      "document": {
+        "store": {
+          "document:document": {
+            "gridSize": 10,
+            "name": "",
+            "meta": {},
+            "id": "document:document",
+            "typeName": "document"
+          },
+          "page:page": {
+            "meta": {},
+            "id": "page:page",
+            "name": "Page 1",
+            "index": "a1",
+            "typeName": "page"
+          },
+          "shape:stage": {
+            "x": 24,
+            "y": 24,
+            "rotation": 0,
+            "isLocked": true,
+            "opacity": 1,
+            "meta": {
+              "role": "stage"
+            },
+            "id": "shape:stage",
+            "type": "geo",
+            "props": {
+              "w": 1080,
+              "h": 855,
+              "geo": "rectangle",
+              "dash": "draw",
+              "growY": 0,
+              "url": "",
+              "scale": 1,
+              "color": "black",
+              "labelColor": "black",
+              "fill": "none",
+              "size": "m",
+              "font": "draw",
+              "align": "middle",
+              "verticalAlign": "middle",
+              "richText": {
+                "type": "doc",
+                "content": [
+                  {
+                    "type": "paragraph"
+                  }
+                ]
+              }
+            },
+            "parentId": "page:page",
+            "index": "a1ByvXiV",
+            "typeName": "shape"
+          },
+          "shape:audience": {
+            "x": 494,
+            "y": 907,
+            "rotation": 0,
+            "isLocked": true,
+            "opacity": 1,
+            "meta": {
+              "role": "audience-label"
+            },
+            "id": "shape:audience",
+            "type": "text",
+            "props": {
+              "color": "black",
+              "size": "m",
+              "w": 8,
+              "font": "draw",
+              "textAlign": "start",
+              "autoSize": true,
+              "scale": 1,
+              "richText": {
+                "type": "doc",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "PUBLIEK"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "parentId": "page:page",
+            "index": "a2Ad35KV",
+            "typeName": "shape"
+          }
+        },
+        "schema": {
+          "schemaVersion": 2,
+          "sequences": {
+            "com.tldraw.store": 5,
+            "com.tldraw.asset": 1,
+            "com.tldraw.camera": 1,
+            "com.tldraw.document": 2,
+            "com.tldraw.instance": 25,
+            "com.tldraw.instance_page_state": 5,
+            "com.tldraw.page": 1,
+            "com.tldraw.instance_presence": 6,
+            "com.tldraw.pointer": 1,
+            "com.tldraw.shape": 4,
+            "com.tldraw.asset.bookmark": 2,
+            "com.tldraw.asset.image": 5,
+            "com.tldraw.asset.video": 5,
+            "com.tldraw.shape.group": 0,
+            "com.tldraw.shape.text": 4,
+            "com.tldraw.shape.bookmark": 2,
+            "com.tldraw.shape.draw": 4,
+            "com.tldraw.shape.geo": 11,
+            "com.tldraw.shape.note": 10,
+            "com.tldraw.shape.line": 5,
+            "com.tldraw.shape.frame": 1,
+            "com.tldraw.shape.arrow": 8,
+            "com.tldraw.shape.highlight": 3,
+            "com.tldraw.shape.embed": 4,
+            "com.tldraw.shape.image": 5,
+            "com.tldraw.shape.video": 4,
+            "com.tldraw.binding.arrow": 1
+          }
+        }
+      },
+      "session": {
+        "version": 0,
+        "currentPageId": "page:page",
+        "exportBackground": true,
+        "isFocusMode": false,
+        "isDebugMode": false,
+        "isToolLocked": false,
+        "isGridMode": false,
+        "pageStates": [
+          {
+            "pageId": "page:page",
+            "camera": {
+              "x": 243.36137667304013,
+              "y": 192.08126195028674,
+              "z": 0.6973333333333334
+            },
+            "selectedShapeIds": [],
+            "focusedGroupId": null
+          }
+        ]
+      }
+    },
+    "scene-3": {
+      "document": {
+        "store": {
+          "document:document": {
+            "gridSize": 10,
+            "name": "",
+            "meta": {},
+            "id": "document:document",
+            "typeName": "document"
+          },
+          "page:page": {
+            "meta": {},
+            "id": "page:page",
+            "name": "Page 1",
+            "index": "a1",
+            "typeName": "page"
+          },
+          "shape:stage": {
+            "x": 24,
+            "y": 24,
+            "rotation": 0,
+            "isLocked": true,
+            "opacity": 1,
+            "meta": {
+              "role": "stage"
+            },
+            "id": "shape:stage",
+            "type": "geo",
+            "props": {
+              "w": 1080,
+              "h": 855,
+              "geo": "rectangle",
+              "dash": "draw",
+              "growY": 0,
+              "url": "",
+              "scale": 1,
+              "color": "black",
+              "labelColor": "black",
+              "fill": "none",
+              "size": "m",
+              "font": "draw",
+              "align": "middle",
+              "verticalAlign": "middle",
+              "richText": {
+                "type": "doc",
+                "content": [
+                  {
+                    "type": "paragraph"
+                  }
+                ]
+              }
+            },
+            "parentId": "page:page",
+            "index": "a1sB2fCV",
+            "typeName": "shape"
+          },
+          "shape:audience": {
+            "x": 494,
+            "y": 907,
+            "rotation": 0,
+            "isLocked": true,
+            "opacity": 1,
+            "meta": {
+              "role": "audience-label"
+            },
+            "id": "shape:audience",
+            "type": "text",
+            "props": {
+              "color": "black",
+              "size": "m",
+              "w": 8,
+              "font": "draw",
+              "textAlign": "start",
+              "autoSize": true,
+              "scale": 1,
+              "richText": {
+                "type": "doc",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "PUBLIEK"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "parentId": "page:page",
+            "index": "a2tPWNCV",
+            "typeName": "shape"
+          }
+        },
+        "schema": {
+          "schemaVersion": 2,
+          "sequences": {
+            "com.tldraw.store": 5,
+            "com.tldraw.asset": 1,
+            "com.tldraw.camera": 1,
+            "com.tldraw.document": 2,
+            "com.tldraw.instance": 25,
+            "com.tldraw.instance_page_state": 5,
+            "com.tldraw.page": 1,
+            "com.tldraw.instance_presence": 6,
+            "com.tldraw.pointer": 1,
+            "com.tldraw.shape": 4,
+            "com.tldraw.asset.bookmark": 2,
+            "com.tldraw.asset.image": 5,
+            "com.tldraw.asset.video": 5,
+            "com.tldraw.shape.group": 0,
+            "com.tldraw.shape.text": 4,
+            "com.tldraw.shape.bookmark": 2,
+            "com.tldraw.shape.draw": 4,
+            "com.tldraw.shape.geo": 11,
+            "com.tldraw.shape.note": 10,
+            "com.tldraw.shape.line": 5,
+            "com.tldraw.shape.frame": 1,
+            "com.tldraw.shape.arrow": 8,
+            "com.tldraw.shape.highlight": 3,
+            "com.tldraw.shape.embed": 4,
+            "com.tldraw.shape.image": 5,
+            "com.tldraw.shape.video": 4,
+            "com.tldraw.binding.arrow": 1
+          }
+        }
+      },
+      "session": {
+        "version": 0,
+        "currentPageId": "page:page",
+        "exportBackground": true,
+        "isFocusMode": false,
+        "isDebugMode": false,
+        "isToolLocked": false,
+        "isGridMode": false,
+        "pageStates": [
+          {
+            "pageId": "page:page",
+            "camera": {
+              "x": 243.36137667304013,
+              "y": 192.08126195028674,
+              "z": 0.6973333333333334
+            },
+            "selectedShapeIds": [],
+            "focusedGroupId": null
+          }
+        ]
+      }
+    },
+    "scene-4": {
+      "document": {
+        "store": {
+          "document:document": {
+            "gridSize": 10,
+            "name": "",
+            "meta": {},
+            "id": "document:document",
+            "typeName": "document"
+          },
+          "page:page": {
+            "meta": {},
+            "id": "page:page",
+            "name": "Page 1",
+            "index": "a1",
+            "typeName": "page"
+          },
+          "shape:stage": {
+            "x": 24,
+            "y": 24,
+            "rotation": 0,
+            "isLocked": true,
+            "opacity": 1,
+            "meta": {
+              "role": "stage"
+            },
+            "id": "shape:stage",
+            "type": "geo",
+            "props": {
+              "w": 1080,
+              "h": 855,
+              "geo": "rectangle",
+              "dash": "draw",
+              "growY": 0,
+              "url": "",
+              "scale": 1,
+              "color": "black",
+              "labelColor": "black",
+              "fill": "none",
+              "size": "m",
+              "font": "draw",
+              "align": "middle",
+              "verticalAlign": "middle",
+              "richText": {
+                "type": "doc",
+                "content": [
+                  {
+                    "type": "paragraph"
+                  }
+                ]
+              }
+            },
+            "parentId": "page:page",
+            "index": "a1NfjtlV",
+            "typeName": "shape"
+          },
+          "shape:audience": {
+            "x": 494,
+            "y": 907,
+            "rotation": 0,
+            "isLocked": true,
+            "opacity": 1,
+            "meta": {
+              "role": "audience-label"
+            },
+            "id": "shape:audience",
+            "type": "text",
+            "props": {
+              "color": "black",
+              "size": "m",
+              "w": 8,
+              "font": "draw",
+              "textAlign": "start",
+              "autoSize": true,
+              "scale": 1,
+              "richText": {
+                "type": "doc",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "PUBLIEK"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "parentId": "page:page",
+            "index": "a2YjX30V",
+            "typeName": "shape"
+          }
+        },
+        "schema": {
+          "schemaVersion": 2,
+          "sequences": {
+            "com.tldraw.store": 5,
+            "com.tldraw.asset": 1,
+            "com.tldraw.camera": 1,
+            "com.tldraw.document": 2,
+            "com.tldraw.instance": 25,
+            "com.tldraw.instance_page_state": 5,
+            "com.tldraw.page": 1,
+            "com.tldraw.instance_presence": 6,
+            "com.tldraw.pointer": 1,
+            "com.tldraw.shape": 4,
+            "com.tldraw.asset.bookmark": 2,
+            "com.tldraw.asset.image": 5,
+            "com.tldraw.asset.video": 5,
+            "com.tldraw.shape.group": 0,
+            "com.tldraw.shape.text": 4,
+            "com.tldraw.shape.bookmark": 2,
+            "com.tldraw.shape.draw": 4,
+            "com.tldraw.shape.geo": 11,
+            "com.tldraw.shape.note": 10,
+            "com.tldraw.shape.line": 5,
+            "com.tldraw.shape.frame": 1,
+            "com.tldraw.shape.arrow": 8,
+            "com.tldraw.shape.highlight": 3,
+            "com.tldraw.shape.embed": 4,
+            "com.tldraw.shape.image": 5,
+            "com.tldraw.shape.video": 4,
+            "com.tldraw.binding.arrow": 1
+          }
+        }
+      },
+      "session": {
+        "version": 0,
+        "currentPageId": "page:page",
+        "exportBackground": true,
+        "isFocusMode": false,
+        "isDebugMode": false,
+        "isToolLocked": false,
+        "isGridMode": false,
+        "pageStates": [
+          {
+            "pageId": "page:page",
+            "camera": {
+              "x": 243.36137667304013,
+              "y": 192.08126195028674,
+              "z": 0.6973333333333334
+            },
+            "selectedShapeIds": [],
+            "focusedGroupId": null
+          }
+        ]
+      }
+    },
+    "scene-5": {
+      "document": {
+        "store": {
+          "document:document": {
+            "gridSize": 10,
+            "name": "",
+            "meta": {},
+            "id": "document:document",
+            "typeName": "document"
+          },
+          "page:page": {
+            "meta": {},
+            "id": "page:page",
+            "name": "Page 1",
+            "index": "a1",
+            "typeName": "page"
+          },
+          "shape:stage": {
+            "x": 24,
+            "y": 24,
+            "rotation": 0,
+            "isLocked": true,
+            "opacity": 1,
+            "meta": {
+              "role": "stage"
+            },
+            "id": "shape:stage",
+            "type": "geo",
+            "props": {
+              "w": 1080,
+              "h": 855,
+              "geo": "rectangle",
+              "dash": "draw",
+              "growY": 0,
+              "url": "",
+              "scale": 1,
+              "color": "black",
+              "labelColor": "black",
+              "fill": "none",
+              "size": "m",
+              "font": "draw",
+              "align": "middle",
+              "verticalAlign": "middle",
+              "richText": {
+                "type": "doc",
+                "content": [
+                  {
+                    "type": "paragraph"
+                  }
+                ]
+              }
+            },
+            "parentId": "page:page",
+            "index": "a1Hk723V",
+            "typeName": "shape"
+          },
+          "shape:audience": {
+            "x": 494,
+            "y": 907,
+            "rotation": 0,
+            "isLocked": true,
+            "opacity": 1,
+            "meta": {
+              "role": "audience-label"
+            },
+            "id": "shape:audience",
+            "type": "text",
+            "props": {
+              "color": "black",
+              "size": "m",
+              "w": 8,
+              "font": "draw",
+              "textAlign": "start",
+              "autoSize": true,
+              "scale": 1,
+              "richText": {
+                "type": "doc",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "PUBLIEK"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "parentId": "page:page",
+            "index": "a2Glh7BV",
+            "typeName": "shape"
+          }
+        },
+        "schema": {
+          "schemaVersion": 2,
+          "sequences": {
+            "com.tldraw.store": 5,
+            "com.tldraw.asset": 1,
+            "com.tldraw.camera": 1,
+            "com.tldraw.document": 2,
+            "com.tldraw.instance": 25,
+            "com.tldraw.instance_page_state": 5,
+            "com.tldraw.page": 1,
+            "com.tldraw.instance_presence": 6,
+            "com.tldraw.pointer": 1,
+            "com.tldraw.shape": 4,
+            "com.tldraw.asset.bookmark": 2,
+            "com.tldraw.asset.image": 5,
+            "com.tldraw.asset.video": 5,
+            "com.tldraw.shape.group": 0,
+            "com.tldraw.shape.text": 4,
+            "com.tldraw.shape.bookmark": 2,
+            "com.tldraw.shape.draw": 4,
+            "com.tldraw.shape.geo": 11,
+            "com.tldraw.shape.note": 10,
+            "com.tldraw.shape.line": 5,
+            "com.tldraw.shape.frame": 1,
+            "com.tldraw.shape.arrow": 8,
+            "com.tldraw.shape.highlight": 3,
+            "com.tldraw.shape.embed": 4,
+            "com.tldraw.shape.image": 5,
+            "com.tldraw.shape.video": 4,
+            "com.tldraw.binding.arrow": 1
+          }
+        }
+      },
+      "session": {
+        "version": 0,
+        "currentPageId": "page:page",
+        "exportBackground": true,
+        "isFocusMode": false,
+        "isDebugMode": false,
+        "isToolLocked": false,
+        "isGridMode": false,
+        "pageStates": [
+          {
+            "pageId": "page:page",
+            "camera": {
+              "x": 243.36137667304013,
+              "y": 192.08126195028674,
+              "z": 0.6973333333333334
+            },
+            "selectedShapeIds": [],
+            "focusedGroupId": null
+          }
+        ]
+      }
+    },
+    "930c32a1-1bd0-4f00-970e-aa3cfd89d68b": {
+      "document": {
+        "store": {
+          "document:document": {
+            "gridSize": 10,
+            "name": "",
+            "meta": {},
+            "id": "document:document",
+            "typeName": "document"
+          },
+          "page:page": {
+            "meta": {},
+            "id": "page:page",
+            "name": "Page 1",
+            "index": "a1",
+            "typeName": "page"
+          },
+          "shape:stage": {
+            "x": 24,
+            "y": 24,
+            "rotation": 0,
+            "isLocked": true,
+            "opacity": 1,
+            "meta": {
+              "role": "stage"
+            },
+            "id": "shape:stage",
+            "type": "geo",
+            "props": {
+              "w": 1080,
+              "h": 855,
+              "geo": "rectangle",
+              "dash": "draw",
+              "growY": 0,
+              "url": "",
+              "scale": 1,
+              "color": "black",
+              "labelColor": "black",
+              "fill": "none",
+              "size": "m",
+              "font": "draw",
+              "align": "middle",
+              "verticalAlign": "middle",
+              "richText": {
+                "type": "doc",
+                "content": [
+                  {
+                    "type": "paragraph"
+                  }
+                ]
+              }
+            },
+            "parentId": "page:page",
+            "index": "a1NOlnbV",
+            "typeName": "shape"
+          },
+          "shape:audience": {
+            "x": 494,
+            "y": 907,
+            "rotation": 0,
+            "isLocked": true,
+            "opacity": 1,
+            "meta": {
+              "role": "audience-label"
+            },
+            "id": "shape:audience",
+            "type": "text",
+            "props": {
+              "color": "black",
+              "size": "m",
+              "w": 8,
+              "font": "draw",
+              "textAlign": "start",
+              "autoSize": true,
+              "scale": 1,
+              "richText": {
+                "type": "doc",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "PUBLIEK"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "parentId": "page:page",
+            "index": "a2eU0dbG",
+            "typeName": "shape"
+          }
+        },
+        "schema": {
+          "schemaVersion": 2,
+          "sequences": {
+            "com.tldraw.store": 5,
+            "com.tldraw.asset": 1,
+            "com.tldraw.camera": 1,
+            "com.tldraw.document": 2,
+            "com.tldraw.instance": 25,
+            "com.tldraw.instance_page_state": 5,
+            "com.tldraw.page": 1,
+            "com.tldraw.instance_presence": 6,
+            "com.tldraw.pointer": 1,
+            "com.tldraw.shape": 4,
+            "com.tldraw.asset.bookmark": 2,
+            "com.tldraw.asset.image": 5,
+            "com.tldraw.asset.video": 5,
+            "com.tldraw.shape.group": 0,
+            "com.tldraw.shape.text": 4,
+            "com.tldraw.shape.bookmark": 2,
+            "com.tldraw.shape.draw": 4,
+            "com.tldraw.shape.geo": 11,
+            "com.tldraw.shape.note": 10,
+            "com.tldraw.shape.line": 5,
+            "com.tldraw.shape.frame": 1,
+            "com.tldraw.shape.arrow": 8,
+            "com.tldraw.shape.highlight": 3,
+            "com.tldraw.shape.embed": 4,
+            "com.tldraw.shape.image": 5,
+            "com.tldraw.shape.video": 4,
+            "com.tldraw.binding.arrow": 1
+          }
+        }
+      },
+      "session": {
+        "version": 0,
+        "currentPageId": "page:page",
+        "exportBackground": true,
+        "isFocusMode": false,
+        "isDebugMode": false,
+        "isToolLocked": false,
+        "isGridMode": false,
+        "pageStates": [
+          {
+            "pageId": "page:page",
+            "camera": {
+              "x": 243.36137667304013,
+              "y": 192.08126195028674,
+              "z": 0.6973333333333334
+            },
+            "selectedShapeIds": [],
+            "focusedGroupId": null
+          }
+        ]
+      }
+    }
+  },
+  "podiumPlotNotes": {
+    "scene-1": "Startopstelling",
+    "scene-2": "Snickers links, Maanu bij rots",
+    "scene-3": "Toren rechts",
+    "scene-4": "Ontmoeting Romeo/Julia",
+    "scene-5": "Oorlog en val Snickerromeo"
+  },
+  "leaderContact": {
+    "firstName": "Borre /",
+    "lastName": "Jonas / Klappie / Babs",
+    "phone": "4343434"
+  }
+}

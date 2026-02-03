@@ -41,6 +41,7 @@ export type AppState = {
   podiumPlots: Record<string, PodiumPlot>
   podiumPlotLayouts: Record<string, string[]>
   podiumPlotDocuments: Record<string, TLEditorSnapshot>
+  podiumPlotDocumentsVersion: string
   podiumPlotNotes: Record<string, string>
   podiumPlotClipboard: TLContent | null
   leaderContact: LeaderContact
@@ -113,6 +114,7 @@ export const useAppStore = create<AppState>()(
   podiumPlots: {},
   podiumPlotLayouts: {},
   podiumPlotDocuments: {},
+  podiumPlotDocumentsVersion: '',
   podiumPlotNotes: {},
   podiumPlotClipboard: null,
   leaderContact: { firstName: '', lastName: '', phone: '' },
@@ -198,7 +200,11 @@ export const useAppStore = create<AppState>()(
   setCharacters: (characters) => set({ characters }),
   setPodiumPlots: (plots) => set({ podiumPlots: plots }),
   setPodiumPlotLayouts: (layouts) => set({ podiumPlotLayouts: layouts }),
-  setPodiumPlotDocuments: (documents) => set({ podiumPlotDocuments: documents }),
+  setPodiumPlotDocuments: (documents) =>
+    set(() => ({
+      podiumPlotDocuments: documents,
+      podiumPlotDocumentsVersion: crypto.randomUUID()
+    })),
   setPodiumPlotNotes: (notes) => set({ podiumPlotNotes: notes }),
   setPodiumPlotClipboard: (content) => set({ podiumPlotClipboard: content }),
   ensurePodiumPlotSections: (sectionIds) =>
@@ -433,15 +439,29 @@ export const useAppStore = create<AppState>()(
     {
       name: 'groepsfeestapp-store',
       storage: createJSONStorage(() => idbStorage),
+      merge: (persistedState, currentState) => {
+        const safeState =
+          persistedState && typeof persistedState === 'object' ? { ...(persistedState as AppState) } : {}
+        delete (safeState as Partial<AppState>).podiumPlotLayouts
+        delete (safeState as Partial<AppState>).podiumPlotDocuments
+        delete (safeState as Partial<AppState>).podiumPlotNotes
+        delete (safeState as Partial<AppState>).podiumPlotDocumentsVersion
+
+        return {
+          ...currentState,
+          ...safeState,
+          podiumPlotLayouts: {},
+          podiumPlotDocuments: {},
+          podiumPlotNotes: {},
+          podiumPlotDocumentsVersion: ''
+        }
+      },
       partialize: (state) => ({
         selectedPlay: state.selectedPlay,
         characters: state.characters,
         lines: state.lines,
         cues: state.cues,
         podiumPlots: state.podiumPlots,
-        podiumPlotLayouts: state.podiumPlotLayouts,
-        podiumPlotDocuments: state.podiumPlotDocuments,
-        podiumPlotNotes: state.podiumPlotNotes,
         leaderContact: state.leaderContact,
         cueType: state.cueType,
         cueDescription: state.cueDescription,

@@ -123,7 +123,18 @@ export const usePlayImport = () => {
         }
 
         if (data.podiumPlotDocuments && typeof data.podiumPlotDocuments === 'object') {
-          setPodiumPlotDocuments(data.podiumPlotDocuments as PodiumPlotDocuments)
+          const rawDocuments = data.podiumPlotDocuments as PodiumPlotDocuments
+          const layouts = (data.podiumPlotLayouts as PodiumPlotLayout) ?? {}
+          const mapped: PodiumPlotDocuments = {}
+          Object.entries(rawDocuments).forEach(([key, snapshot]) => {
+            const layout = layouts[key]
+            if (layout?.length) {
+              mapped[layout[0]] = snapshot
+            } else {
+              mapped[key] = snapshot
+            }
+          })
+          setPodiumPlotDocuments(mapped)
         }
 
         if (data.podiumPlotNotes && typeof data.podiumPlotNotes === 'object') {

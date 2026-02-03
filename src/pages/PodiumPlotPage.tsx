@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { ComponentProps } from 'react'
 import { Box, Button, Card, CardContent, IconButton, Stack, TextField, Typography } from '@mui/material'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
@@ -11,7 +11,7 @@ import { useAppStore } from '../store/useAppStore'
 import styles from '../styles/app.module.css'
 
 const STAGE_RATIO = 12 / 9.5
-const STAGE_WIDTH = 1080
+const STAGE_WIDTH = 864
 const STAGE_HEIGHT = STAGE_WIDTH / STAGE_RATIO
 const CANVAS_PADDING = 24
 const STAGE_X = CANVAS_PADDING
@@ -27,6 +27,7 @@ export const PodiumPlotPage = () => {
   const lines = useAppStore((state) => state.lines)
   const podiumPlotLayouts = useAppStore((state) => state.podiumPlotLayouts)
   const podiumPlotDocuments = useAppStore((state) => state.podiumPlotDocuments)
+  const podiumPlotDocumentsVersion = useAppStore((state) => state.podiumPlotDocumentsVersion)
   const podiumPlotNotes = useAppStore((state) => state.podiumPlotNotes)
   const podiumPlotClipboard = useAppStore((state) => state.podiumPlotClipboard)
   const ensurePodiumPlotSections = useAppStore((state) => state.ensurePodiumPlotSections)
@@ -35,8 +36,8 @@ export const PodiumPlotPage = () => {
   const setPodiumPlotDocument = useAppStore((state) => state.setPodiumPlotDocument)
   const setPodiumPlotNote = useAppStore((state) => state.setPodiumPlotNote)
   const setPodiumPlotClipboard = useAppStore((state) => state.setPodiumPlotClipboard)
-  const initialSnapshotsRef = useRef<Record<string, TLEditorSnapshot | undefined>>({})
   const editorsRef = useRef<Map<string, Editor>>(new Map())
+  const [visiblePlots, setVisiblePlots] = useState<Record<string, boolean>>({})
 
   const sections = useMemo(() => {
     let sectionCount = 0
@@ -51,9 +52,55 @@ export const PodiumPlotPage = () => {
       })
   }, [lines])
 
+  const mountedPlotIds = useMemo(() => {
+    const ordered: string[] = []
+    Object.values(podiumPlotLayouts).forEach((plots) => {
+      plots.forEach((plotId) => {
+        if (visiblePlots[plotId]) ordered.push(plotId)
+      })
+    })
+    return new Set(ordered.slice(0, 2))
+  }, [podiumPlotLayouts, visiblePlots])
+
   useEffect(() => {
     ensurePodiumPlotSections(sections.map((section) => section.id))
   }, [ensurePodiumPlotSections, sections])
+
+  useEffect(() => {
+    const next: Record<string, boolean> = {}
+    const allPlotIds: string[] = []
+    Object.values(podiumPlotLayouts).forEach((plots) => {
+      plots.forEach((plotId) => {
+        next[plotId] = visiblePlots[plotId] ?? false
+        allPlotIds.push(plotId)
+      })
+    })
+    if (Object.keys(visiblePlots).length === 0) {
+      allPlotIds.slice(0, 2).forEach((plotId) => {
+        next[plotId] = true
+      })
+    }
+    setVisiblePlots(next)
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        setVisiblePlots((prev) => {
+          const updated = { ...prev }
+          entries.forEach((entry) => {
+            const id = entry.target.getAttribute('data-plot-id')
+            if (!id) return
+            updated[id] = entry.isIntersecting
+          })
+          return updated
+        })
+      },
+      { rootMargin: '200px 0px' }
+    )
+
+    const elements = Array.from(document.querySelectorAll('[data-plot-id]'))
+    elements.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [podiumPlotLayouts])
 
   useEffect(() => {
     const handleClick = (event: MouseEvent) => {
@@ -206,9 +253,41 @@ export const PodiumPlotPage = () => {
     []
   )
 
+  const latestDocumentsRef = useRef(podiumPlotDocuments)
+  useEffect(() => {
+    latestDocumentsRef.current = podiumPlotDocuments
+  }, [podiumPlotDocuments])
+
+  const lastAppliedVersionRef = useRef<string>('')
+
+  useEffect(() => {
+    if (!podiumPlotDocumentsVersion) return
+    if (lastAppliedVersionRef.current === podiumPlotDocumentsVersion) return
+    lastAppliedVersionRef.current = podiumPlotDocumentsVersion
+    Object.entries(latestDocumentsRef.current).forEach(([plotId, snapshot]) => {
+      const editor = editorsRef.current.get(plotId)
+      if (!editor || !snapshot) return
+      editor.loadSnapshot(snapshot as TLEditorSnapshot)
+      ensureStageShapes(editor)
+      editor.zoomToBounds(
+        {
+          x: STAGE_X,
+          y: STAGE_Y,
+          w: STAGE_WIDTH,
+          h: STAGE_HEIGHT + STAGE_LABEL_OFFSET + 40
+        },
+        { immediate: true, targetZoom: 0.72, inset: 0 }
+      )
+    })
+  }, [ensureStageShapes, podiumPlotDocumentsVersion])
+
   const handleMount = useCallback(
     (plotId: string) =>
       (editor: Parameters<NonNullable<ComponentProps<typeof Tldraw>['onMount']>>[0]) => {
+        const snapshot = latestDocumentsRef.current[plotId]
+        if (snapshot) {
+          editor.loadSnapshot(snapshot as TLEditorSnapshot)
+        }
         ensureStageShapes(editor)
         editor.setCameraOptions(cameraOptions)
         editor.zoomToBounds(
@@ -223,15 +302,27 @@ export const PodiumPlotPage = () => {
         setPodiumPlotDocument(plotId, editor.getSnapshot() as TLEditorSnapshot)
 
         editorsRef.current.set(plotId, editor)
+        let debounceTimer: ReturnType<typeof setTimeout> | null = null
         const handleChange = () => {
-          const snapshot = editor.getSnapshot()
-          setPodiumPlotDocument(plotId, snapshot as TLEditorSnapshot)
+          if (debounceTimer) clearTimeout(debounceTimer)
+          debounceTimer = setTimeout(() => {
+            const snapshot = editor.getSnapshot()
+            setPodiumPlotDocument(plotId, snapshot as TLEditorSnapshot)
+          }, 500)
         }
 
         editor.on('change', handleChange)
         return () => {
+          if (debounceTimer) clearTimeout(debounceTimer)
+          const snapshot = editor.getSnapshot()
+          setPodiumPlotDocument(plotId, snapshot as TLEditorSnapshot)
           editor.off('change', handleChange)
           editorsRef.current.delete(plotId)
+          if (typeof editor.dispose === 'function') {
+            editor.dispose()
+          } else if (typeof (editor as { destroy?: () => void }).destroy === 'function') {
+            editor.destroy?.()
+          }
         }
       },
     [cameraOptions, ensureStageShapes, setPodiumPlotDocument]
@@ -298,11 +389,6 @@ export const PodiumPlotPage = () => {
 
                     <Stack spacing={3}>
                       {(podiumPlotLayouts[section.id] ?? []).map((plotId, index) => {
-                        if (!initialSnapshotsRef.current[plotId]) {
-                          initialSnapshotsRef.current[plotId] = podiumPlotDocuments[plotId]
-                        }
-                        const initialSnapshot = initialSnapshotsRef.current[plotId]
-
                         return (
                         <Card
                           key={plotId}
@@ -359,13 +445,17 @@ export const PodiumPlotPage = () => {
                               <div
                                 className={styles['tldraw-canvas']}
                                 style={{ width: CANVAS_WIDTH, height: CANVAS_HEIGHT }}
+                                data-plot-id={plotId}
                               >
-                                <Tldraw
-                                  onMount={handleMount(plotId)}
-                                  snapshot={initialSnapshot}
-                                  cameraOptions={cameraOptions}
-                                  licenseKey={tldrawLicenseKey}
-                                />
+                                {mountedPlotIds.has(plotId) ? (
+                                  <Tldraw
+                                    onMount={handleMount(plotId)}
+                                    cameraOptions={cameraOptions}
+                                    licenseKey={tldrawLicenseKey}
+                                  />
+                                ) : (
+                                  <div style={{ width: '100%', height: '100%' }} />
+                                )}
                               </div>
                             </div>
                           </CardContent>

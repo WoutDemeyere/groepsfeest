@@ -483,12 +483,22 @@ const PdfDocument = ({
           <Text style={styles.sectionTitle}>Script & cues</Text>
           <View>
             {scenes.map((scene, sceneIndex) => {
-              const allowSplit = scene.lines.length > 12
+              const totalCueCount = scene.lines.reduce(
+                (sum, line) => sum + (cuesByLine.get(line.id)?.length ?? 0),
+                0
+              )
+              const estimatedUnits = scene.lines.length + totalCueCount * 0.7
+              const allowSplit = estimatedUnits > 12
+              const estimatedHeight = Math.min(
+                760,
+                120 + scene.lines.length * 30 + totalCueCount * 34
+              )
               return (
                 <View
                   key={`scene-${sceneIndex}`}
                   style={styles.sceneCard}
                   wrap={allowSplit}
+                  minPresenceAhead={allowSplit ? 0 : estimatedHeight}
                 >
                   <Text style={styles.sectionLine}>{scene.title}</Text>
                   {scene.lines.map((line) => {
