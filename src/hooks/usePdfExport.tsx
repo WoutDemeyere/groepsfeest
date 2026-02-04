@@ -439,6 +439,63 @@ const PdfDocument = ({
     currentScene.lines.push(line)
   })
 
+  const PAGE_UNIT_CAP = 22
+  const LINE_UNIT = 1
+  const CUE_UNIT = 0.7
+
+  const estimateLineUnits = (line: ScriptLine) =>
+    LINE_UNIT + (cuesByLine.get(line.id)?.length ?? 0) * CUE_UNIT
+
+  const splitSceneIntoChunks = (scene: { title: string; lines: ScriptLine[] }) => {
+    const chunks: Array<{ title: string; lines: ScriptLine[] }> = []
+    let currentChunk: ScriptLine[] = []
+    let currentUnits = 0
+
+    scene.lines.forEach((line) => {
+      const lineUnits = estimateLineUnits(line)
+      if (currentChunk.length && currentUnits + lineUnits > PAGE_UNIT_CAP) {
+        chunks.push({
+          title: chunks.length ? `${scene.title} (vervolg)` : scene.title,
+          lines: currentChunk
+        })
+        currentChunk = []
+        currentUnits = 0
+      }
+      currentChunk.push(line)
+      currentUnits += lineUnits
+    })
+
+    if (currentChunk.length) {
+      chunks.push({
+        title: chunks.length ? `${scene.title} (vervolg)` : scene.title,
+        lines: currentChunk
+      })
+    }
+
+    return chunks
+  }
+
+  const scriptPages: Array<Array<{ title: string; lines: ScriptLine[] }>> = []
+  let currentPageScenes: Array<{ title: string; lines: ScriptLine[] }> = []
+  let currentPageUnits = 0
+
+  scenes.forEach((scene) => {
+    const chunks = splitSceneIntoChunks(scene)
+    chunks.forEach((chunk) => {
+      const chunkUnits = chunk.lines.reduce((sum, line) => sum + estimateLineUnits(line), 0)
+      if (currentPageScenes.length && currentPageUnits + chunkUnits > PAGE_UNIT_CAP) {
+        scriptPages.push(currentPageScenes)
+        currentPageScenes = []
+        currentPageUnits = 0
+      }
+      currentPageScenes.push(chunk)
+      currentPageUnits += chunkUnits
+    })
+  })
+  if (currentPageScenes.length) {
+    scriptPages.push(currentPageScenes)
+  }
+
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -478,28 +535,13 @@ const PdfDocument = ({
         </View>
       </Page>
 
-      <Page size="A4" style={styles.page}>
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Script & cues</Text>
-          <View>
-            {scenes.map((scene, sceneIndex) => {
-              const totalCueCount = scene.lines.reduce(
-                (sum, line) => sum + (cuesByLine.get(line.id)?.length ?? 0),
-                0
-              )
-              const estimatedUnits = scene.lines.length + totalCueCount * 0.7
-              const allowSplit = estimatedUnits > 12
-              const estimatedHeight = Math.min(
-                760,
-                120 + scene.lines.length * 30 + totalCueCount * 34
-              )
-              return (
-                <View
-                  key={`scene-${sceneIndex}`}
-                  style={styles.sceneCard}
-                  wrap={allowSplit}
-                  minPresenceAhead={allowSplit ? 0 : estimatedHeight}
-                >
+      {scriptPages.map((pageScenes, pageIndex) => (
+        <Page key={`script-${pageIndex}`} size="A4" style={styles.page}>
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Script & cues</Text>
+            <View>
+              {pageScenes.map((scene, sceneIndex) => (
+                <View key={`scene-${pageIndex}-${sceneIndex}`} style={styles.sceneCard} wrap={false}>
                   <Text style={styles.sectionLine}>{scene.title}</Text>
                   {scene.lines.map((line) => {
                     const index = lineIndexMap.get(line.id) ?? 0
@@ -512,7 +554,7 @@ const PdfDocument = ({
                     const lineCues = cuesByLine.get(line.id) ?? []
 
                     return (
-                      <View key={line.id} style={styles.cueRow}>
+                      <View key={line.id} style={styles.cueRow} wrap={false}>
                         <View style={styles.cueRowLine}>
                           <View
                             style={[
@@ -597,11 +639,11 @@ const PdfDocument = ({
                     )
                   })}
                 </View>
-              )
-            })}
+              ))}
+            </View>
           </View>
-        </View>
-      </Page>
+        </Page>
+      ))}
 
       {sections.flatMap((section) => {
         const entries = podiumPlots.filter((entry) => entry.section.id === section.id)
